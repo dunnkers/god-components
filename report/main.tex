@@ -12,10 +12,13 @@
 
 \maketitle
 
+\tableofcontents
+\newpage
+
 \section{Introduction}
 God Components (or 'God objects') are components in a software system that have accumulated a large bulk of classes and lines of code over time. Such really large, bulky components are hard to maintain and to reason about; they are in fact a software \textit{anti-pattern} \citep{smith2000software}. It is preferred to have smaller, isolated components instead. Although it is a common good practice to build software by creating small building blocks of reusable code and accessing them using a declarative and well-documented API, big code-bases might still suffer from scaling issues.
 
-To prevent God Components in your software, it is at all times important to keep refactoring a code-base at the architecture level. Be wary and suspicious about 'vague' abstractions that seem to want to answer too many questions at once \citep{riel1996object}. God Components might be broken up into separate, independent components that each have their separate function. This makes the code easier to test and reason about - and above all; more understandable to the humans actually maintaining the code-base.
+To prevent God Components in your software, it is at all times important to keep refactoring a code-base at the architecture level, i.e. apply step-wise evolution \citep{toward_a_catalogue_of_architetural_bad_smells}. Be wary and suspicious about 'vague' abstractions that seem to want to answer too many questions at once \citep{riel1996object}. God Components might be broken up into separate, independent components that each have their separate function. This makes the code easier to test and reason about - and above all; more understandable to the humans actually maintaining the code-base.
 
 In this project, one such analysis will be ran on the \textbf{Apache Tika} project \citep{apache_software_foundation_2020}. Apache Tika is a software package built to detect and extract text and metadata from many different file formats. File formats include PDF, PPT and XLS, and can all be accessed through Tika's API, making it easy to process a large amount of files using just a concise amount of code. Besides its text extraction capabilities, it is also commonly used to classify documents using meta-data obtain from Tika, such as any file's extension \citep{Tika}.
 
