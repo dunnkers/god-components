@@ -162,28 +162,30 @@ in order to install from source. The program took a little over 13 minutes to co
 \subsection{High-level overview}
 We first ran the program byte-code through \textit{Structure101} \citep{mcnamara_hickey_oreilly_chedgey_2018}.
 
-\subsection{Component overview}
+\subsection{Main components}
 \subsubsection{tika-app}
-The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika_app-main}.
+The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika_app/main}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-main.png}
     \caption{Apache Tika compilation.}
-    \label{fig:tika_app-main}
+    \label{fig:tika_app/main}
 \end{figure}
 
-To give an example of the tika-app layout and overall capabilities, we ran Tika on a web page of our choosing. The webpage we chose was the Course Information Nestor page for SME, for which Tika extracted meta-data but also tried to determine its main text content. See Figures~\ref{fig:tika_app-filechooser}-\ref{fig:tika_app-maincontent} to see the process visually. Tika managed to get a pretty good idea of the main page content, having extracted the text from the Nestor page correctly.
+To give an example of the tika-app layout and overall capabilities, we ran Tika on a web page of our choosing. The webpage we chose was the Course Information Nestor page for SME, for which Tika extracted meta-data but also tried to determine its main text content. See Figures~\ref{fig:tika_app/filechooser}-\ref{fig:tika_app/maincontent} to see the process visually. Tika managed to get a pretty good idea of the main page content, having extracted the text from the Nestor page correctly.
 
 \begin{itemize}
     \item \textbf{Dependencies}: ...
     \item \textbf{Dependents}: ...
-    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app-s101-overview}
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app/s101-overview}. Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}. These modules providing an interface to Tika's functionalities are all relatively small, but make heavy use of other components in the source code.
 \end{itemize}
 
 \subsubsection{tika-core}
 \subsubsection{tika-parsers}
 \subsubsection{tika-server}
+
+\subsection{Other components}
 \subsubsection{tika-bundle}
 \subsubsection{tika-eval}
 
@@ -195,23 +197,29 @@ To give an example of the tika-app layout and overall capabilities, we ran Tika 
 \subsection{Component overview}
 \subsubsection{tika-app}
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-filechooser.png}
     \caption{Apache Tika app file choosing.}
-    \label{fig:tika_app-filechooser}
+    \label{fig:tika_app/filechooser}
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-metadata.png}
     \caption{Extracted metadata from a HTML file. We chose the Course Information Nestor page.}
-    \label{fig:tika_app-metadata}
+    \label{fig:tika_app/metadata}
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-maincontent.png}
     \caption{Rendered main content from Tika's analysis using the app.}
-    \label{fig:tika_app-maincontent}
+    \label{fig:tika_app/maincontent}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{report/images/tika_app/tika_app-s101-overview.png}
+    \caption{Structure101 overview of tika-app module.}
+    \label{fig:tika_app/s101-overview}
 \end{figure}
 
 \end{document}
