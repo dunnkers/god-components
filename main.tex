@@ -3,9 +3,16 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
 
 \title{Software Maintenance and Evolution \\God Components}
-\author{Jeroen G S Overschie \& Konstantina Gkikopouli}
+\author{Jeroen G S Overschie \& Konstantina Gkikopouli(S3751309}
 \date{November 2020}
 
 \begin{document}
@@ -16,15 +23,15 @@
 \newpage
 
 \section{Introduction}
-God Components (or 'God objects') are components in a software system that have accumulated a large bulk of classes and lines of code over time. Such really large, bulky components are hard to maintain and to reason about; they are in fact a software \textit{anti-pattern} \citep{smith2000software}. It is preferred to have smaller, isolated components instead. Although it is a common good practice to build software by creating small building blocks of reusable code and accessing them using a declarative and well-documented API, big code-bases might still suffer from scaling issues.
+God Components (or 'God objects') are components in a software system that have accumulated a large bulk of classes and lines of code over time. Such really large, bulky components are hard to maintain and to reason about; they are in fact a software \textit{anti-pattern} \citep{smith2000software}. It is preferred to have smaller, isolated components instead. Although it is a common good practice to build software by creating small building blocks of reusable code and accessing them using a declarative and well-documented API, big code-bases might still suffer from scaling issues: large inter-weaved software components might develop that become difficult to reason about.
 
 To prevent God Components in your software, it is at all times important to keep refactoring a code-base at the architecture level, i.e. apply step-wise evolution \citep{toward_a_catalogue_of_architetural_bad_smells}. Be wary and suspicious about 'vague' abstractions that seem to want to answer too many questions at once \citep{riel1996object}. God Components might be broken up into separate, independent components that each have their separate function. This makes the code easier to test and reason about - and above all; more understandable to the humans actually maintaining the code-base.
 
 In this project, one such analysis will be ran on the \textbf{Apache Tika} project \citep{apache_software_foundation_2020}. Apache Tika is a software package built to detect and extract text and metadata from many different file formats. File formats include PDF, PPT and XLS, and can all be accessed through Tika's API, making it easy to process a large amount of files using just a concise amount of code. Besides its text extraction capabilities, it is also commonly used to classify documents using meta-data obtain from Tika, such as any file's extension \citep{Tika}.
 
-God Components will not only be identified, but their evolution over time will also be tracked. This will be done by searching for commits associated to one such God Component and observing either growth or shrinkage. Finally, 
+God Components will not only be identified, but their evolution over time will also be tracked. This will be done by searching for commits associated to one such God Component and observing either growth or shrinkage.
 
-\section{Exploration (week 1)}
+\section{Exploration}
 First, we explore our chosen software project, Apache Tika, by means of \textbf{requirements analysis}. \citep{dresner1964maintenance}. Requirements were compiled using the project's public website \citep{apache_software_foundation_2020} and an online book about Apache Tika written by the authors \citep{tika_in_action}. 
 
 \subsection{Key design goals}
@@ -133,24 +140,78 @@ Language detection has also become an important feature in Tika. The ability of 
 %     \item Extract phone numbers
 % \end{itemize}
 
-\section{System structure (week 2)}
-An analysis will be performed using common Software Engineering tooling programs. We first ran the program byte-code through \textit{Structure101}, see Figure~\ref{fig:structure101}.
+\section{Analysis}
+An analysis will be performed using common Software Engineering tooling programs, like \textit{Structure101}. Analysis was done in several steps: (1) compiling the software, (2) create a high-level overview and finally (3) analyze separate packages.
 
-\begin{figure}
+\subsection{Compilation}
+To compile the software, we ran 
+
+\begin{lstlisting}[language=bash]
+mvn clean install -DskipTests
+\end{lstlisting}
+
+in order to install from source. The program took a little over 13 minutes to compile (Figure~\ref{fig:compilation}).
+
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/structure101.png}
-    \caption{Structure101 overview of Apache Tika.}
-    \label{fig:structure101}
+    \includegraphics[width=0.85\textwidth]{report/images/compiling-tika.png}
+    \caption{Apache Tika compilation.}
+    \label{fig:compilation}
 \end{figure}
 
-% \section{Identifying God Components (week 3 and 4)}
-% identify god components using (1) our own code (2) Designite
+\subsection{High-level overview}
+We first ran the program byte-code through \textit{Structure101} \citep{mcnamara_hickey_oreilly_chedgey_2018}.
 
-% - find commits linked to: adding- or removing code to god components
+\subsection{Component overview}
+\subsubsection{tika-app}
+The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika-app_main}.
 
-% - create timeline for god components evolution
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-main.png}
+    \caption{Apache Tika compilation.}
+    \label{fig:tika-app_main}
+\end{figure}
+
+To give an example of the tika-app layout and overall capabilities, we ran Tika on a web page of our choosing. The webpage we chose was the Course Information Nestor page for SME, for which Tika extracted meta-data but also tried to determine its main text content. See Figures~\ref{fig:tika-app_filechooser}-\ref{fig:tika-app_maincontent} to see the process visually. Tika managed to get a pretty good idea of the main page content, having extracted the text from the Nestor page correctly.
+
+\begin{itemize}
+    \item \textbf{Dependencies}: ...
+    \item \textbf{Dependents}: ...
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika-app_s101-overview}
+\end{itemize}
+
+\subsubsection{tika-core}
+\subsubsection{tika-parsers}
+\subsubsection{tika-server}
+\subsubsection{tika-bundle}
+\subsubsection{tika-eval}
 
 \bibliographystyle{plain} % We choose the "plain" reference style
-\bibliography{bibliography}
+\bibliography{report/bibliography}
+
+\appendix
+\section{Analysis}
+\subsection{Component overview}
+\subsubsection{tika-app}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-filechooser.png}
+    \caption{Apache Tika app file choosing.}
+    \label{fig:tika-app_filechooser}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-metadata.png}
+    \caption{Extracted metadata from a HTML file. We chose the Course Information Nestor page.}
+    \label{fig:tika-app_metadata}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-maincontent.png}
+    \caption{Rendered main content from Tika's analysis using the app.}
+    \label{fig:tika-app_maincontent}
+\end{figure}
 
 \end{document}
