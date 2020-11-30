@@ -164,21 +164,21 @@ We first ran the program byte-code through \textit{Structure101} \citep{mcnamara
 
 \subsection{Component overview}
 \subsubsection{tika-app}
-The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika-app_main}.
+The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika_app-main}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-main.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-main.png}
     \caption{Apache Tika compilation.}
-    \label{fig:tika-app_main}
+    \label{fig:tika_app-main}
 \end{figure}
 
-To give an example of the tika-app layout and overall capabilities, we ran Tika on a web page of our choosing. The webpage we chose was the Course Information Nestor page for SME, for which Tika extracted meta-data but also tried to determine its main text content. See Figures~\ref{fig:tika-app_filechooser}-\ref{fig:tika-app_maincontent} to see the process visually. Tika managed to get a pretty good idea of the main page content, having extracted the text from the Nestor page correctly.
+To give an example of the tika-app layout and overall capabilities, we ran Tika on a web page of our choosing. The webpage we chose was the Course Information Nestor page for SME, for which Tika extracted meta-data but also tried to determine its main text content. See Figures~\ref{fig:tika_app-filechooser}-\ref{fig:tika_app-maincontent} to see the process visually. Tika managed to get a pretty good idea of the main page content, having extracted the text from the Nestor page correctly.
 
 \begin{itemize}
     \item \textbf{Dependencies}: ...
     \item \textbf{Dependents}: ...
-    \item \textbf{Internal structure}: See Figure~\ref{fig:tika-app_s101-overview}
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app-s101-overview}
 \end{itemize}
 
 \subsubsection{tika-core}
@@ -197,21 +197,21 @@ To give an example of the tika-app layout and overall capabilities, we ran Tika 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-filechooser.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-filechooser.png}
     \caption{Apache Tika app file choosing.}
-    \label{fig:tika-app_filechooser}
+    \label{fig:tika_app-filechooser}
 \end{figure}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-metadata.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-metadata.png}
     \caption{Extracted metadata from a HTML file. We chose the Course Information Nestor page.}
-    \label{fig:tika-app_metadata}
+    \label{fig:tika_app-metadata}
 \end{figure}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika-app/tika-maincontent.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-maincontent.png}
     \caption{Rendered main content from Tika's analysis using the app.}
-    \label{fig:tika-app_maincontent}
+    \label{fig:tika_app-maincontent}
 \end{figure}
 
 \end{document}
