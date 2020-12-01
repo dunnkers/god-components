@@ -37,27 +37,27 @@ First, we explore our chosen software project, Apache Tika, by means of \textbf{
 \subsection{Key design goals}
 Let us denote the most important goals the authors set out to accomplish in creating Apache Tika.
 \subsubsection{Unified parsing}
-One of the initial key goals set by the creators of Apache Tika was the implementation of a unified parsing interface.  In Apache Tika, unified parsing offers a collection of functionalities and a Java interface that deal with external third-party parsing libraries. This was achieved by the creation of the org.apache.tika.parser.Parser interface, which parses the received content incrementally.
+One of the initial key goals set by the creators of Apache Tika was the implementation of a unified parsing interface \citep{tika_in_action}.  In Apache Tika, unified parsing offers a collection of functionalities and a Java interface that deal with external third-party parsing libraries. This was achieved by the creation of the org.apache.tika.parser.Parser interface, which parses the received content incrementally.
 
 \subsubsection{Low Memory Footprint and Fast Processing}
-The second goal of the authors regarding Apache Tika was to achieve a low memory footprint and guarantee a fast processing performance. The creators wanted to make sure that Tika could be easily integrated into any Java application at a low memory cost. This would be beneficial to the users, as they could run Tika in any environment ranging from mobile PDA to desktop computers. At the same time, Tika is expected to react quickly to user’s requests and perform file format identification and processing in a fast manner.
+The second goal of the authors regarding Apache Tika was to achieve a low memory footprint and guarantee a fast processing performance \citep{tika_in_action}. The creators wanted to make sure that Tika could be easily integrated into any Java application at a low memory cost. This would be beneficial to the users, as they could run Tika in any environment ranging from mobile PDA to desktop computers. At the same time, Tika is expected to react quickly to user’s requests and perform file format identification and processing in a fast manner.
 
 As mentioned previously, the received content is parsed incrementally and it is generated as SAX-based XHTML events. SAX (Simple API for XML processing) was the main XML parsing option, as it accomplished all the requirements regarding low memory footprint, fast processing and incremental parsing. In addition, SAX model is more flexible, as it allows its users to decide themselves on how they want to deal with the received content by modifying Tika’s parser and specifying what needs to be done atorg.xml.sax.ContentHandlers.
 
 \subsubsection{Flexible Metadata}
-Another design consideration was to ensure the required flexibility that Tika needs in order to perform its tasks on the extracted content. There is an enormous amount of available file formats and Tika is capable of understanding and processing all of them. However, most of these formats contain associated metadata models that provide detailed descriptions about these files. In this case, Tika should also be able to understand the corresponding metadata models. In the previous releases, Tika was always modifying and generalizing the metadata of the extracted content, so that it could fit to its predefined structure. In the latest releases, Tika is not following the same technique and it has become more flexible, as it stores the metadata in their original form.
+Another design consideration was to ensure the required flexibility that Tika needs in order to perform its tasks on the extracted content \citep{tika_in_action}. There is an enormous amount of available file formats and Tika is capable of understanding and processing all of them. However, most of these formats contain associated metadata models that provide detailed descriptions about these files. In this case, Tika should also be able to understand the corresponding metadata models. In the previous releases, Tika was always modifying and generalizing the metadata of the extracted content, so that it could fit to its predefined structure. In the latest releases, Tika is not following the same technique and it has become more flexible, as it stores the metadata in their original form.
 
 \subsubsection{Parser integration}
-Another key design goal that was taken into account was the parser integration. Similar to the metadata models and file formats, there are also a lot of parsing libraries and Tika has to easily integrate them within the application. According to the creators, from a design perspective Tika virtualizes the underlying parser libraries and ensures their conformance to Tika’s parser interface. However, this is a complicated task as the authors had to deal with parser exceptions, threads of control, delegation, and nuances in each of these libraries. Even though it was a cost-effective process, it brought a lot of benefits like cross-document comparison, uniformity, standardized metadata and extracted text.
+Another key design goal that was taken into account was the parser integration \citep{tika_in_action}. Similar to the metadata models and file formats, there are also a lot of parsing libraries and Tika has to easily integrate them within the application. According to the creators, from a design perspective Tika virtualizes the underlying parser libraries and ensures their conformance to Tika’s parser interface. However, this is a complicated task as the authors had to deal with parser exceptions, threads of control, delegation, and nuances in each of these libraries. Even though it was a cost-effective process, it brought a lot of benefits like cross-document comparison, uniformity, standardized metadata and extracted text.
 
 \subsubsection{MIME Database}
-Another design consideration was focused on the usage of MIME database, which contains a simple and an efficient way of categorizing the file formats. The main goal of the authors was for Tika to support a flexible mechanism that could in a user-friendly way define and identify different media types. Moreover, Tika contains an XML-based mechanism that is responsible for adding new media types, regular expressions and glob patterns.
+Another design consideration was focused on the usage of MIME database, which contains a simple and an efficient way of categorizing the file formats \citep{tika_in_action}. The main goal of the authors was for Tika to support a flexible mechanism that could in a user-friendly way define and identify different media types. Moreover, Tika contains an XML-based mechanism that is responsible for adding new media types, regular expressions and glob patterns.
 
 \subsubsection{MIME Detection}
-Based on the previous section, the authors continued with making different flexible MIME detection tools available to the end users, like via byte[] arrays, java.io.Files, filenames and java.net.URLs pointing to the files etc. They  also focused on making the MIME information available to Tika’s parser and metadata, because the detected media type could be an essential source of information to return as extracted metadata along with the parsing operation.
+Based on the previous section, the authors continued with making different flexible MIME detection tools available to the end users, like via byte[] arrays, java.io.Files, filenames and java.net.URLs pointing to the files etc \citep{tika_in_action}. They  also focused on making the MIME information available to Tika’s parser and metadata, because the detected media type could be an essential source of information to return as extracted metadata along with the parsing operation.
 
 \subsubsection{Language detection}
-Language detection has also become an important feature in Tika. The ability of understanding a language is essential, as it provides useful information regarding the content of the file and its corresponding metadata. Nowadays, the developers are trying to improve language detection in Tika by adding tools that improve language-specific charset detection in the parser.
+Language detection has also become an important feature in Tika \citep{tika_in_action}. The ability of understanding a language is essential, as it provides useful information regarding the content of the file and its corresponding metadata. Nowadays, the developers are trying to improve language detection in Tika by adding tools that improve language-specific charset detection in the parser.
 
 \subsection{Quality attributes}
 \begin{enumerate}
@@ -164,12 +164,12 @@ We first ran the program byte-code through \textit{Structure101} \citep{mcnamara
 
 \subsection{Main components}
 \subsubsection{tika-app}
-The GUI interface. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika_app/main}.
+The Tika interfaces: CLI and GUI. Allows users to interact with Tika in an interactive way. The GUI encapsulates the core and external parser libraries to build a single runnable jar file, which can be ran on multiple platforms as an user interface or via a command line interface. The program looks as can be seen in Figure~\ref{fig:tika_app/main}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-main.png}
-    \caption{Apache Tika compilation.}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/main.png}
+    \caption{Apache Tika main GUI interface.}
     \label{fig:tika_app/main}
 \end{figure}
 
@@ -178,16 +178,116 @@ To give an example of the tika-app layout and overall capabilities, we ran Tika 
 \begin{itemize}
     \item \textbf{Dependencies}: ...
     \item \textbf{Dependents}: ...
-    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app/s101-overview}. Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}. These modules providing an interface to Tika's functionalities are all relatively small, but make heavy use of other components in the source code.
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app/s101}. Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}. These modules providing an interface to Tika's functionalities are all relatively small, but make heavy use of other components in the source code.
 \end{itemize}
 
 \subsubsection{tika-core}
-\subsubsection{tika-parsers}
-\subsubsection{tika-server}
+This module packs Tika's core functionality. It includes a module to detect file content types, a framework for parsing (text) content from a file and more, like language detection and so forth.
 
-\subsection{Other components}
-\subsubsection{tika-bundle}
+\begin{itemize}
+    \item \textbf{Dependencies}: ...
+    \item \textbf{Dependents}: ...
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_core/s101}. \texttt{tika-core} starts with the main \texttt{Tika} class, which requires a \texttt{Detector} and a \texttt{Parser} (and possibly a \texttt{Translator}) to build a \texttt{Tika} instance (also called \textit{Facade}) in the source code. This \texttt{Tika} class contains no main functionality itself, but rather calls on its dependencies (hence the word Facade).
+\end{itemize}
+
+\subsubsection{tika-parsers}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-parser}
+\item \textbf{Dependencies}: tika-parser modules
+\item \textbf{Dependents}: tika-app, tika-java7, tika-server.
+\item \textbf{Purpose}: According to the documentation, Tika parsers are considered as key features that ensure the main functionalities of Tika. These parsers are responsible for parsing, understanding and processing all the existing file formats and their corresponding metadata models. Even though these tasks are intense and complicated, the parsers camouflage their complexity by providing a really simple tool to the users for extracting the needed text content.
+\item \textbf{Contents}: This component consists of the tika parsers. Tika parsers are fundamental elements of Apache Tika. They contain a set of classes that construct the Tika Parser interface based on external parser libraries. 
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tika-parser.PNG}
+    \caption{tika-parser component}
+    \label{fig:tika-parser}
+\end{figure}
+\subsubsection{tika-parsers-advanced}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-parser-advanced}
+\item \textbf{Dependencies}: tika-core, tika-parser-modules.
+\item \textbf{Dependents}:  None
+\item \textbf{Purpose}: Tika-parser-advanced is another crucial component that consists of several advanced parsers. These parsers provide more sophisticated functionalities and they are mainly focused on extracting more detailed information from complicated text documents like electronical clinical records, journals etc. 
+\item \textbf{Contents}: This component offers extra parser functionalities and it consists of 4 modules. The first module is tika-age-recognizer and it is capable of detecting and extracting the ages of people in a given text. The second one is tika-dl and its main functionality is image recognition. Tika-parser-advancedmedia-module is another parser and it is responsible for captioning and recognizing objects present in images and graphics.  Finally, tika-parser-nlp module offers functionalities such as: parsing biomedical information, detecting locations in a given text and providing them geo tags based on latitude/longitude, extracting journal information etc.
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tika-parser-advanced.PNG}
+    \caption{tika-parser-advanced component}
+    \label{fig:tika-parser-advanced}
+\end{figure}
+\subsubsection{tika-parsers-extended}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-parser-extended}
+\item \textbf{Dependencies}: tika-parser-modules, tika-core
+\item \textbf{Dependents}: None
+\item \textbf{Purpose}: This component is an extended version of the previously mentioned tika-parser components. It consists of additional parsers that are capable extra file formats.
+\item \textbf{Contents}: This component consists of several parsers that provide additional capabilities. The first module is tika-parser-scientific-module and it parses extra file formats like NetCDF files, HDF files, geo file formats etc. The next module is tika-parser-sqlite3-module and it parses SQLite3 files. The last module is tika-parser-extended-integration-tests and it contains integration tests for Apache Tika.
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tikaparserextended.PNG}
+    \caption{tika-parser-extended component}
+    \label{fig:tika-parser-extended}
+\end{figure}
+\subsubsection{tika-parsers-modules}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-parser-modules}
+\item \textbf{Dependencies}: tika-core
+\item \textbf{Dependents}: tika-fuzzing, tika-parsers, tika-parser-advanced, tika-parser-extended, tika-xmp.
+\item \textbf{Purpose}: This component provides the basic parsers that are mainly applied in common text file formats like Microsoft documents, PDF files etc. 
+\item \textbf{Contents}: : This component contains multiple parser modules. One of these parser modules is tika-parser-audiovideo-module which parses audio and video metadata files. Another module is tika-parser-cad-module and it is responsible for searching for bits in the headers of the texts. In addition, tika-parser-crypto-module is another module that consists of parsers for PKCS7 data and for Time Stamped Data Envelope. There are also other parsers in this module that extract information from Microsoft documents, pdf files, mails, html pages, xml etc. 
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tikamodules.PNG}
+    \caption{tika-parser-modules component}
+    \label{fig:tika-parser-modules}
+\end{figure}
 \subsubsection{tika-eval}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-eval}
+\item \textbf{Dependencies}: : tika-batch, tika-langdetect, tika-core, tika-serialization.
+\item \textbf{Dependents}: tika-example.
+\item \textbf{Purpose}: The main purpose of this component is to provide insight based on the output of a given extraction tool or to perform comparisons between different tools. In addition, this component helps the developers to make comparisons of the output of two versions of the same tool or their execution while they run on different settings. 
+\item \textbf{Contents}: Tika.eval consists of some elements. One of them is eval.db which stores the extracted content and the corresponding metadata. Another part in tika.eval is tika.eval.textstats and it contains interfaces that measure language probabilities and token stats.  In addition, tika.eval.langid contains the IDs of the languages. Tika.eval provides its own predefined list of reports where users can instantly report insights. 
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tika-eval.PNG}
+    \caption{tika-eval component}
+    \label{fig:tika-eval}
+\end{figure}
+\subsubsection{tika-server}
+\begin {itemize}
+\item \textbf{Figure}: See Figure~\ref{fig:tika-server}
+\item \textbf{Dependencies}: tika-parsers, tika-langdetect, tika-core, tika-serialization, tika-translate, tika-xmp.
+\item \textbf{Dependents}: None
+\item \textbf{Purpose}: Tika JAX-RS REST application. This is a Jetty web server running Tika REST services.
+\item \textbf{Contents}: todo
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{report/images/tika-server.PNG}
+    \caption{tika-server}
+    \label{fig:tika-server}
+\end{figure}
+\subsection{Other components}
+\begin{itemize}
+    \item \texttt{tika-bundle} OSGi bundle that contains tika-core and tika-parsers as dependencies - but no code itself.
+    \item \texttt{tika-example}. Contains some usage examples; including those shown on the \href{https://tika.apache.org/1.20/examples.html#Apache_Tika_API_Usage_Examples}{\underline{Usage Examples}} page. Is neither runnable nor meant to be directly used by another package. Because it contains examples resembling a diverse set of use cases, it is dependent on many other modules, i.e. \texttt{tika-app}, \texttt{tika-serialization}, \texttt{tika-translate},\\ \texttt{tika-langdetect-optimaize}, \texttt{tika-eval-core} and \texttt{tika-core}.
+    \item \texttt{tika-fuzzing}. Contains very little documentation. Contains a \\ \texttt{AutoDetectTransformer} class that seems to take in an array of transformers and allows one to work with the entire vector of transformers at once.
+    \item \texttt{tika-xmp}. Provides a "\textit{conversion of the Metadata map from Tika to the XMP data model}". XMP is a format for storing file metadata in a consistent way. The module contains a bunch of classes that facilitate XMP conversion from different formats, like OpenDocument, MSOffice and RTF. Is dependent on \texttt{tika-core} and some \texttt{tika-parser-} modules for processing Microsoft Office documents.
+    \item \texttt{tika-serialization}. Contains some serializers and de-serializers for storing and retrieving metadata as JSON objects. Is dependent on \texttt{tika-core}, but really only uses interfaces from the package instead of actual functionality, namely \texttt{org.apache.tika.metadata.Metadata}; used working with Metadata objects in the module. 
+    \item\texttt {tika-translate}: It represents an interface that provides translating services and it consists of multiple translators. One of these translators is MosesTranslator that uses Moses decoder for translations. Another translation service is CachedTranslator and it is responsible for saving a map of previous translations in order to not repeat translation requests. In addition, this component consists of YandexTranslator that provides a REST client implementation of Yandex Translate API. Among these translation services, this component also makes use of GoogleTranslator and MicrosoftTranslator.
+    \item\texttt{tika-langdetect}: This component is capable of identifying the language of a given text. This type of information is quite helpful as a lot of metadata might not provide the language of the text formats. This component consists of a few language detectors like langdetect.lingo 24, langdetect.commons etc. 
+    \item\texttt tika-batch: This module has the purpose of conventional processing and it has a producer/consumer design pattern. This module is still under development and the developers try to keep it as configurable as possible. It consists of a ResourceCrawler, which adds potential files for processing onto the queue. A ResourceConsumer is also present in the batch and it pulls a resource from the queue and consumes it. In addition, a StatusReporter often reports on how many files have been processed etc.
+    \end{itemize}
+
+\subsubsection{tika-bundle}
+
 
 \bibliographystyle{plain} % We choose the "plain" reference style
 \bibliography{report/bibliography}
@@ -196,30 +296,43 @@ To give an example of the tika-app layout and overall capabilities, we ran Tika 
 \section{Analysis}
 \subsection{Component overview}
 \subsubsection{tika-app}
-
 \begin{figure}
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-filechooser.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/filechooser.png}
     \caption{Apache Tika app file choosing.}
     \label{fig:tika_app/filechooser}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-metadata.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/metadata.png}
     \caption{Extracted metadata from a HTML file. We chose the Course Information Nestor page.}
     \label{fig:tika_app/metadata}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika_app/tika_app-maincontent.png}
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/maincontent.png}
     \caption{Rendered main content from Tika's analysis using the app.}
     \label{fig:tika_app/maincontent}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{report/images/tika_app/tika_app-s101-overview.png}
+    \includegraphics[width=\textwidth]{report/images/tika_app/s101.png}
     \caption{Structure101 overview of tika-app module.}
-    \label{fig:tika_app/s101-overview}
+    \label{fig:tika_app/s101}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika_app/filechooser.png}
+    \caption{Apache Tika app file choosing.}
+    \label{fig:tika_app/filechooser}
+\end{figure}
+
+\subsubsection{tika-core}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{report/images/tika_core/s101}
+    \caption{Structure101 overview of tika-core module.}
+    \label{fig:tika_core/s101}
 \end{figure}
 
 \end{document}
