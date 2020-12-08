@@ -17,7 +17,7 @@ if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 if (not os.path.exists('designite/.config')):
     os.system('{} -r {}'.format(jar, KEY))
 
-# Obtain git tags
+# Run some bash command and return its output
 def run(cmd):
     print('Running', cmd, '...')
     result = subprocess.run(cmd.split(' '),
@@ -25,6 +25,7 @@ def run(cmd):
     lines = result.stdout.split()
     return list(map(lambda s: s.decode('utf-8'), lines))
 
+# Run Designite on the currently checked out tag
 def designite(output_folder):
     # Run Designite
     start = time()
@@ -40,16 +41,6 @@ def designite(output_folder):
     godcomps = archsmells[archsmells['Architecture Smell'] == 'God Component'].copy()
     os.system('rm -rf {}'.format(output_folder)) # Remove report
     return godcomps
-    # tag = '2.0.0-SNAPSHOT'
-    # godcomps['Tag'] = tag
-    # godcompsfile = 'designite/godcomps.csv'
-    # if (os.path.exists(godcompsfile)): # Merge existing 
-    #     godcomps = pandas.concat([
-    #         pandas.read_csv(godcompsfile),
-    #         godcomps
-    #     ])
-    # godcomps.to_csv(godcompsfile, index=False)
-    # print('end')
 
 # Grab tags
 tags = run('git tag -l')
@@ -61,4 +52,12 @@ for tag in tags:
     print('Running Designite for tag', tag)
     run('git checkout ' + tag)
     godcomps = designite('{}/{}'.format(OUTPUT_FOLDER, tag))
+    godcomps['Tag'] = tag
     godcomps.to_csv(targetfile, index=False)
+
+# Combine all reports into 1 .csv file
+reports = []
+for report in os.listdir(OUTPUT_FOLDER):
+    reports.append(pandas.read_csv('{}/{}'.format(OUTPUT_FOLDER, report)))
+all_reports = pandas.concat(reports)
+all_reports.to_csv('designite/all_reports.csv', index=False)
