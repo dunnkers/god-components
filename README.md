@@ -5,6 +5,27 @@ How did big, bulky software components come into being? In this project, we expl
 ## Running project code
 ... code under `/`
 
+### Designite analysis
+Code to investigate God Components for every version (commit) of the code is under `/designite`. First, set your DesigniteJava Enterprise key to a environment variable, like so:
+
+```shell
+export DESIGNITE_ENTERPRISE=<your_key>
+```
+
+We also rely on some dependencies, so create a virtual environment using:
+
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip3 install pandas
+```
+
+Put the command in `.bashrc` or `.zshrc` to persist the environment variable. Now, to run the analysis, execute:
+
+```shell
+python3 extraction.py
+```
+
 ## Report
 Latex report source is under `/report`, built PDF available in submission.
 
