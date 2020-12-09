@@ -3,3 +3,6 @@ venv
 designite/reports
 designite/DesigniteLog*
 designite/.config
+designite/rooted
+designite/mcs
+designite/ncs
