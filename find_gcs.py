@@ -1,6 +1,6 @@
 import os
 from time import time
-import pandas
+import pandas as pd
 import subprocess
 
 # Settings
@@ -36,7 +36,7 @@ def designite(output_folder):
     print('Designite ran for {:.2f} seconds'.format(end - start))
 
     # Filter results for God Components
-    archsmells = pandas.read_csv('{}/ArchitectureSmells.csv'.format(
+    archsmells = pd.read_csv('{}/ArchitectureSmells.csv'.format(
         output_folder))
     godcomps = archsmells[archsmells['Architecture Smell'] == 'God Component'].copy()
     os.system('rm -rf {}'.format(output_folder)) # Remove report
@@ -50,16 +50,12 @@ for tag in tags:
         print('Skipping tag', tag)
         continue
     print('Running Designite for tag', tag)
-    run('git checkout ' + tag)
+    os.system('git checkout ' + tag)
     godcomps = designite('{}/{}'.format(OUTPUT_FOLDER, tag))
     godcomps['Tag'] = tag
     godcomps.to_csv(targetfile, index=False)
 
 # Combine all reports into 1 .csv file
-reports = []
-for reportfile in os.listdir(OUTPUT_FOLDER):
-    reportpath = '{}/{}'.format(OUTPUT_FOLDER, reportfile)
-    report = pandas.read_csv(reportpath, dtype=str)
-    reports.append(report)
-all_reports = pandas.concat(reports)
+paths = map(lambda f: os.path.join(OUTPUT_FOLDER, f), os.listdir(OUTPUT_FOLDER))
+all_reports = pd.concat(map(lambda f: pd.read_csv(f, dtype=str), paths))
 all_reports.to_csv('designite/all_reports.csv', index=False)

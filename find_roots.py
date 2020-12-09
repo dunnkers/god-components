@@ -1,5 +1,5 @@
 import os
-import pandas
+import pandas as pd
 import subprocess
 import numpy as np
 
@@ -25,7 +25,7 @@ def getTotalLOC(candidate):
 def chooseCandidate(candidates):
     locs = list(map(getTotalLOC, candidates))
     index = np.argmax(locs)
-    return candidates[index]
+    return os.path.relpath(candidates[index], TIKA_REPO)
 
 # Match Java package name to folder in git repository
 def findCandidates(package):
@@ -42,7 +42,7 @@ def findCandidates(package):
     return candidates
 
 # All God Components
-godcomps = pandas.read_csv('designite/all_reports.csv', dtype=str)
+godcomps = pd.read_csv('designite/all_reports.csv', dtype=str)
 
 # Find folders associated to packages for certain tag/package
 for obj, df in godcomps.groupby(['Tag', 'Package Name']):
@@ -54,34 +54,13 @@ for obj, df in godcomps.groupby(['Tag', 'Package Name']):
     print('Parsing tag {}, package {}...'.format(tag, package))
     subprocess.run(['git', 'checkout', tag], cwd=TIKA_REPO)
 
-    # Find candidates
+    # Find and export candidates
     candidates = findCandidates(package)
-    print('-> candidates:', candidates)
-
-    # Export candidates
-    if len(candidates) == 1:
-        print('✔ {} matched.'.format(package))
-        candidate = os.path.relpath(candidates[0], TIKA_REPO)
-        df['root'] = candidate
-        mkdir(OUTPUT_FOLDER)
-        df.to_csv(targetfile, index=False)
-    elif len(candidates) > 1:
-        print('❓ {} multiple candidates found.'.format(package))
-        candidate = os.path.relpath(chooseCandidate(candidates), TIKA_REPO)
-        df['root'] = candidate
-        mkdir(OUTPUT_FOLDER)
-        df.to_csv(targetfile, index=False)
-    elif len(candidates) == 0:
-        print('❌ {} no candidates found.'.format(package))
-        mkdir(NCS_FOLDER)
-        df.to_csv('{}/{}-{}.csv'.format(NCS_FOLDER, tag, package), 
-            index=False)
+    df['root'] = chooseCandidate(candidates) if candidates else None
+    mkdir(OUTPUT_FOLDER)
+    df.to_csv(targetfile, index=False)
 
 # Combine all roots into 1 .csv file
-roots = []
-for rootfile in os.listdir(OUTPUT_FOLDER):
-    rootpath = '{}/{}'.format(OUTPUT_FOLDER, rootfile)
-    root = pandas.read_csv(rootpath, dtype=str)
-    roots.append(root)
-all_roots = pandas.concat(roots)
-all_roots.to_csv('designite/all_roots.csv', index=False)
+paths = map(lambda f: os.path.join(OUTPUT_FOLDER, f), os.listdir(OUTPUT_FOLDER))
+all_reports = pd.concat(map(lambda f: pd.read_csv(f, dtype=str), paths))
+all_reports.to_csv('designite/all_roots.csv', index=False)
