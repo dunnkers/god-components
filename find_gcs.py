@@ -57,7 +57,9 @@ for tag in tags:
 
 # Combine all reports into 1 .csv file
 reports = []
-for report in os.listdir(OUTPUT_FOLDER):
-    reports.append(pandas.read_csv('{}/{}'.format(OUTPUT_FOLDER, report)))
+for reportfile in os.listdir(OUTPUT_FOLDER):
+    reportpath = '{}/{}'.format(OUTPUT_FOLDER, reportfile)
+    report = pandas.read_csv(reportpath, dtype=str)
+    reports.append(report)
 all_reports = pandas.concat(reports)
 all_reports.to_csv('designite/all_reports.csv', index=False)
