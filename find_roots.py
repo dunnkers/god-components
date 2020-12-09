@@ -1,18 +1,39 @@
 import os
 import pandas
 import subprocess
+import numpy as np
 
 TIKA_REPO = '../tika'
 OUTPUT_FOLDER = 'designite/rooted'
-MCS_FOLDER = 'designite/mcs'
-NCS_FOLDER = 'designite/ncs'
+NCS_FOLDER = 'designite/ncs' # 'No candidates' folder
 
+# Run some bash command and return its output
+def run(cmd, input=''):
+    print('Running', cmd, '...')
+    result = subprocess.run(cmd.split(' '),
+        stdout=subprocess.PIPE, cwd=TIKA_REPO, stdin=input)
+    lines = result.stdout.split()
+    return list(map(lambda s: s.decode('utf-8'), lines))
+
+# Make output dirs
 def mkdir(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
-mkdir(OUTPUT_FOLDER)
-mkdir(MCS_FOLDER)
-mkdir(NCS_FOLDER)
+
+def getTotalLOC(candidate):
+    files = subprocess.Popen('find {} -name *'.format(candidate).split(' '), 
+        stdout=subprocess.PIPE)
+    result = subprocess.Popen('xargs wc -l'.split(' '),
+        stdout=subprocess.PIPE, stdin=files.stdout)
+    out, _ = result.communicate()
+    locs = out.split()
+    loc = int(locs[len(locs) - 2])
+    return loc
+
+def chooseCandidate(candidates):
+    locs = list(map(getTotalLOC, candidates))
+    index = np.argmax(locs)
+    return candidates[index]
 
 # All God Components
 godcomps = pandas.read_csv('designite/all_reports.csv', dtype=str)
@@ -40,20 +61,18 @@ for obj, df in godcomps.groupby(['Tag', 'Package Name']):
     
     # Check whether match or not
     print('-> candidates:', candidates)
+    mkdir(OUTPUT_FOLDER)
     if len(candidates) == 1:
         print('✔ {} matched.'.format(package))
         df['root'] = candidates[0]
         df.to_csv(targetfile, index=False)
     elif len(candidates) > 1:
         print('❓ {} multiple candidates found.'.format(package))
-        df_mc = pandas.DataFrame({ # 'multiple candidates' df
-            'candidates': candidates,
-            'Package Name': package
-        }).merge(df)
-        df_mc.to_csv('{}/{}-{}.csv'.format(MCS_FOLDER, tag, package), 
-            index=False)
+        df['root'] = chooseCandidate(candidates)
+        df.to_csv(targetfile, index=False)
     elif len(candidates) == 0:
         print('❌ {} no candidates found.'.format(package))
+        mkdir(NCS_FOLDER)
         df.to_csv('{}/{}-{}.csv'.format(NCS_FOLDER, tag, package), 
             index=False)
 
