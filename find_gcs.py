@@ -17,14 +17,6 @@ if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 if (not os.path.exists('designite/.config')):
     os.system('{} -r {}'.format(jar, KEY))
 
-# Run some bash command and return its output
-def run(cmd):
-    print('Running', cmd, '...')
-    result = subprocess.run(cmd.split(' '),
-        stdout=subprocess.PIPE, cwd=TIKA_REPO)
-    lines = result.stdout.split()
-    return list(map(lambda s: s.decode('utf-8'), lines))
-
 # Run Designite on the currently checked out tag
 def designite(output_folder):
     # Run Designite
@@ -43,7 +35,8 @@ def designite(output_folder):
     return godcomps
 
 # Grab tags
-tags = run('git tag -l')
+tags = subprocess.check_output(['git', 'tag', '-l'],
+    cwd=TIKA_REPO, encoding='utf-8').splitlines()
 for tag in tags:
     targetfile = '{}/{}.csv'.format(OUTPUT_FOLDER, tag)
     if (os.path.exists(targetfile)):

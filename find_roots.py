@@ -4,13 +4,7 @@ import subprocess
 import numpy as np
 
 TIKA_REPO = '../tika'
-OUTPUT_FOLDER = 'designite/rooted'
-NCS_FOLDER = 'designite/ncs' # 'No candidates' folder
-
-# Make output dirs
-def mkdir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+OUTPUT_FOLDER = 'designite/commits'
 
 def getTotalLOC(candidate):
     files = subprocess.Popen('find {} -name *'.format(candidate).split(' '), 
@@ -54,13 +48,23 @@ for obj, df in godcomps.groupby(['Tag', 'Package Name']):
     print('Parsing tag {}, package {}...'.format(tag, package))
     subprocess.run(['git', 'checkout', tag], cwd=TIKA_REPO)
 
-    # Find and export candidates
+    # Find candidates
     candidates = findCandidates(package)
-    df['root'] = chooseCandidate(candidates) if candidates else None
-    mkdir(OUTPUT_FOLDER)
-    df.to_csv(targetfile, index=False)
+    root = chooseCandidate(candidates) if candidates else None
+    # Find commit ID's
+    commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%h'],
+        cwd=os.path.join(TIKA_REPO, root), encoding='utf-8').splitlines()
+
+    # Export dataframe
+    commits_gcs = pd.DataFrame({
+        'CommitID': commit_ids,
+        'Root': root,
+        'Package Name': package # used for merge()
+    }).merge(df)
+    if not os.path.exists(OUTPUT_FOLDER): os.makedirs(OUTPUT_FOLDER)
+    commits_gcs.to_csv(targetfile, index=False)
 
 # Combine all roots into 1 .csv file
 paths = map(lambda f: os.path.join(OUTPUT_FOLDER, f), os.listdir(OUTPUT_FOLDER))
 all_reports = pd.concat(map(lambda f: pd.read_csv(f, dtype=str), paths))
-all_reports.to_csv('designite/all_roots.csv', index=False)
+all_reports.to_csv('designite/all_commits.csv', index=False)
