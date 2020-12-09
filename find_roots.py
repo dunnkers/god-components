@@ -7,14 +7,6 @@ TIKA_REPO = '../tika'
 OUTPUT_FOLDER = 'designite/rooted'
 NCS_FOLDER = 'designite/ncs' # 'No candidates' folder
 
-# Run some bash command and return its output
-def run(cmd, input=''):
-    print('Running', cmd, '...')
-    result = subprocess.run(cmd.split(' '),
-        stdout=subprocess.PIPE, cwd=TIKA_REPO, stdin=input)
-    lines = result.stdout.split()
-    return list(map(lambda s: s.decode('utf-8'), lines))
-
 # Make output dirs
 def mkdir(dir):
     if not os.path.exists(dir):
@@ -38,7 +30,7 @@ def chooseCandidate(candidates):
 # Match Java package name to folder in git repository
 def findCandidates(package):
     candidates = [] # Candidates for package match
-    for root, subdirs, files in os.walk(TIKA_REPO):
+    for root, _, _ in os.walk(TIKA_REPO):
         if not 'src' in root and 'target' in root:
             continue
         if not 'src/main' in root and 'src/test' in root:
@@ -69,12 +61,14 @@ for obj, df in godcomps.groupby(['Tag', 'Package Name']):
     # Export candidates
     if len(candidates) == 1:
         print('✔ {} matched.'.format(package))
-        df['root'] = candidates[0]
+        candidate = os.path.relpath(candidates[0], TIKA_REPO)
+        df['root'] = candidate
         mkdir(OUTPUT_FOLDER)
         df.to_csv(targetfile, index=False)
     elif len(candidates) > 1:
         print('❓ {} multiple candidates found.'.format(package))
-        df['root'] = chooseCandidate(candidates)
+        candidate = os.path.relpath(chooseCandidate(candidates), TIKA_REPO)
+        df['root'] = candidate
         mkdir(OUTPUT_FOLDER)
         df.to_csv(targetfile, index=False)
     elif len(candidates) == 0:
