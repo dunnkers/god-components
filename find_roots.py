@@ -7,6 +7,13 @@ OUTPUT_FOLDER = 'designite/rooted'
 MCS_FOLDER = 'designite/mcs'
 NCS_FOLDER = 'designite/ncs'
 
+def mkdir(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+mkdir(OUTPUT_FOLDER)
+mkdir(MCS_FOLDER)
+mkdir(NCS_FOLDER)
+
 # All God Components
 godcomps = pandas.read_csv('designite/all_reports.csv', dtype=str)
 
@@ -55,6 +62,6 @@ roots = []
 for rootfile in os.listdir(OUTPUT_FOLDER):
     rootpath = '{}/{}'.format(OUTPUT_FOLDER, rootfile)
     root = pandas.read_csv(rootpath, dtype=str)
-    roots.append(report)
+    roots.append(root)
 all_roots = pandas.concat(roots)
 all_roots.to_csv('designite/all_roots.csv', index=False)
