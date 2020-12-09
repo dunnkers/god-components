@@ -35,6 +35,20 @@ def chooseCandidate(candidates):
     index = np.argmax(locs)
     return candidates[index]
 
+# Match Java package name to folder in git repository
+def findCandidates(package):
+    candidates = [] # Candidates for package match
+    for root, subdirs, files in os.walk(TIKA_REPO):
+        if not 'src' in root and 'target' in root:
+            continue
+        if not 'src/main' in root and 'src/test' in root:
+            continue
+        if not 'src/main/java' in root and 'src/main/resources' in root:
+            continue
+        if root.replace('/', '.').endswith(package):
+            candidates.append(root)
+    return candidates
+
 # All God Components
 godcomps = pandas.read_csv('designite/all_reports.csv', dtype=str)
 
@@ -48,27 +62,20 @@ for obj, df in godcomps.groupby(['Tag', 'Package Name']):
     print('Parsing tag {}, package {}...'.format(tag, package))
     subprocess.run(['git', 'checkout', tag], cwd=TIKA_REPO)
 
-    candidates = [] # Candidates for package match
-    for root, subdirs, files in os.walk(TIKA_REPO):
-        if not 'src' in root and 'target' in root:
-            continue
-        if not 'src/main' in root and 'src/test' in root:
-            continue
-        if not 'src/main/java' in root and 'src/main/resources' in root:
-            continue
-        if root.replace('/', '.').endswith(package):
-            candidates.append(root)
-    
-    # Check whether match or not
+    # Find candidates
+    candidates = findCandidates(package)
     print('-> candidates:', candidates)
-    mkdir(OUTPUT_FOLDER)
+
+    # Export candidates
     if len(candidates) == 1:
         print('✔ {} matched.'.format(package))
         df['root'] = candidates[0]
+        mkdir(OUTPUT_FOLDER)
         df.to_csv(targetfile, index=False)
     elif len(candidates) > 1:
         print('❓ {} multiple candidates found.'.format(package))
         df['root'] = chooseCandidate(candidates)
+        mkdir(OUTPUT_FOLDER)
         df.to_csv(targetfile, index=False)
     elif len(candidates) == 0:
         print('❌ {} no candidates found.'.format(package))
