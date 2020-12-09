@@ -11,8 +11,6 @@ tika,org.apache.tika.metadata,God Component,The tool detected the smell in this 
 tika,org.apache.tika.batch,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 31,1.18-rc1
 tika,org.apache.tika.parser.txt,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 74,1.5-rc1
 tika,org.apache.tika.sax,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 35,1.5-rc1
-tika,org.apache.tika.parser.txt,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 74,0.1-incubating
-tika,org.apache.tika.sax,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 35,0.1-incubating
 tika,org.apache.tika.example,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 49,1.18-rc2
 tika,org.apache.tika.sax,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 52,1.18-rc2
 tika,org.apache.tika.detect,God Component,The tool detected the smell in this component because the component contains high number of classes. Number of classes in the component are: 32,1.18-rc2

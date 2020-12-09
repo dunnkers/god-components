@@ -21,11 +21,8 @@ if (not os.path.exists('designite/.config')):
 def designite(output_folder):
     # Run Designite
     start = time()
-    cmd = '{} -i {} -o {}'.format(jar, TIKA_REPO, output_folder)
-    print('Executing `{}`...'.format(cmd))
-    os.system(cmd)
-    end = time()
-    print('Designite ran for {:.2f} seconds'.format(end - start))
+    os.system('{} -i {} -o {}'.format(jar, TIKA_REPO, output_folder))
+    print('Designite ran for {:.2f} seconds'.format(time() - start))
 
     # Filter results for God Components
     archsmells = pd.read_csv('{}/ArchitectureSmells.csv'.format(
