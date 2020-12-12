@@ -3,6 +3,8 @@ from time import time
 import pandas as pd
 import subprocess
 import multiprocessing
+import argparse
+import numpy as np
 
 # Settings
 KEY = os.environ.get('DESIGNITE_ENTERPRISE')
@@ -11,6 +13,12 @@ REPOSITORIES = 'designite/repositories'
 OUTPUT_FOLDER = 'designite/reports'
 # Vars
 jar = 'java -jar {}'.format(RUNTIME_JAR)
+# God Component smell causes
+SMELL_CAUSES = {
+    'MANY_CLASSES': '''The tool detected the smell in this component because the 
+component contains high number of classes. 
+Number of classes in the component are: '''.replace('\n', '')
+}
 
 # We require a license key
 if (not KEY): exit('No Designite Enterprise key! See README to configure.')
@@ -32,6 +40,28 @@ def designite(output_folder, repo):
     os.system('rm -rf {}'.format(output_folder)) # Remove report
     return godcomps
 
+def map_cause(cause):
+    for key in SMELL_CAUSES:
+        if SMELL_CAUSES[key] in cause:
+            return key
+    return 'OTHER'
+
+def map_metric(cause):
+    if SMELL_CAUSES['MANY_CLASSES'] in cause:
+        return cause.replace(SMELL_CAUSES['MANY_CLASSES'], '')
+    else:
+        return np.nan
+
+def map_designite_output(designite_output, commit_id):
+    return pd.DataFrame({
+        'commit':  commit_id,
+        'repo':    designite_output['Project Name'],
+        'package': designite_output['Package Name'],
+        'smell':   designite_output['Architecture Smell'],
+        'cause':   designite_output['Cause of the Smell'].transform(map_cause),
+        'metric':  designite_output['Cause of the Smell'].transform(map_metric),
+    })
+
 def run_designite(commit_id):
     targetfile = '{}/{}.csv'.format(OUTPUT_FOLDER, commit_id)
     cpu, _ = multiprocessing.Process()._identity
@@ -39,11 +69,12 @@ def run_designite(commit_id):
         print('Skipping {} [cpu #{}]'.format(commit_id, cpu))
         return
     print('Running Designite for {} [cpu #{}]'.format(commit_id, cpu))
+    subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(cpu))
     clone_tika(cpu)
+    subprocess.run(['git', 'reset', '--hard', 'HEAD'], cwd=repo(cpu))
     subprocess.run(['git', 'checkout', commit_id], cwd=repo(cpu))
     godcomps = designite('{}/{}'.format(OUTPUT_FOLDER, commit_id), repo(cpu))
-    godcomps['Commit ID'] = commit_id
-    godcomps.to_csv(targetfile, index=False)
+    map_designite_output(godcomps).to_csv(targetfile, index=False)
 
 def repo(cpu):
     return '{}/tika-cpu_{}'.format(REPOSITORIES, cpu)
@@ -55,9 +86,13 @@ def clone_tika(cpu):
 
 # Grab tags and run Designite
 if __name__ == '__main__':
-    cpus = int(os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
-                            multiprocessing.cpu_count()))
-    cpus = 2
+    parser = argparse.ArgumentParser(description='Find God Components w/ Designite.')
+    parser.add_argument('--cpus')
+    args = parser.parse_args()
+    cpus = int(     args.cpus or 
+                    os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
+                                        multiprocessing.cpu_count()))
+    print('Using {} cores.'.format(cpus))
     if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
 
     # list all available tags on cpu_1 repo
@@ -66,9 +101,8 @@ if __name__ == '__main__':
     #     cwd='{}/tika-cpu_1'.format(REPOSITORIES), encoding='utf-8').splitlines()
     subprocess.run(['git', 'checkout', 'main'], cwd=repo(1))
     subprocess.run(['git', 'pull'], cwd=repo(1))
-    commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%h'],
+    commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%H'],
         cwd=repo(1), encoding='utf-8').splitlines()
-    print('Using {} cores.'.format(cpus))
 
     # Run Designite on all cores
     pool = multiprocessing.Pool(processes=cpus)
