@@ -39,14 +39,14 @@ def findCandidates(package):
 godcomps = pd.read_csv('designite/all_reports.csv', dtype=str)
 
 # Find folders associated to packages for certain tag/package
-for obj, df in godcomps.groupby(['Tag', 'Package Name']):
-    tag, package = obj
-    targetfile = '{}/{}-{}.csv'.format(OUTPUT_FOLDER, tag, package)
+for obj, df in godcomps.groupby(['commit', 'package']):
+    commit, package = obj
+    targetfile = '{}/{}-{}.csv'.format(OUTPUT_FOLDER, commit, package)
     if (os.path.exists(targetfile)):
-        print('Skipping tag {}, package {}'.format(tag, package))
+        print('Skipping commit {}, package {}'.format(commit, package))
         continue
-    print('Parsing tag {}, package {}...'.format(tag, package))
-    subprocess.run(['git', 'checkout', tag], cwd=TIKA_REPO)
+    print('Parsing commit {}, package {}...'.format(commit, package))
+    subprocess.run(['git', 'checkout', commit], cwd=TIKA_REPO)
 
     # Find candidates
     candidates = findCandidates(package)

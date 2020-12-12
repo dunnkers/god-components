@@ -25,6 +25,9 @@ if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 # Register license if not registered yet
 if (not os.path.exists('designite/.config')):
     os.system('{} -r {}'.format(jar, KEY))
+# Make dirs
+if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
+if (not os.path.exists(OUTPUT_FOLDER)): os.makedirs(OUTPUT_FOLDER)
 
 def map_cause(cause):
     for key in SMELL_CAUSES:
@@ -92,7 +95,6 @@ if __name__ == '__main__':
                     os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
     print('Using {} cores.'.format(cpus))
-    if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
 
     # list all available tags on cpu_1 repo
     clone_tika(1)
