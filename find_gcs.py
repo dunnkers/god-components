@@ -26,20 +26,6 @@ if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 if (not os.path.exists('designite/.config')):
     os.system('{} -r {}'.format(jar, KEY))
 
-# Run Designite on the currently checked out tag
-def designite(output_folder, repo):
-    # Run Designite
-    start = time()
-    os.system('{} -i {} -o {}'.format(jar, repo, output_folder))
-    print('Designite ran for {:.2f} seconds'.format(time() - start))
-
-    # Filter results for God Components
-    archsmells = pd.read_csv('{}/ArchitectureSmells.csv'.format(
-        output_folder))
-    godcomps = archsmells[archsmells['Architecture Smell'] == 'God Component'].copy()
-    os.system('rm -rf {}'.format(output_folder)) # Remove report
-    return godcomps
-
 def map_cause(cause):
     for key in SMELL_CAUSES:
         if SMELL_CAUSES[key] in cause:
@@ -53,17 +39,21 @@ def map_metric(cause):
         return np.nan
 
 def map_designite_output(designite_output, commit_id):
+    is_godcomp = designite_output['Architecture Smell'] == 'God Component'
+    godcomps = designite_output[is_godcomp].copy()
+
     return pd.DataFrame({
         'commit':  commit_id,
-        'repo':    designite_output['Project Name'],
-        'package': designite_output['Package Name'],
-        'smell':   designite_output['Architecture Smell'],
-        'cause':   designite_output['Cause of the Smell'].transform(map_cause),
-        'metric':  designite_output['Cause of the Smell'].transform(map_metric),
+        'repo':    godcomps['Project Name'],
+        'package': godcomps['Package Name'],
+        'smell':   godcomps['Architecture Smell'],
+        'cause':   godcomps['Cause of the Smell'].transform(map_cause),
+        'metric':  godcomps['Cause of the Smell'].transform(map_metric),
     })
 
 def run_designite(commit_id):
-    targetfile = '{}/{}.csv'.format(OUTPUT_FOLDER, commit_id)
+    targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
+    targetfile =    '{}.csv'.format(targetfolder)
     cpu, _ = multiprocessing.Process()._identity
     if (os.path.exists(targetfile)):
         print('Skipping {} [cpu #{}]'.format(commit_id, cpu))
@@ -73,8 +63,17 @@ def run_designite(commit_id):
     clone_tika(cpu)
     subprocess.run(['git', 'reset', '--hard', 'HEAD'], cwd=repo(cpu))
     subprocess.run(['git', 'checkout', commit_id], cwd=repo(cpu))
-    godcomps = designite('{}/{}'.format(OUTPUT_FOLDER, commit_id), repo(cpu))
-    map_designite_output(godcomps).to_csv(targetfile, index=False)
+
+    # Run Designite and remove reports folder
+    start = time()
+    os.system('{} -i {} -o {}'.format(jar, repo(cpu), targetfolder))
+    print('Designite ran for {:.2f} seconds'.format(time() - start))
+    archsmells = pd.read_csv('{}/ArchitectureSmells.csv'.format(targetfolder))
+    os.system('rm -rf {}'.format(targetfolder)) # Remove report
+
+    # Map and save to .csv
+    report = map_designite_output(archsmells, commit_id)
+    report.to_csv(targetfile, index=False)
 
 def repo(cpu):
     return '{}/tika-cpu_{}'.format(REPOSITORIES, cpu)
@@ -97,8 +96,7 @@ if __name__ == '__main__':
 
     # list all available tags on cpu_1 repo
     clone_tika(1)
-    # tags = subprocess.check_output(['git', 'tag', '-l'],
-    #     cwd='{}/tika-cpu_1'.format(REPOSITORIES), encoding='utf-8').splitlines()
+    subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(1))
     subprocess.run(['git', 'checkout', 'main'], cwd=repo(1))
     subprocess.run(['git', 'pull'], cwd=repo(1))
     commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%H'],
