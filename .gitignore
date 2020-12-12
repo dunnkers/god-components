@@ -7,3 +7,5 @@ designite/rooted
 designite/mcs
 designite/ncs
 designite/commits
+designite/repositories
+.DS_Store
