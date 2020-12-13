@@ -1,0 +1,1 @@
+Error - License registration unsuccessful. It seems the license key has been already registered.
