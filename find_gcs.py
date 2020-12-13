@@ -55,17 +55,18 @@ def map_designite_output(designite_output, commit_id):
     })
 
 def run_designite(commit_id):
-    targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
-    targetfile =    '{}.csv'.format(targetfolder)
     cpu, _ = multiprocessing.Process()._identity
     print('Running Designite for {} [cpu #{}]'.format(commit_id, cpu))
-    subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(cpu))
     clone_tika(cpu)
+    if (os.path.exists('{}/.git/index.lock'.format(repo(cpu)))):
+        subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(cpu))
     subprocess.run(['git', 'reset', '--hard', 'HEAD'], cwd=repo(cpu))
+    subprocess.run(['git', 'clean', '-fd'], cwd=repo(cpu))
     subprocess.run(['git', 'checkout', commit_id], cwd=repo(cpu))
 
     # Run Designite and remove reports folder
     start = time()
+    targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
     os.system('{} -i {} -o {}'.format(jar, repo(cpu), targetfolder))
     print('Designite ran for {:.2f} seconds'.format(time() - start))
     archsmells = pd.read_csv('{}/ArchitectureSmells.csv'.format(targetfolder))
@@ -73,6 +74,7 @@ def run_designite(commit_id):
 
     # Map and save to .csv
     report = map_designite_output(archsmells, commit_id)
+    targetfile =    '{}.csv'.format(targetfolder)
     report.to_csv(targetfile, index=False)
 
 def repo(cpu):
@@ -93,8 +95,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Find God Components w/ Designite.')
     parser.add_argument('--cpus')
     args = parser.parse_args()
-    cpus = int(     args.cpus or 
-                    os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
+    cpus = int(args.cpus or os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
     print('Using {} cores.'.format(cpus))
 
@@ -114,8 +115,3 @@ if __name__ == '__main__':
     pool.map(run_designite, commits_to_compute)
     pool.close()
     pool.join()
-
-    # Combine all reports into 1 .csv file
-    paths = map(lambda f: os.path.join(OUTPUT_FOLDER, f), os.listdir(OUTPUT_FOLDER))
-    all_reports = pd.concat(map(lambda f: pd.read_csv(f, dtype=str), paths))
-    all_reports.to_csv('designite/all_reports.csv', index=False)
