@@ -2,6 +2,7 @@
 #SBATCH --time=70:00:00
 #SBATCH --mem=128000
 #SBATCH --nodes=1
+#SBATCH --ntasks=24
 #SBATCH --partition=regular
 #SBATCH --job-name=sme_god-components
 
