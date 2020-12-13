@@ -58,9 +58,6 @@ def run_designite(commit_id):
     targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
     targetfile =    '{}.csv'.format(targetfolder)
     cpu, _ = multiprocessing.Process()._identity
-    if (os.path.exists(targetfile)):
-        print('Skipping {} [cpu #{}]'.format(commit_id, cpu))
-        return
     print('Running Designite for {} [cpu #{}]'.format(commit_id, cpu))
     subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(cpu))
     clone_tika(cpu)
@@ -86,6 +83,11 @@ def clone_tika(cpu):
     subprocess.run(['git', 'clone', 'https://github.com/apache/tika.git',
         'tika-cpu_{}'.format(cpu)], cwd=REPOSITORIES)
 
+def not_yet_computed(commit_id):
+    targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
+    targetfile =    '{}.csv'.format(targetfolder)
+    return not os.path.exists(targetfile)
+
 # Grab tags and run Designite
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Find God Components w/ Designite.')
@@ -103,10 +105,13 @@ if __name__ == '__main__':
     subprocess.run(['git', 'pull'], cwd=repo(1))
     commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%H'],
         cwd=repo(1), encoding='utf-8').splitlines()
+    commits_to_compute = list(filter(not_yet_computed, commit_ids))
+    print('Skipping {} commit ids.'.format(
+        len(commit_ids) - len(commits_to_compute)))
 
     # Run Designite on all cores
     pool = multiprocessing.Pool(processes=cpus)
-    pool.map(run_designite, commit_ids)
+    pool.map(run_designite, commits_to_compute)
     pool.close()
     pool.join()
 
