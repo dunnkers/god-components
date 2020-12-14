@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --time=70:00:00
-#SBATCH --mem=50000
+#SBATCH --mem=128000
 #SBATCH --nodes=1
 #SBATCH --ntasks=24
 #SBATCH --partition=regular
