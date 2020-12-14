@@ -23,6 +23,9 @@ def git_checkout(cpu, commit_id):
     subprocess.run(['git', 'checkout', commit_id],      cwd=repo(cpu))
 
 def get_commits():
+    file = 'designite/output/all_commits.csv'
+    if (os.path.exists(file)):
+        return pd.read_csv(file)
     git_checkout(1, 'main')
     subprocess.run(['git', 'pull'], cwd=repo(1))
     commit_ids = subprocess.check_output(['git', 'log', 
@@ -32,4 +35,6 @@ def get_commits():
     commits = pd.read_csv(stringio, sep='\t', header=None, names=[
         'id', 'author', 'datetime', 'message'
     ], parse_dates=['datetime'])
+    commits['jira'] = commits['message'].str.extract('(TIKA-[0-9]{1,})')
+    commits.to_csv(file, index=False)
     return commits
