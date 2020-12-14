@@ -10,5 +10,6 @@ for path in glob.glob('designite/reports/*.csv'):
         all_reports.append(report)
     except:
         print('Corrupted report: {}'.format(path))
+if (not os.path.exists('designite/output')): os.makedirs('designite/output')
 all_reports = pd.concat(all_reports)
-all_reports.to_csv('designite/all_reports.csv', index=False)
+all_reports.to_csv('designite/output/all_reports.csv', index=False)

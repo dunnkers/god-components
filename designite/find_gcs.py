@@ -8,9 +8,11 @@ import numpy as np
 
 # Settings
 KEY = os.environ.get('DESIGNITE_ENTERPRISE')
-RUNTIME_JAR = 'designite/DesigniteJava_Enterprise.jar'
-REPOSITORIES = 'designite/repositories'
-OUTPUT_FOLDER = 'designite/reports'
+RUNTIME =           'designite/runtime'
+RUNTIME_JAR =       'designite/runtime/DesigniteJava_Enterprise.jar'
+RUNTIME_CONFIG =    'designite/runtime/.config'
+REPOSITORIES =      'designite/repositories'
+OUTPUT_FOLDER =     'designite/reports'
 # Vars
 jar = 'java -jar {}'.format(RUNTIME_JAR)
 # God Component smell causes
@@ -23,7 +25,7 @@ Number of classes in the component are: '''.replace('\n', '')
 # We require a license key
 if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 # Register license if not registered yet
-if (not os.path.exists('designite/.config')):
+if (not os.path.exists(RUNTIME_CONFIG)):
     os.system('{} -r {}'.format(jar, KEY))
 # Make dirs
 if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
@@ -97,6 +99,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     cpus = int(args.cpus or os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
+    cpus=1
     print('Using {} cores.'.format(cpus))
 
     # list all available tags on cpu_1 repo
