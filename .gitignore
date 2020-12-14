@@ -2,7 +2,7 @@ venv
 .vscode
 designite/reports
 designite/DesigniteLog*
-designite/.config
+designite/runtime/.config
 designite/rooted
 designite/mcs
 designite/ncs
