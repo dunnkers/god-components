@@ -69,7 +69,11 @@ def run_designite(commit_id):
     os.system('rm -rf {}'.format(targetfolder)) # Remove report
 
     # Map and save to .csv
-    report = map_designite_output(archsmells, commit_id)
+    real_commit_id = subprocess.check_output(['git', 'log', 
+        '--pretty=format:%H'],
+        encoding='utf-8', cwd=repo(cpu)).splitlines()[0]
+    if (commit_id != real_commit_id): print('CHECKOUT FAILED', commit_id)
+    report = map_designite_output(archsmells, real_commit_id)
     targetfile =    '{}.csv'.format(targetfolder)
     report.to_csv(targetfile, index=False)
 
