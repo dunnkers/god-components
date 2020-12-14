@@ -4,6 +4,8 @@ from io import StringIO
 import pandas as pd
 
 REPOSITORIES =      'designite/repositories'
+if 'SLURM_JOB_CPUS_PER_NODE' in os.environ:
+    REPOSITORIES = '/data/{}/repositories'.format(os.environ['USER'])
 if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
 
 def repo(cpu):
