@@ -8,5 +8,5 @@ designite/mcs
 designite/ncs
 designite/commits
 designite/repositories
-designite/logs
+designite/logs/*.out
 .DS_Store
