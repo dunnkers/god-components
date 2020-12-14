@@ -5,13 +5,13 @@ import subprocess
 import multiprocessing
 import argparse
 import numpy as np
+from git_utils import get_commits, repo, git_checkout
 
 # Settings
 KEY = os.environ.get('DESIGNITE_ENTERPRISE')
 RUNTIME =           'designite/runtime'
 RUNTIME_JAR =       'designite/runtime/DesigniteJava_Enterprise.jar'
 RUNTIME_CONFIG =    'designite/runtime/.config'
-REPOSITORIES =      'designite/repositories'
 OUTPUT_FOLDER =     'designite/reports'
 # Vars
 jar = 'java -jar {}'.format(RUNTIME_JAR)
@@ -28,7 +28,6 @@ if (not KEY): exit('No Designite Enterprise key! See README to configure.')
 if (not os.path.exists(RUNTIME_CONFIG)):
     os.system('{} -r {}'.format(jar, KEY))
 # Make dirs
-if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
 if (not os.path.exists(OUTPUT_FOLDER)): os.makedirs(OUTPUT_FOLDER)
 
 def map_cause(cause):
@@ -59,12 +58,7 @@ def map_designite_output(designite_output, commit_id):
 def run_designite(commit_id):
     cpu, _ = multiprocessing.Process()._identity
     print('Running Designite for {} [cpu #{}]'.format(commit_id, cpu))
-    clone_tika(cpu)
-    if (os.path.exists('{}/.git/index.lock'.format(repo(cpu)))):
-        subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(cpu))
-    subprocess.run(['git', 'reset', '--hard', 'HEAD'], cwd=repo(cpu))
-    subprocess.run(['git', 'clean', '-fd'], cwd=repo(cpu))
-    subprocess.run(['git', 'checkout', commit_id], cwd=repo(cpu))
+    git_checkout(cpu, commit_id)
 
     # Run Designite and remove reports folder
     start = time()
@@ -79,14 +73,6 @@ def run_designite(commit_id):
     targetfile =    '{}.csv'.format(targetfolder)
     report.to_csv(targetfile, index=False)
 
-def repo(cpu):
-    return '{}/tika-cpu_{}'.format(REPOSITORIES, cpu)
-
-def clone_tika(cpu):
-    if (os.path.exists(repo(cpu))): return
-    subprocess.run(['git', 'clone', 'https://github.com/apache/tika.git',
-        'tika-cpu_{}'.format(cpu)], cwd=REPOSITORIES)
-
 def not_yet_computed(commit_id):
     targetfolder =  '{}/{}'.format(OUTPUT_FOLDER, commit_id)
     targetfile =    '{}.csv'.format(targetfolder)
@@ -99,16 +85,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     cpus = int(args.cpus or os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
-    cpus=1
     print('Using {} cores.'.format(cpus))
 
-    # list all available tags on cpu_1 repo
-    clone_tika(1)
-    subprocess.run(['rm', '-f', '.git/index.lock'], cwd=repo(1))
-    subprocess.run(['git', 'checkout', 'main'], cwd=repo(1))
-    subprocess.run(['git', 'pull'], cwd=repo(1))
-    commit_ids = subprocess.check_output(['git', 'log', '--pretty=format:%H'],
-        cwd=repo(1), encoding='utf-8').splitlines()
+    # get commits to compute
+    commits = get_commits()
+    commit_ids = commits['id'].values
     commits_to_compute = list(filter(not_yet_computed, commit_ids))
     print('Skipping {} commit ids.'.format(
         len(commit_ids) - len(commits_to_compute)))
