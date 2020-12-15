@@ -6,14 +6,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 all_locs = pd.read_csv('designite/output/all_locs.csv', dtype={
-    'additions': 'Int64',
-    'deletions': 'Int64'
+    'additions': 'float',
+    'deletions': 'float'
 })
 for godcomp, df in all_locs.groupby('godcomp'):
         
-    df2 = df.sort_values('datetime')
-    df['additions'] = df['additions'].cumsum()
-    df['deletions'] = all_locs['deletions'].cumsum()
+    df = df.sort_values('datetime')
+    df['change'] = df['additions'] - df['deletions']
+    df['LOC'] = df['change'].cumsum()
+    sns.lineplot(data=df, x='datetime', y='LOC', hue='godcomp')
+    plt.show()
+    print('end')
+    break
 # sns.lineplot(data=data, x='datetime', y='metric', hue='package')
 # plt.show()
 print('end')
