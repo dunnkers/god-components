@@ -34,7 +34,7 @@ def map_commit(commit):
     return new_df
 
 mapped = []
-for index, row in tqdm(commits.iterrows()):
+for index, row in tqdm(commits.iterrows(), total=commits.shape[0]):
     mapped.append(map_commit(row))
 all = pd.concat(mapped)
 all.to_csv('designite/output/all_locs.csv', index=False)
