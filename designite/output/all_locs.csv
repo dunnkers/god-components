@@ -1,61 +1,31 @@
-0
-"   additions  deletions  ...                                        message       jira
-0          1          3  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-1          8         14  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-2          2          3  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-3          1          3  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-4          2          4  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-5          1          1  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-6          2          3  ...  TIKA-3248: revert accidental commit (2nd try)  TIKA-3248
-
-[7 rows x 9 columns]"
-"   additions  deletions  ...                               message jira
-0          3          1  ...  Revert ""Merge origin/main into main""  NaN
-1         14          8  ...  Revert ""Merge origin/main into main""  NaN
-2          3          2  ...  Revert ""Merge origin/main into main""  NaN
-3          3          1  ...  Revert ""Merge origin/main into main""  NaN
-4          4          2  ...  Revert ""Merge origin/main into main""  NaN
-5          1          1  ...  Revert ""Merge origin/main into main""  NaN
-6          3          2  ...  Revert ""Merge origin/main into main""  NaN
-
-[7 rows x 9 columns]"
-"   additions  deletions  ...                      message jira
-0          1          3  ...  Merge origin/main into main  NaN
-1          8         14  ...  Merge origin/main into main  NaN
-2          2          3  ...  Merge origin/main into main  NaN
-3          1          3  ...  Merge origin/main into main  NaN
-4          2          4  ...  Merge origin/main into main  NaN
-5          1          1  ...  Merge origin/main into main  NaN
-6          2          3  ...  Merge origin/main into main  NaN
-
-[7 rows x 9 columns]"
-"   additions  deletions  ...                              message       jira
-0         13         11  ...  TIKA-3248: avoid ClassCastException  TIKA-3248
-
-[1 rows x 9 columns]"
-"   additions  deletions  ...                                  message jira
-0          1          3  ...  Simplify init code of some Set and List  NaN
-1          5         10  ...  Simplify init code of some Set and List  NaN
-2          1          3  ...  Simplify init code of some Set and List  NaN
-3          2          4  ...  Simplify init code of some Set and List  NaN
-
-[4 rows x 9 columns]"
-"   additions  deletions  ...                       message jira
-0          3          4  ...  Simplify some bool statement  NaN
-1          2          3  ...  Simplify some bool statement  NaN
-2          1          1  ...  Simplify some bool statement  NaN
-3          2          3  ...  Simplify some bool statement  NaN
-
-[4 rows x 9 columns]"
-"Empty DataFrame
-Columns: []
-Index: []"
-"Empty DataFrame
-Columns: []
-Index: []"
-"Empty DataFrame
-Columns: []
-Index: []"
-"Empty DataFrame
-Columns: []
-Index: []"
+additions,deletions,godcomp,id,author,datetime,message,jira
+1,3,org.apache.tika.batch,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+8,14,org.apache.tika.parser,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+2,3,org.apache.tika.parser.microsoft,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+1,3,org.apache.tika.server,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+2,4,org.apache.tika.fork,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+1,1,org.apache.tika.utils,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+2,3,org.apache.tika.parser.microsoft.chm,7f65d61b4fe1f4c1d4929bbe1c456c68afd44b6c,THausherr,2020-12-14 06:57:27+01:00,TIKA-3248: revert accidental commit (2nd try),TIKA-3248
+3,1,org.apache.tika.batch,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+14,8,org.apache.tika.parser,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+3,2,org.apache.tika.parser.microsoft,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+3,1,org.apache.tika.server,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+4,2,org.apache.tika.fork,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+1,1,org.apache.tika.utils,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+3,2,org.apache.tika.parser.microsoft.chm,326b7d7abda238ccc181fc2acaf2271e08fe9c1b,THausherr,2020-12-14 06:34:03+01:00,"Revert ""Merge origin/main into main""",
+1,3,org.apache.tika.batch,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+8,14,org.apache.tika.parser,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+2,3,org.apache.tika.parser.microsoft,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+1,3,org.apache.tika.server,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+2,4,org.apache.tika.fork,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+1,1,org.apache.tika.utils,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+2,3,org.apache.tika.parser.microsoft.chm,dd85c73094dc87f6f6e208278325be810761f490,THausherr,2020-12-14 05:50:27+01:00,Merge origin/main into main,
+13,11,org.apache.tika.parser,081070065ec2a989ecfccb9d1186610bbce52f5e,THausherr,2020-12-14 05:46:44+01:00,TIKA-3248: avoid ClassCastException,TIKA-3248
+1,3,org.apache.tika.batch,3571725a948a4676f1904799209271eeaf18b102,PeterAlfredLee,2020-12-01 10:40:33+08:00,Simplify init code of some Set and List,
+5,10,org.apache.tika.parser,3571725a948a4676f1904799209271eeaf18b102,PeterAlfredLee,2020-12-01 10:40:33+08:00,Simplify init code of some Set and List,
+1,3,org.apache.tika.server,3571725a948a4676f1904799209271eeaf18b102,PeterAlfredLee,2020-12-01 10:40:33+08:00,Simplify init code of some Set and List,
+2,4,org.apache.tika.fork,3571725a948a4676f1904799209271eeaf18b102,PeterAlfredLee,2020-12-01 10:40:33+08:00,Simplify init code of some Set and List,
+3,4,org.apache.tika.parser,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,PeterAlfredLee,2020-11-28 11:17:17+08:00,Simplify some bool statement,
+2,3,org.apache.tika.parser.microsoft,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,PeterAlfredLee,2020-11-28 11:17:17+08:00,Simplify some bool statement,
+1,1,org.apache.tika.utils,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,PeterAlfredLee,2020-11-28 11:17:17+08:00,Simplify some bool statement,
+2,3,org.apache.tika.parser.microsoft.chm,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,PeterAlfredLee,2020-11-28 11:17:17+08:00,Simplify some bool statement,

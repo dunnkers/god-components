@@ -26,12 +26,16 @@ def map_commit(commit):
         files = df['file'].str.contains(path) # affected files
         if not files.any(): continue
         total = df[files].sum() # total LOC added/deleted
+        total = total.drop(labels='file')
         total['godcomp'] = godcomp
         result = pd.concat([total, commit])
         results.append(result)
     new_df = pd.DataFrame(results)
     return new_df
 
-mapped = commits.head(10).progress_apply(map_commit, axis=1)
-mapped.to_csv('designite/output/all_locs.csv', index=False)
+mapped = []
+for index, row in tqdm(commits.iterrows()):
+    mapped.append(map_commit(row))
+all = pd.concat(mapped)
+all.to_csv('designite/output/all_locs.csv', index=False)
 print('end')
