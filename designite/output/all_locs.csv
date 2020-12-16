@@ -64,8 +64,8 @@ additions,deletions,godcomp,id,author,datetime,message,jira
 0,1736,org.apache.tika.parser.txt,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 0,15171,org.apache.tika.parser.microsoft,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 0,4971,org.apache.tika.parser.microsoft.ooxml,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
-0,1927,org.apache.tika.parser.microsoft.onenote,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 0,1,org.apache.tika.server,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
+0,1927,org.apache.tika.parser.microsoft.onenote,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 0,57,org.apache.tika.utils,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 0,2924,org.apache.tika.parser.microsoft.chm,8dbb5736fa92b323e270e2075b42dce458a3abd6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241 -- clarify parser module structure,TIKA-3241
 54,0,org.apache.tika.parser,2892ad5454f7cd006d879a2883a5f55926d884c5,tallison,2020-12-01 10:13:47-05:00,TIKA-3178 -- WIP -- does not build. do not merge,TIKA-3178
@@ -98,9 +98,9 @@ additions,deletions,godcomp,id,author,datetime,message,jira
 2,2,org.apache.tika.sax,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
 14,14,org.apache.tika.parser.microsoft,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
 7,7,org.apache.tika.parser.microsoft.ooxml,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
-1,1,org.apache.tika.parser.microsoft.onenote,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
 1,1,org.apache.tika.server,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
 4,3,org.apache.tika.fork,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
+1,1,org.apache.tika.parser.microsoft.onenote,6401ca084ac9409bf6b6c94b2fa4ff293e427133,Lee,2020-11-19 21:09:56+08:00,Add dependency commons-io to tika-core in main branch (#370),
 1,1,org.apache.tika.parser,ed73391ce867d82151578835611a5b063eac2abc,Lee,2020-11-19 21:03:28+08:00,Remove deprecated method call in PackageParser (#365),
 1,3,org.apache.tika.detect,372ccd23e6399de9b5d9d93906645e1e4349ec99,Lee,2020-11-19 21:02:44+08:00,Simplify some loop by use method Collection.addAll and method Arrarys.asList (#371),
 7,20,org.apache.tika.parser,372ccd23e6399de9b5d9d93906645e1e4349ec99,Lee,2020-11-19 21:02:44+08:00,Simplify some loop by use method Collection.addAll and method Arrarys.asList (#371),
@@ -254,8 +254,8 @@ additions,deletions,godcomp,id,author,datetime,message,jira
 912,912,org.apache.tika.parser.txt,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 21141,10921,org.apache.tika.parser.microsoft,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 5593,5559,org.apache.tika.parser.microsoft.ooxml,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
-1019,1020,org.apache.tika.parser.microsoft.onenote,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 10,11,org.apache.tika.server,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
+1019,1020,org.apache.tika.parser.microsoft.onenote,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 184,0,org.apache.tika.utils,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 6981,0,org.apache.tika.parser.microsoft.chm,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Tim Allison,2020-08-21 11:32:26-04:00,Branch 2x (#341),
 2,10,org.apache.tika.parser,7f0394247c8f5a731b258adbd6683449bc5c757b,tallison,2020-08-19 03:35:39-04:00,TIKA-3172 -- setEnableAutoSpace and a few others should have @Field annotation,TIKA-3172
@@ -343,8 +343,8 @@ additions,deletions,godcomp,id,author,datetime,message,jira
 12,10,org.apache.tika.parser,9fa992d01493272b87b85158192572b23189c6d8,tallison,2020-04-03 07:24:23-04:00,avoid npe in MP4Parser,
 24,17,org.apache.tika.parser,a2f35a32fd989e940b70485a8f979ad92a375483,tallison,2020-04-02 13:11:30-04:00,Improve TikaMemoryLimitException msg,
 6,3,org.apache.tika.parser.microsoft,a2f35a32fd989e940b70485a8f979ad92a375483,tallison,2020-04-02 13:11:30-04:00,Improve TikaMemoryLimitException msg,
-6,3,org.apache.tika.parser.microsoft.onenote,a2f35a32fd989e940b70485a8f979ad92a375483,tallison,2020-04-02 13:11:30-04:00,Improve TikaMemoryLimitException msg,
 1,1,org.apache.tika.server,a2f35a32fd989e940b70485a8f979ad92a375483,tallison,2020-04-02 13:11:30-04:00,Improve TikaMemoryLimitException msg,
+6,3,org.apache.tika.parser.microsoft.onenote,a2f35a32fd989e940b70485a8f979ad92a375483,tallison,2020-04-02 13:11:30-04:00,Improve TikaMemoryLimitException msg,
 1,1,org.apache.tika.parser,8e33e28b72b791710a1e9fdf515c2fcd72f82deb,tallison,2020-04-01 12:55:46-04:00,TIKA-3080 -- prevent infinite loop in CharsetMatch.getString,TIKA-3080
 1,1,org.apache.tika.parser.txt,8e33e28b72b791710a1e9fdf515c2fcd72f82deb,tallison,2020-04-01 12:55:46-04:00,TIKA-3080 -- prevent infinite loop in CharsetMatch.getString,TIKA-3080
 5,1,org.apache.tika.parser,aaa9f40e3c8119f1a155e3f1eea5c2ffe7f4f26f,tallison,2020-04-01 12:02:15-04:00,TIKA-3081 -- convert TikaInputStream's skip to the equivalent of skipFully,TIKA-3081
