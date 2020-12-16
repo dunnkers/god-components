@@ -5,7 +5,7 @@ import numpy as np
 import subprocess
 from pkg_resources import parse_version
 
-data = pd.read_csv('designite/all_commits.csv', dtype=str)
+data = pd.read_csv('designite/gcs_commits_mapped.csv', dtype=str)
 
 # Get git tags
 TIKA_REPO = '../tika'
