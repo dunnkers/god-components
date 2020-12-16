@@ -10,3 +10,4 @@ designite/commits
 designite/repositories
 designite/logs/*.out
 .DS_Store
+__pycache__

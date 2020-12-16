@@ -27,7 +27,7 @@ def git_checkout(cpu, commit_id):
 def get_commits():
     file = 'designite/output/all_commits.csv'
     if (os.path.exists(file)):
-        return pd.read_csv(file)
+        return pd.read_csv(file, parse_dates=['datetime'])
     git_checkout(1, 'main')
     subprocess.run(['git', 'pull'], cwd=repo(1))
     commit_ids = subprocess.check_output(['git', 'log', 
