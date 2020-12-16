@@ -5,6 +5,7 @@ import subprocess
 import multiprocessing
 import argparse
 import numpy as np
+import glob
 from git_utils import get_commits, repo, git_checkout
 
 # Settings
@@ -82,10 +83,13 @@ def not_yet_computed(commit_id):
     targetfile =    '{}.csv'.format(targetfolder)
     return not os.path.exists(targetfile)
 
+
+
 # Grab tags and run Designite
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Find God Components w/ Designite.')
     parser.add_argument('--cpus')
+    parser.add_argument('--skip', default=False, const=True, nargs='?')
     args = parser.parse_args()
     cpus = int(args.cpus or os.environ.get('SLURM_JOB_CPUS_PER_NODE', \
                                         multiprocessing.cpu_count()))
@@ -94,7 +98,10 @@ if __name__ == '__main__':
     # get commits to compute
     commits = get_commits()
     commit_ids = commits['id'].values
-    commits_to_compute = list(filter(not_yet_computed, commit_ids))
+    commit_exists = lambda id: os.path.exists(
+        '{}/{}.csv'.format(OUTPUT_FOLDER, id))
+    commits_to_compute = list(filter(
+            lambda id: not commit_exists(id) and not args.skip, commit_ids))
     print('Skipping {} commit ids.'.format(
         len(commit_ids) - len(commits_to_compute)))
 
@@ -103,3 +110,15 @@ if __name__ == '__main__':
     pool.map(run_designite, commits_to_compute)
     pool.close()
     pool.join()
+
+    # Combine all reports into 1 .csv file
+    all_reports = []
+    for path in glob.glob('designite/reports/*.csv'):
+        try:
+            report = pd.read_csv(path, dtype=str)
+            all_reports.append(report)
+        except:
+            print('Corrupted report: {}'.format(path))
+    if (not os.path.exists('designite/output')): os.makedirs('designite/output')
+    all_reports = pd.concat(all_reports)
+    all_reports.to_csv('designite/output/all_reports.csv', index=False)
