@@ -5,6 +5,8 @@
 \usepackage{natbib}
 \usepackage{hyperref}
 \usepackage{rotating}
+\usepackage{svg}
+
 
 \usepackage{xcolor}
 \usepackage{listings}
@@ -19,11 +21,11 @@
 
 \title{Software Maintenance and Evolution \\God Components}
 \author{Jeroen G S Overschie (s2995697)\\ Konstantina Gkikopouli (s3751309)}
-\date{December 1 2020}
+\date{\today}
 
 \begin{document}
 \maketitle
-Repository: \small{\url{github.com/dunnkers/sme_god-components}}
+Repository: \small{\url{https://github.com/dunnkers/sme_god-components}}
 \tableofcontents
 \newpage
 
@@ -38,6 +40,17 @@ God Components will not only be identified, but their evolution over time will a
 
 \section{Exploration}
 First, we explore our chosen software project, Apache Tika, by means of \textbf{requirements analysis}. \citep{dresner1964maintenance}. Requirements were compiled using the project's public website \citep{apache_software_foundation_2020} and an online book about Apache Tika written by the authors \citep{tika_in_action}. 
+\subsection{Tika's High-Level Architecture}
+This section focuses on describing and explaining the high-level architecture of Tika. All the architecture’s components and their interactions are visualized in the simple diagram, i.e. Figure~\ref{fig:architectur}.
+\subsubsection{Tika's Architecture}
+The high-level architecture of Tika consists of four key components: the parser framework, the language detection, the MIME detection mechanism and the facade element. All these components play an important role in Tika’s overall architecture and they have their own corresponding responsibilities and functionalities. Firstly, the parser framework is the most crucial concept and its main functionality is parsing and extracting all the content and the relevant metadata of any type of document. The language detection component is responsible for carrying out language analysis and this helps in obtaining the metadata of the files. In addition, the MIME detection mechanism is used for detecting and identifying all the available file formats. All these three components contain their own individual repositories, which help in extending Tika by adding or removing new parsers, file formats or language mechanisms. Moreover, Tika’s architecture contains a facade, which connects all the main components and it provides a user-friendly frontend for the users that want to benefit from Tika’s services. The architecture also consists of some external interfaces like the CLI and the GUI, which allow integrability between users and their applications.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{report/images/tika_architecture.png}
+    \caption{High-Level Architecture. Image composed by ourselves.}
+    \label{fig:architectur}
+\end{figure}
 
 \subsection{Key design goals}
 Let us denote the most important goals the authors set out to accomplish in creating Apache Tika.
@@ -71,7 +84,7 @@ This section contains the identified architectural significant requirements and 
 
 \begin{enumerate}
     
-    \item Flexibility. Flexibility is a significant requirement and it is quite emphasized on Tika's documentation. In general, flexibility represents the capability of a given system to adapt to different environments, settings or to adjust when changes occur.
+    \item Flexibility. Flexibility is a significant requirement and it is quite emphasized on Tika's documentation. In general, flexibility represents the capability of a given system to adapt to different environments, settings or to adjust when changes occur. 
     
     \begin{quote}
         ``First and foremost, we wanted Tika to support a flexible mechanism to define media types..."
@@ -87,6 +100,10 @@ This section contains the identified architectural significant requirements and 
     
     \begin{quote}
         ``Beyond that detail (Tika opted to allow one to many types per Parser, achieving the greatest flexibility and decreasing the overall number of parsers), the exchange of MIME information between Parser and Metadata object was another important consideration..."
+    \end{quote}
+    \item Extensibility. Another significant quality attribute in Tika is extensibility. Extensibility refers to the capability of the system to add new elements or functionalities without negatively affecting the overall performance. In Tika's architecture, the developers have made sure that Tika can be extended by adding new parsers, language detection mechanisms or file format detection tools.
+    \begin{quote}
+        ''Throughout its architecture, Tika leverages the notion of repositories: areas of extensibility in the architecture. New parsers can be easily added and removed from the framework, as can new MIME types and language detection mechanisms...''
     \end{quote}
     \item Performance. Performance is also another significant requirement in Tika. It demonstrates how the systems reacts while performing given tasks at a certain time. The creators of Tika developed Tika in a way that it could respond fast to requests. Although at the time of its making not similar products might have existed, Tika would have been quickly superseded if it was not performing well enough. So in order to be able to process large datasets the program has to be of sufficient speed.
     
@@ -109,7 +126,8 @@ This section contains the identified architectural significant requirements and 
     
 \end{enumerate}
 \subsubsection{Secondary Quality Attributes}
- \item Usability. The program should be usable both in terms of User Experience (UX) and programming interface (API); this means it should have a nice and well-functioning GUI and CLI to use the program and an API to use Tika in your own program code.
+\begin{itemize}
+     \item Usability. The program should be usable both in terms of User Experience (UX) and programming interface (API); this means it should have a nice and well-functioning GUI and CLI to use the program and an API to use Tika in your own program code.
     
     \begin{quote}
         ``By adopting the SAX model, Tika allows developers and those wishing to customize how Tika’s Parser deals with extracted information to define..."
@@ -122,9 +140,9 @@ This section contains the identified architectural significant requirements and 
     \begin{quote}
         ``Tika should be embeddable within Java applications at low memory cost so that it’s as easy to use Tika in a desktop-class environment with capacious network..."
     \end{quote}
- \item Reliability. In order for any professional to be able to use Tika in a production environment, the program must be reliable and produce consistent results.
+   % \item Reliability. In order for any professional to be able to use Tika in a production environment, the program must be reliable and produce consistent results.
  
-   \item Correctness. It is important the program produces correct results, i.e. outputs corrects meta data about files. In the case of too many errors, developer trust will dissipate.
+  % \item Correctness. It is important the program produces correct results, i.e. outputs corrects meta data about files. In the case of too many errors, developer trust will dissipate.
 % \textbf{Functional requirements:}
 % \begin{itemize}
 %     \item Extract file meta-data
@@ -149,6 +167,7 @@ This section contains the identified architectural significant requirements and 
 %     \item Extract phone numbers
 % \end{itemize}
 
+\end{itemize}
 \section{Analysis}
 An analysis will be performed using common Software Engineering tooling programs, like \textit{Structure101}. Analysis was done in several steps: (1) compiling the software, (2) create a high-level overview and finally (3) analyze separate packages.
 
@@ -169,7 +188,7 @@ in order to install from source. The program took a little over 13 minutes to co
 \end{figure}
 
 \subsection{High-level overview}
-We first ran the program byte-code through \textit{Structure101} \citep{mcnamara_hickey_oreilly_chedgey_2018}.
+We first ran the program byte-code through \textit{Structure101} \citep{chedgeystructure101}. See the composition graph, Figure~\ref{fig:composition}.
 
 \newpage
 \newgeometry{left=5mm, right=5mm}
@@ -177,7 +196,7 @@ We first ran the program byte-code through \textit{Structure101} \citep{mcnamara
     \centering
     \includegraphics[width=1\textwidth]{report/images/tika.png}
     \caption{Composition Graph.}
-    \label{fig:compilation}
+    \label{fig:composition}
     
 \end{figure}
 \restoregeometry
@@ -207,13 +226,17 @@ To get an idea of the dependency structure of \texttt{tika-app}, see Figure~\ref
 \begin{itemize}
     \item \textbf{Dependencies}: \texttt{tika-parsers}, \texttt{tika-batch}, \texttt{tika-langdetect}, \texttt{tika-serialization}, \texttt{tika-xmp}.
     \item \textbf{Dependents}: \texttt{tika-example}
-    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app/s101}. Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}. These modules providing an interface to Tika's functionalities are all relatively small, but make heavy use of other components in the source code.
+    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_app/s101}. Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}.
+    \item\textbf{Purpose}: This component helps the users to interact with Tika and make use of its functionalities. It contains a simple and an easy to use interface which provides all Tika’s capabilities.
+\item\textbf{Content}: Three modules were tagged with a blue dot: \texttt{cli}, \texttt{gui} and \texttt{batch}. These are the main entry points to the module, and are all packed inside \texttt{tika-app.org.apache.tika}. These external interfaces, like the CLI and GUI, allow the end-users to communicate and use Tika into their applications. 
+
 \end{itemize}
 
 \subsubsection{tika-core}
 This module packs Tika's core functionality. It includes a module to detect file content types, a framework for parsing (text) content from a file and more, like language detection and so forth.
 
 To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\ref{fig:tika_core/s101-overview}. See below a description of the dependencies/dependents.
+
 
 \begin{figure}[ht]
     \centering
@@ -224,15 +247,20 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 
 \begin{itemize}
     \item \textbf{Dependencies}: None
-    \item \textbf{Dependents}: A lot. Every other package \textbf{directly} relies on \texttt{tika-core} except \texttt{tika-app} and \texttt{tika-parsers}. See Figure~\ref{fig:tika_core/s101-overview}.
-    \item \textbf{Internal structure}: See Figure~\ref{fig:tika_core/s101}. \texttt{tika-core} starts with the main \texttt{Tika} class, which requires a \texttt{Detector} and a \texttt{Parser} (and possibly a \texttt{Translator}) to build a \texttt{Tika} instance (also called \textit{Facade}) in the source code. This \texttt{Tika} class contains no main functionality itself, but rather calls on its dependencies (hence the word Facade).
+    \item \textbf{Dependents}: Every other package
+    \textbf{directly} relies on \texttt{tika-core} except \texttt{tika-app} and \texttt{tika-parsers}. See Figure~\ref{fig:tika_core/s101-overview}.
+   % \item \textbf{Internal structure}: See Figure~\ref{fig:tika_core/s101}. \texttt{tika-core} starts with the main \texttt{Tika} class, which requires a \texttt{Detector} and a \texttt{Parser} (and possibly a \texttt{Translator}) to build a \texttt{Tika} instance (also called \textit{Facade}) in the source code. This \texttt{Tika} class contains no main functionality itself, but rather calls on its dependencies (hence the word Facade).
+    \item\textbf{Purpose}: This component represents the foundation on which other important components are constructed, like Tika app and Tika parsers. It consists of core interfaces and classes. 
+
+\item\textbf{Content}: The core package consists of classes that build Tika facade, the mime package which is used for file format detection and the parser package used for parsing. All the other parser packages present in the overview in Structure 101 extend this package with extra capabilities. In addition, the language identifier mechanism, the metadata package and sax package are present in the core library and they are responsible for language analysis, metadata extraction and outputting structured text, respectively.
+
 \end{itemize}
 
 \subsubsection{tika-parsers}
 \begin {itemize}
 \item \textbf{Figure}: See Figure~\ref{fig:tika-parser}
-\item \textbf{Dependencies}: tika-parser modules
-\item \textbf{Dependents}: tika-app, tika-java7, tika-server.
+\item \textbf{Dependencies}: \texttt{tika-parser modules}
+\item \textbf{Dependents}: \texttt{tika-app, tika-java7, tika-server.}
 \item \textbf{Purpose}: According to the documentation, Tika parsers are considered as key features that ensure the main functionalities of Tika. These parsers are responsible for parsing, understanding and processing all the existing file formats and their corresponding metadata models. Even though these tasks are intense and complicated, the parsers camouflage their complexity by providing a really simple tool to the users for extracting the needed text content.
 \item \textbf{Contents}: This component consists of the tika parsers. Tika parsers are fundamental elements of Apache Tika. They contain a set of classes that construct the Tika Parser interface based on external parser libraries. 
 \end{itemize}
@@ -245,10 +273,10 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 \subsubsection{tika-parsers-advanced}
 \begin {itemize}
 \item \textbf{Figure}: See Figure~\ref{fig:tika-parser-advanced}
-\item \textbf{Dependencies}: tika-core, tika-parser-modules.
+\item \textbf{Dependencies}: \texttt{tika-core, tika-parser-modules.}
 \item \textbf{Dependents}:  None
 \item \textbf{Purpose}: Tika-parser-advanced is another crucial component that consists of several advanced parsers. These parsers provide more sophisticated functionalities and they are mainly focused on extracting more detailed information from complicated text documents like electronical clinical records, journals etc. 
-\item \textbf{Contents}: This component offers extra parser functionalities and it consists of 4 modules. The first module is tika-age-recognizer and it is capable of detecting and extracting the ages of people in a given text. The second one is tika-dl and its main functionality is image recognition. Tika-parser-advancedmedia-module is another parser and it is responsible for captioning and recognizing objects present in images and graphics.  Finally, tika-parser-nlp module offers functionalities such as: parsing biomedical information, detecting locations in a given text and providing them geo tags based on latitude/longitude, extracting journal information etc.
+\item \textbf{Contents}: This component offers extra parser functionalities and it consists of 4 modules. The first module is \texttt{tika-age-recognizer} and it is capable of detecting and extracting the ages of people in a given text. The second one is \texttt{tika-dl} and its main functionality is image recognition. \texttt{Tika-parser-advancedmedia-module} is another parser and it is responsible for captioning and recognizing objects present in images and graphics.  Finally, \texttt{tika-parser-nlp module} offers functionalities such as: parsing biomedical information, detecting locations in a given text and providing them geo tags based on latitude/longitude, extracting journal information etc.
 \end{itemize}
 \begin{figure}[ht]
     \centering
@@ -259,7 +287,7 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 \subsubsection{tika-parsers-extended}
 \begin {itemize}
 \item \textbf{Figure}: See Figure~\ref{fig:tika-parser-extended}
-\item \textbf{Dependencies}: tika-parser-modules, tika-core
+\item \textbf{Dependencies}: \texttt{tika-parser-modules, tika-core}
 \item \textbf{Dependents}: None
 \item \textbf{Purpose}: This component is an extended version of the previously mentioned tika-parser components. It consists of additional parsers that are capable extra file formats.
 \item \textbf{Contents}: This component consists of several parsers that provide additional capabilities. The first module is tika-parser-scientific-module and it parses extra file formats like NetCDF files, HDF files, geo file formats etc. The next module is tika-parser-sqlite3-module and it parses SQLite3 files. The last module is tika-parser-extended-integration-tests and it contains integration tests for Apache Tika.
@@ -273,10 +301,10 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 \subsubsection{tika-parsers-modules}
 \begin {itemize}
 \item \textbf{Figure}: See Figure~\ref{fig:tika-parser-modules}
-\item \textbf{Dependencies}: tika-core
-\item \textbf{Dependents}: tika-fuzzing, tika-parsers, tika-parser-advanced, tika-parser-extended, tika-xmp.
+\item \textbf{Dependencies}: \texttt{tika-core}
+\item \textbf{Dependents}: \texttt{tika-fuzzing, tika-parsers, tika-parser-advanced, \\tika-parser-extended, tika-xmp}.
 \item \textbf{Purpose}: This component provides the basic parsers that are mainly applied in common text file formats like Microsoft documents, PDF files etc. 
-\item \textbf{Contents}: : This component contains multiple parser modules. One of these parser modules is tika-parser-audiovideo-module which parses audio and video metadata files. Another module is tika-parser-cad-module and it is responsible for searching for bits in the headers of the texts. In addition, tika-parser-crypto-module is another module that consists of parsers for PKCS7 data and for Time Stamped Data Envelope. There are also other parsers in this module that extract information from Microsoft documents, pdf files, mails, html pages, xml etc. 
+\item \textbf{Contents}: : This component contains multiple parser modules. One of these parser modules is \texttt{tika-parser-audiovideo-module} which parses audio and video metadata files. Another module is \texttt{tika-parser-cad-module} and it is responsible for searching for bits in the headers of the texts. In addition, \texttt{tika-parser-crypto-module} is another module that consists of parsers for PKCS7 data and for Time Stamped Data Envelope. There are also other parsers in this module that extract information from Microsoft documents, pdf files, mails, html pages, xml etc. 
 \end{itemize}
 \begin{figure}[ht]
     \centering
@@ -287,10 +315,10 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 \subsubsection{tika-eval}
 \begin {itemize}
 \item \textbf{Figure}: See Figure~\ref{fig:tika-eval}
-\item \textbf{Dependencies}: : tika-batch, tika-langdetect, tika-core, tika-serialization.
-\item \textbf{Dependents}: tika-example.
+\item \textbf{Dependencies}:\texttt{ tika-batch, tika-langdetect, tika-core, tika-serialization.}
+\item \textbf{Dependents}: \texttt{ tika-example.}
 \item \textbf{Purpose}: The main purpose of this component is to provide insight based on the output of a given extraction tool or to perform comparisons between different tools. In addition, this component helps the developers to make comparisons of the output of two versions of the same tool or their execution while they run on different settings. 
-\item \textbf{Contents}: Tika.eval consists of some elements. One of them is eval.db which stores the extracted content and the corresponding metadata. Another part in tika.eval is tika.eval.textstats and it contains interfaces that measure language probabilities and token stats.  In addition, tika.eval.langid contains the IDs of the languages. Tika.eval provides its own predefined list of reports where users can instantly report insights. 
+\item \textbf{Contents}: Tika.eval consists of some elements. One of them is \texttt{eval.db} which stores the extracted content and the corresponding metadata. Another part in \texttt{tika.eval} is \texttt{tika.eval.textstats} and it contains interfaces that measure language probabilities and token stats.  In addition, \\\texttt{tika.eval.langid} contains the IDs of the languages. Tika.eval provides its own predefined list of reports where users can instantly report insights. 
 \end{itemize}
 \begin{figure}[ht]
     \centering
@@ -304,7 +332,7 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
 \item \textbf{Dependencies}: tika-parsers, tika-langdetect, tika-core, tika-serialization, tika-translate, tika-xmp.
 \item \textbf{Dependents}: None
 \item \textbf{Purpose}: Tika JAX-RS REST application. This is a Jetty web server running Tika REST services.
-\item \textbf{Contents}: todo
+\item \textbf{Contents}: This component contains many classes that are responsible for maintaining and monitor the server of Tika. Some of these classes are: \texttt{serverstatus, servertimeout, taskstatus, tikaserverwatchdog} etc. All the classes of this component make sure that the server is running properly and executes its tasks correctly. In addition, they detect when something is wrong and notify the developers.
 \end{itemize}
 \begin{figure}[ht]
     \centering
@@ -321,15 +349,146 @@ To get an idea of the dependency structure of \texttt{tika-core}, see Figure~\re
     \item \texttt{tika-serialization}. Contains some serializers and de-serializers for storing and retrieving metadata as JSON objects. Is dependent on \texttt{tika-core}, but really only uses interfaces from the package instead of actual functionality, namely \texttt{org.apache.tika.metadata.Metadata}; used working with Metadata objects in the module. 
     \item\texttt {tika-translate}: It represents an interface that provides translating services and it consists of multiple translators. One of these translators is MosesTranslator that uses Moses decoder for translations. Another translation service is CachedTranslator and it is responsible for saving a map of previous translations in order to not repeat translation requests. In addition, this component consists of YandexTranslator that provides a REST client implementation of Yandex Translate API. Among these translation services, this component also makes use of GoogleTranslator and MicrosoftTranslator.
     \item\texttt{tika-langdetect}: This component is capable of identifying the language of a given text. This type of information is quite helpful as a lot of metadata might not provide the language of the text formats. This component consists of a few language detectors like langdetect.lingo 24, langdetect.commons etc. 
-    \item\texttt tika-batch: This module has the purpose of conventional processing and it has a producer/consumer design pattern. This module is still under development and the developers try to keep it as configurable as possible. It consists of a ResourceCrawler, which adds potential files for processing onto the queue. A ResourceConsumer is also present in the batch and it pulls a resource from the queue and consumes it. In addition, a StatusReporter often reports on how many files have been processed etc.
+    \item\texttt{tika-batch}: This module has the purpose of conventional processing and it has a producer/consumer design pattern. This module is still under development and the developers try to keep it as configurable as possible. It consists of a ResourceCrawler, which adds potential files for processing onto the queue. A ResourceConsumer is also present in the batch and it pulls a resource from the queue and consumes it. In addition, a StatusReporter often reports on how many files have been processed etc.
     \end{itemize}
 
-\subsubsection{tika-bundle} % [TODO]?
+
 
 
 
 \section{Identifying God Components}
-\subfile{report/sections/4-identifying_god_components}
+To identify God Components, let us remind ourselves of the definition of a God Component. It is a software component whose Lines Of Code or number of classes got so extraneously large that the code got unmanageable. To find such components in our software, we need a tool to parse the entire code-base and infer the appropriate statistics from them. Probably, a tool written in Java would suit best, since it could use native methods to parse the code-base and thus reverse-engineer the software in an efficient way. A tool that is well suited for our purpose is \textit{Designite} \citep{sharma2016designite}. Designite is a quality assessment software tool that can be used to identify numerous technical debts in your software codebase. Among which, architectural smells and including God Components. Let us explain how we used this software to find God Components in Apache Tika.
+
+\subsection{Designite}
+Designite defines God Components in terms of lines of code and number of classes. The higher the amount of classes or lines of code, the more chance a component is considered as a God component. Designite classifies packages as a God Component if the package has more than 30 classes, or due to some other predefined condition which is less commonly encountered.
+
+To test Designite functionality, we ran the tool on the latest version of the Tika git repository; at the time of writing \texttt{2.0.0-SNAPSHOT}. Having ran the Designite Enterprise edition, 15 God Components were identified (Figure~\ref{fig:designite-cli}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{report/images/designite/cli_analysis.png}
+    \caption{Designite ran in a Terminal window. CLI shows a summary of the analysis. Extensive details of the analysis are stored in .txt files.}
+    \label{fig:designite-cli}
+\end{figure}
+
+We can see that the codebase contains 125,843 Lines of Code (LOC) and has 10,532 methods spread over 1,564 classes packed up in 154 packages. This means the codebase is of reasonable size. Note these numbers apply only to the \texttt{2.0.0-SNAPSHOT} version of the code: the challenge now lies in running Designite for \textbf{all} versions of the code. More precisely said, the aim is to run Designite for every \textbf{commit} of the code: enabling us to analyze the evolution of God Components in the finest resolution possible. Let's build a script that runs Designite on every commit for us, automatically.
+
+\subsection{Running Designite programmatically}
+The relevant files for our Designite data-collection code are \texttt{find\_gcs.py} and a support file, \texttt{git\_utils.py}. Like their name imply, they are both Python scripts, where \texttt{find\_gcs.py} is dependent on the \texttt{git\_utils.py} module. Let us describe the step-by-step process of the entire operation.
+
+\begin{enumerate}
+    \item \textbf{Grabbing commits}. First, we need a list of commit ids (SHA-1 hashes) such that we can devise check out the specific version of the code one by one and run Designite on it. We do this, by running a \texttt{git log} command, with some \texttt{--pretty} modifiers to output the information in a desirable format. We then use the Python Pandas \citep{mckinney2011pandas} module to read in the information into a \textit{DataFrame}, a tabular datatype for storing large datasets. Columns that get stored include commit id, author name, commit date/time, commit message and the relevant Jira issue, if present in the commit message. The described functionality is described in the \textsc{get\_commits} function in \texttt{git\_utils.py} (note there are examples of the resulting DataFrame in the \texttt{statistics.ipynb} Notebook in the root folder of our repo).
+    \item \textbf{Running Designite}. Next, we loop each commit and run Designite from the Python script using \texttt{os.system} - a function used to execute terminal commands. Once Designite finished running, it outputs \texttt{.csv} files to some chosen directory. We take the relevant file (\texttt{ArchitectureSmells.csv}), extract the God Components, and again output that information to a .csv file of our own. The data also has its columns renamed and some transformed for easier data processing down the line: the reason why Designite classified the component as a GC is extracted, for example, along with the relevant metric, like \# classes. For memory purposes, we remove the other, irrelevant Designite reports. The relevant code for this step is found in \texttt{find\_gcs.py}.
+\end{enumerate}
+
+We are now able to run Designite for all commits in the Tika project! That's great. But, because the Tika repository has nearly 5,000 commits, we would have to run Designite around 5,000 times. With an average runtime of about 40 seconds, it is easy to see that the computational complexity got quite large and the problem would take quite a while to run on one CPU, around 55 hours of running Designite non-stop. This might be a bit infeasible to do on just simple Laptops. Therefore, we utilized the University's High-Performance Computing cluster \textit{Peregrine} to solve the problem.
+
+\subsection{Running Designite on Peregrine}
+\textbf{Peregrine} is a HPC cluster containing computational nodes for several purposes. Our goal is to speed up the Designite running process, which requires a working copy of the Tika repository to check out a certain version (commit) of the code. On Peregrine, we have access to at least 24 CPU's in a single node. The idea we implemented was to run Designite simultaneously on each of the 24 CPU's available to us in the HPC environment. This also means, however, that we also need 24 working copies of the Tika repository. Dependent on the exact Tika version checked out, the repository comes in at around 2 GB. During the process of running Designite, the entire code-base will be loaded up into memory. So, theoretically this would add up to around 48 GB. In practice, however, much more memory is needed to load up 24 copies of Tika in Designite at the same time: there's probably some memory overhead in storing certain Data types and making the necessary computations and inferences. We therefore fall short on memory when utilising a 'regular' Peregrine node, which has 128 GB memory available. Luckily, however, Peregrine has '\textbf{high memory}' nodes available to us.
+
+The high memory nodes allow us to set up to 1,024 GB (1 TB) of working memory, available to all our cores. Using this gigantic amount of memory, we were able to run Designite on 24 versions of the code simultaneously. Even though the queue time for this node is quite long, we only have to go through this process once, if we do it well. So let's see how we architected the parallel structure in the code.
+
+On every run, the commits that had no Designite run yet, are mapped over the available CPU's. Then, the \textsc{clone\_tika} function in \texttt{git\_utils} makes sure that every CPU has its own clone of the Tika repository. To make sure each run of Designite is ran on a clean version of the repo, \texttt{git clean} is used, among others. Having ran the entire operation on Peregrine, we receive a log output file that has the summary as seen in Listing~\ref{code:peregrine-output}.
+
+\begin{lstlisting}[caption={Peregrine job output.}, label={code:peregrine-output}]
+Peregrine Cluster
+Job 16174792 for user 's2995697'
+Finished at: Wed Dec 16 02:40:31 CET 2020
+
+Job details:
+============
+
+Job ID              : 16174792
+Name                : sme_god-components
+User                : s2995697
+Partition           : himem
+Nodes               : pg-memory05
+Number of Nodes     : 1
+Cores               : 24
+State               : COMPLETED
+Submit              : 2020-12-15T10:17:59
+Start               : 2020-12-15T21:08:07
+End                 : 2020-12-16T02:40:29
+Reserved walltime   : 2-22:00:00
+Used walltime       :   05:32:22
+Used CPU time       : 5-10:36:50 (efficiency: 98.25%)
+% User (Computation): 91.59%
+% System (I/O)      :  8.41%
+Mem reserved        : 1000G/node
+Max Mem used        : 124.29G (pg-memory05)
+Max Disk Write      : 153.60K (pg-memory05)
+Max Disk Read       : 7.65M (pg-memory05)
+\end{lstlisting}
+
+It can be observed that our job ran with high efficiency (98.25\%), indicating we put all nodes at work nicely. The maximally used amount of memory comes in at 124 GB, indicating we only barely topped out the 128 GB memory available to us on regular Peregrine nodes. Apparently, no memory can be allocated already before the job report says to have used 128 GB memory. In all, it took the job more than 5 hours to complete, giving us a nice speedup on the sequential operation. That said, once this massive operation is complete, we simply take all the separate .csv files and concatenate them into one huge result file. This file is stored in \texttt{designite/output/all\_reports.csv}.
+
+\subsection{Data analysis}
+Now that we have a huge data file, we need to analyze it. This is done in the Jupyter Notebook \texttt{statistics.ipynb}. We are able to sum the amount of found God Components for every commit of the code, and aggregate them into a suitable data frame, resulting in Figure~\ref{fig:designite/gcs-versus-time}.
+
+\begin{figure}[ht]
+    \centering
+    \includesvg[width=0.7\textwidth]{report/images/god_components/gcs-total-growth.svg}
+    \caption{God Component growth in the Apache Tika repository. Y-axis shows total amount of God Components found in the repository using Designite, X-axis shows time.}
+    \label{fig:designite/gcs-versus-time}
+\end{figure}
+
+Interesting insight. What would also be interesting, however, is to discover what commits added/removed code to some God Component. For this, we have our final part of the code: the \textsc{compute\_locs} function in \texttt{git\_utils.py}. \textsc{compute\_locs} uses \texttt{git diff} to discover what files changed for some certain commit. The output is then formatted and loaded up into a Pandas data frame for further analysis. For every file changed in some commit, we found out whether it affected some God Component; we do this by checking whether the package name exists in the path. An example match would be \texttt{tika/tika-core/src/main/java/org/apache/tika} $\Leftrightarrow$ \texttt{org.apache.tika}. With all commits mapped to God Components, we can map the total Lines Of Code (LOC) that each commit builds up to each God Component. More on this in the next chapter.
+
+\section{God Component Analysis}
+This section focuses on performing an analysis towards the identified God components. The analysis is built based on answering the following questions: \textit{What types of issues contributed to the creation of God components? How many developers contribute to God components? What types of issues contributed to the re-factoring of God components? How long do God components stay inside a system?} All these questions provide us with insight regarding the evolution of God Components in Tika.
+
+\subsection{God Components}
+As mentioned in the previous section, Designite was used as a tool for identifying the God components within Tika. This tool is capable of recognizing the God components based on lines of code and number of classes. If a package has more than 30 classes, then it is classified as a God component.\\
+After analyzing the code, Designite identified 15 God components through all the versions of Tika. These God components are listed below and visualized in the plots which demonstrate the growth of these components in terms of number of classes and lines of code.\\
+
+
+\begin{minipage}[t]{.4\textwidth}
+    \begin{itemize}
+        \item org.apache.tika.batch
+        \item org.apache.tika.detect
+        \item org.apache.tika.example
+        \item org.apache.tika.fork
+        \item org.apache.tika.metadata
+        \item org.apache.tika.mime
+        \item org.apache.tika.parser
+        \item org.apache.tika.parser.microsoft
+    \end{itemize}   
+\end{minipage}%
+\begin{minipage}[t]{.4\textwidth}
+        \begin{itemize}
+        \item org.apache.tika.parser.microsoft.chm
+        \item org.apache.tika.parser.microsoft.onenote
+        \item org.apache.tika.parser.microsoft.ooxml
+        \item org.apache.tika.parser.txt
+        \item org.apache.tika.sax
+        \item org.apache.tika.server
+        \item org.apache.tika.utils
+    \end{itemize}
+\end{minipage}%
+ \begin{figure}[ht]
+    \centering
+    \includesvg[width=\textwidth]{report/images/god_components/gcs-package-classes-growth.svg}
+    \label{fig:class_growth}
+    \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the number of classes.}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includesvg[width=\textwidth]{report/images/god_components/gcs-package-loc-growth.svg}
+    \label{fig:loc_growth}
+    \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the lines of code.}
+\end{figure}
+\subsection{Analysis}
+In this part of the report we will evaluate the evolution of the 15 identified God components and the questions stated in the beginning of this section will be answered.\\
+
+\textbf{org.apache.tika.parser}
+\begin{itemize}
+    \item What types of issues contributed to the creation of God components? \\
+    According to the Jira issue tracker, the developers of Tika contributed towards the system mainly in 4 aspects: improving the package, adding new features and functionalities, fixing existing bugs or issues and completing multiple tasks. More precisely, there are approximately 1200 commits regarding bug fixes, nearly 600 commits related to improving the package, almost 150 commits for adding features and 170 commits for task completion. The rest of commits have been created for testing, wish list purposes or sub-task completion. It is quite clear that the highest proportion of these commits are associated to bug fixes. These bug fixes have made the developers to create more code, to produce more lines of code and more packages as a result. This has lead to the creation of parser as a God component. 
+    \item How many developers contribute to God components?\\ In total, there are 2429 commits regarding the parser God component and there is a total amount of 116 developers that contributed towards its evolution. Though out the commits, the developers improved different parts of the God component, added new features, fixed multiple bugs and worked on tasks and sub tasks.  
+     \item What types of issues contributed to the re-factoring of God components?\\
+    \item How long does this God component stay inside a system?\\ This package became a God component in 2015 and it still continues to be one. This implies that this package has been a God component for approximately 6 years. The parsers are key functionalities in the system of Tika, as they are responsible for extracting the content of the files and their corresponding metadata. It makes sense why this package is a God component and why it keeps evolving.
+
+\end{itemize}
 
 \bibliographystyle{plain} % We choose the "plain" reference style
 \bibliography{report/bibliography}
