@@ -1,10 +1,43 @@
 import requests
-from xml.etree import ElementTree
+import pandas as pd
+from tqdm import tqdm
 
-url = 'https://issues.apache.org/jira/rest/api/latest/issue/TIKA-1'
+def get_issue(n):
+    url = 'https://issues.apache.org/jira/rest/api/latest/issue/TIKA-{}'.format(n)
+    response = requests.get(url)
+    issue = response.json()
+    if 'errorMessages' in issue:
+        print('error', n)
+        return None
+    else:
+        comps = map(lambda comp: comp['name'], issue['fields']['components'])
+        f = issue['fields']
+        get_name = lambda prop: f[prop]['name'] if f[prop] else None
+        return {
+            'id':               issue['id'],
+            'self':             issue['self'],
+            'key':              issue['key'],
+            'resolution':       get_name('resolution'),
+            'priority':         get_name('priority'),
+            'assignee':         get_name('assignee'),
+            'status':           get_name('status'),
+            'creator':          get_name('creator'),
+            'reporter':         get_name('reporter'),
+            'issuetype':        get_name('issuetype'),
+            'resolutiondate':   f['resolutiondate'],
+            'created':          f['created'],
+            'updated':          f['updated'],
+            'description':      f['description'],
+            'components':       ';'.join(comps)
+        }
 
-response = requests.get(url)
-data = response.json()
-print(data['fields']['issuetype']['name'])
+issues = []
+# use https://issues.apache.org/jira/rest/api/latest/search?jql=project=TIKA&maxResults=1000
+for i in tqdm(range(1, 3500)):
+    issue = get_issue(i)
+    if not issue:
+        continue
+    issues.append(issue)
+data = pd.DataFrame(issues)
+data.to_csv('designite/output/jira.csv', index=False)
 
-# https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get
