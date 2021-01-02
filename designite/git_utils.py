@@ -64,16 +64,62 @@ def get_locs(commit_id):
     return df
 
 def compute_locs(godcomps, commit):
-    locdf = get_locs(commit.id)
+    # sort God Components by their nesting level, based on dots (.)
+    # in this way the algorithm will check inclusion of more nested GC's first,
+    # i.e. `    'org.apache.tika.parser.microsoft` will match before',
+    #      `    'org.apache.tika.parser`',
+    # so no duplicate matches appear.
+    nesting_levels = list(map(lambda godcomp: godcomp.count('.'), godcomps))
+    godcompsdf = pd.DataFrame({
+        'package': godcomps,
+        'nesting_level': nesting_levels
+    })
+    godcompsdf = godcompsdf.sort_values('nesting_level', ascending=False)
+
+    # loop god components, only assign 1 file path to 1 GC at maximum.
     results = [] # result of what god components this commit affected
-    for godcomp in godcomps:
-        path = godcomp.replace('.', '/')
-        files = locdf['file'].str.contains(path) # affected files
+    locdf = get_locs(commit.id)
+    all_files = locdf['file'].copy()
+    for _, godcomp in godcompsdf.iterrows():
+        # find files that affected this GC
+        path = godcomp['package'].replace('.', '/')
+        files = all_files.str.contains(path) # affected files
         if not files.any(): continue
+
+        # prevent file path from being re-selected
+        all_files = all_files.mask(files, '')
+
+        # compute total Lines Of Code changed in all files affecting this GC
         total = locdf[files].sum() # total LOC added/deleted
         total = total.drop(labels='file')
-        total['godcomp'] = godcomp
+        total['godcomp'] = godcomp['package']
         result = pd.concat([total, commit])
         results.append(result)
     new_df = pd.DataFrame(results)
     return new_df
+
+# godcomps = [
+#     'org.apache.tika.batch',
+#     'org.apache.tika.detect',
+#     'org.apache.tika.example',
+#     'org.apache.tika.fork',
+#     'org.apache.tika.metadata',
+#     'org.apache.tika.mime',
+#     'org.apache.tika.parser',
+#     'org.apache.tika.parser.microsoft',
+#     'org.apache.tika.parser.microsoft.chm',
+#     'org.apache.tika.parser.microsoft.onenote',
+#     'org.apache.tika.parser.microsoft.ooxml',
+#     'org.apache.tika.parser.txt',
+#     'org.apache.tika.sax',
+#     'org.apache.tika.server',
+#     'org.apache.tika.utils'
+# ]
+# commits = get_commits()
+
+# mapped_commits = []
+# from tqdm import tqdm
+# for index, row in commits.iterrows():
+#     mapped_commits.append(compute_locs(godcomps, row))
+# all_locs = pd.concat(mapped_commits)
+# print('end')
