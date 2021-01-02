@@ -47,6 +47,6 @@ all_issues = []
 for i in tqdm(range(n_requests)):
     issues = get_issues(per_request, per_request * i)
     all_issues += issues
-data = pd.DataFrame(all_issues)
-data.to_csv('designite/output/jira.csv', index=False)
+df = pd.DataFrame(all_issues)
+df.to_csv('designite/output/all_issues.csv', index=False)
 
