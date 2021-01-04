@@ -1,13 +1,8 @@
 venv
 .vscode
-designite/reports
-designite/DesigniteLog*
-designite/runtime/.config
-designite/rooted
-designite/mcs
-designite/ncs
-designite/commits
-designite/repositories
-designite/logs/*.out
+src/DesigniteLog*
+src/runtime/.config
+output/logs/*.out
+storage/
 .DS_Store
 __pycache__

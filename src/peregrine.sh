@@ -5,8 +5,8 @@
 #SBATCH --ntasks=24
 #SBATCH --partition=himem
 #SBATCH --job-name=sme_god-components
-#SBATCH --output=designite/logs/slurm-%j.out
+#SBATCH --output=output/logs/slurm-%j.out
 
 module load Python/3.6.4-foss-2018a
-pip3 install -r designite/requirements.txt --user
-python3 designite/find_gcs.py
+pip3 install -r src/requirements.txt --user
+python3 src/find_gcs.py

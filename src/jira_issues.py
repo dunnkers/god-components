@@ -48,5 +48,5 @@ for i in tqdm(range(n_requests)):
     issues = get_issues(per_request, per_request * i)
     all_issues += issues
 df = pd.DataFrame(all_issues)
-df.to_csv('designite/output/all_issues.csv', index=False)
+df.to_csv('output/all_issues.csv', index=False)
 

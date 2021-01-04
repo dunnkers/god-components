@@ -4,7 +4,7 @@ from io import StringIO
 import pandas as pd
 from tqdm import tqdm
 
-REPOSITORIES = 'designite/repositories'
+REPOSITORIES = 'storage/repositories'
 if 'SLURM_JOB_CPUS_PER_NODE' in os.environ:
     REPOSITORIES = '/data/{}/repositories'.format(os.environ['USER'])
 if (not os.path.exists(REPOSITORIES)): os.makedirs(REPOSITORIES)
@@ -27,7 +27,7 @@ def git_checkout(cpu, commit_id):
 
 # Return array of commits by using `git log` command
 def get_commits():
-    file = 'designite/output/all_commits.csv'
+    file = 'output/all_commits.csv'
     if (os.path.exists(file)):
         return pd.read_csv(file, parse_dates=['datetime'])
     git_checkout(1, 'main')
@@ -100,13 +100,13 @@ def compute_locs(godcomps, commit):
     return new_df
 
 def get_locs():
-    file = 'designite/output/all_locs.csv'
+    file = 'output/all_locs.csv'
     if (os.path.exists(file)):
         return pd.read_csv(file, parse_dates=['datetime'])
     # read data
     commits = get_commits()
-    assert(os.path.exists('designite/output/all_reports.csv'))
-    all_reports = pd.read_csv('designite/output/all_reports.csv')
+    assert(os.path.exists('output/all_reports.csv'))
+    all_reports = pd.read_csv('output/all_reports.csv')
 
     # Compute LOC's for every commit
     git_checkout(1, 'main') # make sure repo(1) is recently `git pull`'ed
@@ -124,5 +124,5 @@ def get_locs():
         df['LOC'] = df['change'].cumsum()
         godcomp_dfs.append(df)
     all_locs = pd.concat(godcomp_dfs)
-    all_locs.to_csv('designite/output/all_locs.csv', index=False)
+    all_locs.to_csv('output/all_locs.csv', index=False)
     return all_locs

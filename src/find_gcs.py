@@ -10,10 +10,10 @@ from git_utils import get_commits, repo, git_checkout
 
 # Settings
 KEY = os.environ.get('DESIGNITE_ENTERPRISE')
-RUNTIME =           'designite/runtime'
-RUNTIME_JAR =       'designite/runtime/DesigniteJava_Enterprise.jar'
-RUNTIME_CONFIG =    'designite/runtime/.config'
-OUTPUT_FOLDER =     'designite/reports'
+RUNTIME =           'src/runtime'
+RUNTIME_JAR =       'src/runtime/DesigniteJava_Enterprise.jar'
+RUNTIME_CONFIG =    'src/runtime/.config'
+OUTPUT_FOLDER =     'storage/reports'
 # Vars
 jar = 'java -jar {}'.format(RUNTIME_JAR)
 # God Component smell causes
@@ -113,12 +113,12 @@ if __name__ == '__main__':
 
     # Combine all reports into 1 .csv file
     all_reports = []
-    for path in glob.glob('designite/reports/*.csv'):
+    for path in glob.glob('storage/reports/*.csv'):
         try:
             report = pd.read_csv(path, dtype=str)
             all_reports.append(report)
         except:
             print('Corrupted report: {}'.format(path))
-    if (not os.path.exists('designite/output')): os.makedirs('designite/output')
+    if (not os.path.exists('output')): os.makedirs('output')
     all_reports = pd.concat(all_reports)
-    all_reports.to_csv('designite/output/all_reports.csv', index=False)
+    all_reports.to_csv('output/all_reports.csv', index=False)
