@@ -2,6 +2,7 @@ import os
 import subprocess
 from io import StringIO
 import pandas as pd
+from tqdm import tqdm
 
 REPOSITORIES = 'designite/repositories'
 if 'SLURM_JOB_CPUS_PER_NODE' in os.environ:
@@ -98,28 +99,30 @@ def compute_locs(godcomps, commit):
     new_df = pd.DataFrame(results)
     return new_df
 
-# godcomps = [
-#     'org.apache.tika.batch',
-#     'org.apache.tika.detect',
-#     'org.apache.tika.example',
-#     'org.apache.tika.fork',
-#     'org.apache.tika.metadata',
-#     'org.apache.tika.mime',
-#     'org.apache.tika.parser',
-#     'org.apache.tika.parser.microsoft',
-#     'org.apache.tika.parser.microsoft.chm',
-#     'org.apache.tika.parser.microsoft.onenote',
-#     'org.apache.tika.parser.microsoft.ooxml',
-#     'org.apache.tika.parser.txt',
-#     'org.apache.tika.sax',
-#     'org.apache.tika.server',
-#     'org.apache.tika.utils'
-# ]
-# commits = get_commits()
+def get_locs():
+    file = 'designite/output/all_locs.csv'
+    if (os.path.exists(file)):
+        return pd.read_csv(file, parse_dates=['datetime'])
+    # read data
+    commits = get_commits()
+    assert(os.path.exists('designite/output/all_reports.csv'))
+    all_reports = pd.read_csv('designite/output/all_reports.csv')
 
-# mapped_commits = []
-# from tqdm import tqdm
-# for index, row in commits.iterrows():
-#     mapped_commits.append(compute_locs(godcomps, row))
-# all_locs = pd.concat(mapped_commits)
-# print('end')
+    # Compute LOC's for every commit
+    git_checkout(1, 'main') # make sure repo(1) is recently `git pull`'ed
+    godcomps = all_reports['package'].unique()
+    mapped_commits = []
+    for index, row in tqdm(commits.iterrows(), total=commits.shape[0]):
+        mapped_commits.append(compute_locs(godcomps, row))
+    locdata = pd.concat(mapped_commits)
+
+    # Compute LOC change for every godcomp
+    godcomp_dfs = []
+    for godcomp, df in locdata.groupby('godcomp'):
+        df = df.sort_values('datetime')
+        df['change'] = df['additions'] - df['deletions']
+        df['LOC'] = df['change'].cumsum()
+        godcomp_dfs.append(df)
+    all_locs = pd.concat(godcomp_dfs)
+    all_locs.to_csv('designite/output/all_locs.csv', index=False)
+    return all_locs
