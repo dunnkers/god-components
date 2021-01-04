@@ -377,8 +377,35 @@ We can see that the codebase contains 125,843 Lines of Code (LOC) and has 10,532
 The relevant files for our Designite data-collection code are \texttt{find\_gcs.py} and a support file, \texttt{git\_utils.py}. Like their name imply, they are both Python scripts, where \texttt{find\_gcs.py} is dependent on the \texttt{git\_utils.py} module. Let us describe the step-by-step process of the entire operation.
 
 \begin{enumerate}
-    \item \textbf{Grabbing commits}. First, we need a list of commit ids (SHA-1 hashes) such that we can devise check out the specific version of the code one by one and run Designite on it. We do this, by running a \texttt{git log} command, with some \texttt{--pretty} modifiers to output the information in a desirable format. We then use the Python Pandas \citep{mckinney2011pandas} module to read in the information into a \textit{DataFrame}, a tabular datatype for storing large datasets. Columns that get stored include commit id, author name, commit date/time, commit message and the relevant Jira issue, if present in the commit message. The described functionality is described in the \textsc{get\_commits} function in \texttt{git\_utils.py} (note there are examples of the resulting DataFrame in the \texttt{statistics.ipynb} Notebook in the root folder of our repo).
-    \item \textbf{Running Designite}. Next, we loop each commit and run Designite from the Python script using \texttt{os.system} - a function used to execute terminal commands. Once Designite finished running, it outputs \texttt{.csv} files to some chosen directory. We take the relevant file (\texttt{ArchitectureSmells.csv}), extract the God Components, and again output that information to a .csv file of our own. The data also has its columns renamed and some transformed for easier data processing down the line: the reason why Designite classified the component as a GC is extracted, for example, along with the relevant metric, like \# classes. For memory purposes, we remove the other, irrelevant Designite reports. The relevant code for this step is found in \texttt{find\_gcs.py}.
+    \item \textbf{Grabbing commits}. First, we need a list of commit ids (SHA-1 hashes) such that we can devise check out the specific version of the code one by one and run Designite on it. We do this, by running a \texttt{git log} command, with some \texttt{--pretty} modifiers to output the information in a desirable format. We then use the Python Pandas \citep{mckinney2011pandas} module to read in the information into a \textit{DataFrame}, a tabular datatype for storing large datasets. Columns that get stored include commit id, author name, commit date/time, commit message and the relevant Jira issue, if present in the commit message. The described functionality is described in the \textsc{get\_commits} function in \texttt{git\_utils.py}. Examples of some rows are as seen in Table~\ref{tab:commits-example}:
+    
+    \begin{table}[ht]
+    \begin{tabular}{lllll}
+    id                                       & author    & datetime                  & message                                       & jira      \\
+    7f65d61 & THausherr & 2020-12-14 & TIKA-3248: revert accidental commit (2nd try) & TIKA-3248 \\
+    326b7d7 & THausherr & 2020-12-14 & Revert "Merge origin/main into main"          & NaN       \\
+    dd85c73 & THausherr & 2020-12-14 & Merge origin/main into main                   & NaN      
+    \end{tabular}
+    \caption{Commit data as mined by our application, stored in a Pandas Dataframe. Commit \textbf{time} was omitted from the 'datetime' column for brevity.}
+    \label{tab:commits-example}
+    \end{table}
+    
+    Note there also is an example of the resulting DataFrame in the \texttt{statistics.ipynb} Notebook in the root folder of our repo.
+    
+    \item \textbf{Running Designite}. Next, we loop each commit and run Designite from the Python script using \texttt{os.system} - a function used to execute terminal commands. Once Designite finished running, it outputs \texttt{.csv} files to some chosen directory. We take the relevant file (\texttt{ArchitectureSmells.csv}), extract the God Components, and again output that information to a .csv file of our own. The data also has its columns renamed and some transformed for easier data processing down the line: the reason why Designite classified the component as a GC is extracted, for example, along with the relevant metric, like \# classes. See Table~\ref{tab:designite-output}:
+    
+    \begin{table}[ht]
+    \begin{tabular}{llllll}
+    commit                                   & repo         & package                 & smell         & cause         & metric \\
+    49bb469 & tika-cpu\_21 & org.apache.tika.example & God Component & MANY\_CLASSES & 49     \\
+    49bb469 & tika-cpu\_21 & org.apache.tika.batch   & God Component & MANY\_CLASSES & 31     \\
+    49bb469 & tika-cpu\_21 & org.apache.tika.detect  & God Component & MANY\_CLASSES & 31    
+    \end{tabular}
+    \caption{Designite output data, captured per-commit and with the '\# classes' metric processed into a separate column.}
+    \label{tab:designite-output}
+    \end{table}
+    
+    For memory purposes, we remove the other, irrelevant Designite reports. The relevant code for this step is found in \texttt{find\_gcs.py}.
 \end{enumerate}
 
 We are now able to run Designite for all commits in the Tika project! That's great. But, because the Tika repository has nearly 5,000 commits, we would have to run Designite around 5,000 times. With an average runtime of about 40 seconds, it is easy to see that the computational complexity got quite large and the problem would take quite a while to run on one CPU, around 55 hours of running Designite non-stop. This might be a bit infeasible to do on just simple Laptops. Therefore, we utilized the University's High-Performance Computing cluster \textit{Peregrine} to solve the problem.
@@ -432,46 +459,59 @@ Now that we have a huge data file, we need to analyze it. This is done in the Ju
     \label{fig:designite/gcs-versus-time}
 \end{figure}
 
-Interesting insight. What would also be interesting, however, is to discover what commits added/removed code to some God Component. For this, we have our final part of the code: the \textsc{compute\_locs} function in \texttt{git\_utils.py}. \textsc{compute\_locs} uses \texttt{git diff} to discover what files changed for some certain commit. The output is then formatted and loaded up into a Pandas data frame for further analysis. For every file changed in some commit, we found out whether it affected some God Component; we do this by checking whether the package name exists in the path. An example match would be \texttt{tika/tika-core/src/main/java/org/apache/tika} $\Leftrightarrow$ \texttt{org.apache.tika}. With all commits mapped to God Components, we can map the total Lines Of Code (LOC) that each commit builds up to each God Component. More on this in the next chapter.
+Interesting insight. What would also be interesting, however, is to discover what commits added/removed code to some God Component. For this, we have our final part of the code: the \textsc{compute\_locs} function in \texttt{git\_utils.py}. \textsc{compute\_locs} uses \texttt{git diff} to discover what files changed for some certain commit. The output is then formatted and loaded up into a Pandas data frame for further analysis. For every file changed in some commit, we found out whether it affected some God Component; we do this by checking whether the package name exists in the path. An example match would be \texttt{tika/tika-core/src/main/java/org/apache/tika} $\Leftrightarrow$ \texttt{org.apache.tika}. For an example of how this processed data looks like, see Table~\ref{tab:locs}:
+
+\begin{table}[ht]
+\begin{tabular}{llllllll}
+additions & deletions & godcomp                          & id                                       & author    & ...\\
+1         & 3         & org.apache.tika.batch            & 7f65d61 & THausherr & ... \\
+8         & 14        & org.apache.tika.parser           & 7f65d61 & THausherr & ... \\
+2         & 3         & org.apache.tika.parser.microsoft & 7f65d61 & THausherr & ... \\
+\end{tabular}
+\caption{Lines Of Code added/removed information captured per-commit, for each God Component that was found to have its files modified by the commit. Note some commit information was omitted for brevity sake.}
+\label{tab:locs}
+\end{table}
+
+With all commits mapped to God Components, we can map the total Lines Of Code (LOC) that each commit builds up to each God Component. This mapping operation of computing the cumulative LOC's over time space is done in the \texttt{statistics.ipynb} file. Illustrations on this metric are shown in the next chapter.
 
 \section{God Component Analysis}
 This section focuses on performing an analysis towards the identified God components. The analysis is built based on answering the following questions: \textit{What types of issues contributed to the creation of God components? How many developers contribute to God components? What types of issues contributed to the re-factoring of God components? How long do God components stay inside a system?} All these questions provide us with insight regarding the evolution of God Components in Tika.
 
 \subsection{God Components}
 As mentioned in the previous section, Designite was used as a tool for identifying the God components within Tika. This tool is capable of recognizing the God components based on lines of code and number of classes. If a package has more than 30 classes, then it is classified as a God component.\\
-After analyzing the code, Designite identified 15 God components through all the versions of Tika. These God components are listed below and visualized in the plots which demonstrate the growth of these components in terms of number of classes and lines of code.\\
+After analyzing the code, Designite identified 15 God components through all the versions of Tika. These God components are listed below and visualized in the plots which demonstrate the growth of these components in terms of number of classes and lines of code. See Table~\ref{tab:gc-summary} for a summary of all found GC's and some general statistics about them.
+
+\begin{table}[ht]
+\begin{tabular}{lllll}
+package                                  & Became GC at & \# commits & \# days & \# authors \\
+org.apache.tika.batch                    & 2015-06-28   & 2352          & 1996       & 114        \\
+org.apache.tika.detect                   & 2017-01-19   & 1579          & 1424       & 82         \\
+org.apache.tika.example                  & 2015-05-04   & 2433          & 2050       & 115        \\
+org.apache.tika.fork                     & 2018-05-31   & 738           & 927        & 52         \\
+org.apache.tika.metadata                 & 2016-09-26   & 1743          & 1539       & 88         \\
+org.apache.tika.mime                     & 2015-05-02   & 2443          & 2053       & 115        \\
+org.apache.tika.parser                   & 2015-02-21   & 2429          & 2123       & 116        \\
+org.apache.tika.parser.microsoft         & 2011-11-25   & 3052          & 3306       & 121        \\
+org.apache.tika.parser.microsoft.chm     & 2020-08-21   & 155           & 114        & 14         \\
+org.apache.tika.parser.microsoft.onenote & 2019-12-16   & 305           & 363        & 26         \\
+org.apache.tika.parser.microsoft.ooxml   & 2017-03-23   & 1454          & 1361       & 80         \\
+org.apache.tika.parser.txt               & 2009-05-22   & 4539          & 4223       & 123        \\
+org.apache.tika.sax                      & 2011-09-25   & 3691          & 3367       & 121        \\
+org.apache.tika.server                   & 2014-05-07   & 1078          & 2412       & 47         \\
+org.apache.tika.utils                    & 2020-10-31   & 86            & 44         & 8         
+\end{tabular}
+\caption{Summary information of all found God Components in the Apache Tika codebase, across all different commits on the \textit{main} branch. All God Components are still a God Component to this day. The column '\# commits' denotes the amount of commits made to that God Component in its entire lifetime, i.e. even before being a God Component. '\# days' denotes the amount of days that component has been a God Component for, in total (i.e. the component may have stopped being a GC and then again continued to be a GC over its lifetime). Data applies to commits up till 14th of December 2020.}
+\label{tab:gc-summary}
+\end{table}
 
 
-\begin{minipage}[t]{.4\textwidth}
-    \begin{itemize}
-        \item org.apache.tika.batch
-        \item org.apache.tika.detect
-        \item org.apache.tika.example
-        \item org.apache.tika.fork
-        \item org.apache.tika.metadata
-        \item org.apache.tika.mime
-        \item org.apache.tika.parser
-        \item org.apache.tika.parser.microsoft
-    \end{itemize}   
-\end{minipage}%
-\begin{minipage}[t]{.4\textwidth}
-        \begin{itemize}
-        \item org.apache.tika.parser.microsoft.chm
-        \item org.apache.tika.parser.microsoft.onenote
-        \item org.apache.tika.parser.microsoft.ooxml
-        \item org.apache.tika.parser.txt
-        \item org.apache.tika.sax
-        \item org.apache.tika.server
-        \item org.apache.tika.utils
-    \end{itemize}
-\end{minipage}%
- \begin{figure}[ht]
+\begin{figure}[ht]
     \centering
     \includesvg[width=\textwidth]{report/images/god_components/gcs-package-classes-growth.svg}
     \label{fig:class_growth}
     \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the number of classes.}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[ht]
     \centering
     \includesvg[width=\textwidth]{report/images/god_components/gcs-package-loc-growth.svg}
     \label{fig:loc_growth}
