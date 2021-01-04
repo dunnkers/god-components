@@ -1,4 +1,4 @@
-author,datetime,message,jira,commit,package,# classes,plot_pos,is_gc
+author,datetime,message,jira,commit,package,# classes,plot_pos,is gc
 Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663 add a DigestingParser,TIKA-1663,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e,org.apache.tika.batch,31.0,15,True
 Tim Allison,2017-05-18 06:12:50-04:00,Merge pull request #181 from icirellik/close-fonts,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,org.apache.tika.detect,31.0,14,True
 Cameron Rollheiser,2017-05-17 09:44:34-04:00,TrueTypeParser Close Open Fonts,,,org.apache.tika.detect,,14,False
