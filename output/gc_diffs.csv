@@ -1,58 +1,58 @@
-package,is gc,author,datetime,jira,message,id
-org.apache.tika.batch,True,Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663,TIKA-1663 add a DigestingParser,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e
-org.apache.tika.detect,True,Tim Allison,2017-05-18 06:12:50-04:00,,Merge pull request #181 from icirellik/close-fonts,9d34cbb92a43bc52b4886954e0771ca6eea96bad
-org.apache.tika.detect,False,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,TrueTypeParser Close Open Fonts,b5b4eb6fde6c34c12d534e9412c0c73326b9886c
-org.apache.tika.detect,True,tballison,2017-02-23 15:54:42-05:00,TIKA-2273,TIKA-2273 -- two tests turned off temporarily in bundle.  First draft of adding configurability to EncodingDetectors,6d022be03b5423f6c036e1aa45e4ce02a9678462
-org.apache.tika.example,True,Chris Mattmann,2015-05-04 21:52:53+00:00,TIKA-1562,TIKA-1562: Add examples from the Tika in Action book,f54cb9e354b71e720602acfa0b4da8f100b400c2
-org.apache.tika.fork,True,tballison,2018-05-31 15:25:08-04:00,TIKA-2653,Merge remote-tracking branch 'origin/master' into TIKA-2653,cb1bbc052188bf5e45e5dc17570180df1fe27df9
-org.apache.tika.metadata,True,tballison,2016-09-26 12:24:14-04:00,TIKA-2057,TIKA-2057 - maintain DocInfo metadata in PDFs,ce07d8a10499fae015f07ca4fd4daf3473ca5193
-org.apache.tika.mime,True,Chris Mattmann,2015-05-02 04:58:35+00:00,TIKA-1571,Fix for TIKA-1571 add probabilistic mime selection contributed by LukeLiush <hanson311biz@gmail.com> this closes #41.,281fedfc86acbb5e01015f1462a27a86a65403f0
-org.apache.tika.parser,True,Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663,TIKA-1663 add a DigestingParser,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e
-org.apache.tika.parser,False,Tyler Palsulich,2015-03-31 21:37:31+00:00,TIKA-1558,TIKA-1558. Refactor Parser blacklisting.,5f506c1627d442f9366a1eafef1a0195fa24bf79
-org.apache.tika.parser,True,Tyler Palsulich,2015-02-21 05:17:58+00:00,TIKA-1558,TIKA-1558. Enable blacklisting of Parsers and other services with a servicename.blacklist META-INF file.,99b53cec502b9266b1e47aa98170e976aa1ebe3d
-org.apache.tika.parser.microsoft,True,Nick Burch,2014-12-22 05:15:54+00:00,TIKA-1490,TIKA-1490 Parser for old Excel 2-4 files,46b321f798bdafeb390bdf1a23ae665c3fad3fec
-org.apache.tika.parser.microsoft,False,Tim Allison,2014-04-11 01:48:48+00:00,TIKA-1271,TIKA-1271: trivial refactoring of classes useful for testing embedded document handling,398f50f51fb363b9aac60ec50f54d977089ef957
-org.apache.tika.parser.microsoft,True,Hong-Thai Nguyen,2014-02-27 15:34:13+00:00,,Add more test of OfficeParser,7b2c4e87c822c98e334acc06a7fef8b7f89d6ccd
-org.apache.tika.parser.microsoft,False,Michael McCandless,2012-11-18 16:10:23+00:00,TIKA-1025,TIKA-1025: leave placeholder where embedded docs appear in .ppt extraction,963100eb1806048809b1fb2cb5076afdd640cdfa
-org.apache.tika.parser.microsoft,True,Nick Burch,2011-11-25 15:26:02+00:00,TIKA-789,"TIKA-789 Add (metadata only) Project support to OfficeParser, and add a unit test that checks we correctly get Project metadata back from our sample files",f05edfe4120445fc93dd781e9daa85a5c371a26d
-org.apache.tika.parser.microsoft.chm,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,TIKA-3241 -- fix more git add problems,12198666bf0cf6811613c9ae27c4a384e42875b1
-org.apache.tika.parser.microsoft.chm,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,TIKA-3241 -- clarify parser module structure,8dbb5736fa92b323e270e2075b42dce458a3abd6
-org.apache.tika.parser.microsoft.chm,True,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,Add test certificate and key for TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a
-org.apache.tika.parser.microsoft.chm,False,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,Add test certificate and key for TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94
-org.apache.tika.parser.microsoft.chm,True,Tim Allison,2020-08-21 11:32:26-04:00,,Branch 2x (#341),f9104d17ad0b92b243501fdf0863b4ccdaa5e791
-org.apache.tika.parser.microsoft.onenote,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,TIKA-3241 -- fix more git add problems,12198666bf0cf6811613c9ae27c4a384e42875b1
-org.apache.tika.parser.microsoft.onenote,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,TIKA-3241 -- clarify parser module structure,8dbb5736fa92b323e270e2075b42dce458a3abd6
-org.apache.tika.parser.microsoft.onenote,True,Nicholas DiPiazza,2019-12-16 15:56:48-06:00,,squash commits of one note tika parser (#303),c85f5cc4729f1d6bd81c24bab375e89fd1037237
-org.apache.tika.parser.microsoft.ooxml,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,TIKA-3241 -- fix more git add problems,12198666bf0cf6811613c9ae27c4a384e42875b1
-org.apache.tika.parser.microsoft.ooxml,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,TIKA-3241 -- clarify parser module structure,8dbb5736fa92b323e270e2075b42dce458a3abd6
-org.apache.tika.parser.microsoft.ooxml,True,Tim Allison,2017-05-18 06:12:50-04:00,,Merge pull request #181 from icirellik/close-fonts,9d34cbb92a43bc52b4886954e0771ca6eea96bad
-org.apache.tika.parser.microsoft.ooxml,False,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,TrueTypeParser Close Open Fonts,b5b4eb6fde6c34c12d534e9412c0c73326b9886c
-org.apache.tika.parser.microsoft.ooxml,True,Chris Mattmann,2017-05-08 22:54:47-07:00,,Merge pull request #165 from thammegowda/tika-dl,3207f12c13491005b16104cbeeea8d3da2f6966d
-org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-08 22:22:44-07:00,,Pin to DL4J model 0.8.0-2.,704a0393334d2b9911bc19ae458801e7fed7f796
-org.apache.tika.parser.microsoft.ooxml,True,David Meikle,2017-05-08 14:32:19+01:00,TIKA-2357,TIKA-2357: Increased support for Tesseract PSM up to 13 from Rafael Ferreira,0aaa1215fd11632c349e9bdebac9829578276cb1
-org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-07 11:33:04-07:00,,ignore inception tmp model.,1e436f50ec97862b41805b678415d65a8fecd2b3
-org.apache.tika.parser.microsoft.ooxml,True,Madhav Sharan,2017-05-04 15:58:18-07:00,TIKA-2355,fix for TIKA-2355 contributed by msharan@usc.edu,414a4297a2000d8f9276e0ed5d657643f8e94d3a
-org.apache.tika.parser.microsoft.ooxml,False,Thamme Gowda,2017-05-03 21:47:07-07:00,,"[TIKA-DL] Updated model path, fixed issue with HTTP URL from XML",01ae9876663cb522f886322be8c2d395ab279854
-org.apache.tika.parser.microsoft.ooxml,True,Chris Mattmann,2017-05-03 13:32:42-07:00,TIKA-2016,Merge branch 'master' into TIKA-2016,70d2455c4ff7c54afe6762d5b50653b8de06f2b2
-org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 13:17:16-07:00,,Add categorical test.,b46f20d41157a1d4b8d4cd2ced67fdf1f6772e47
-org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-05-03 16:16:56-04:00,TIKA-2352,TIKA-2352 -- via Pascal Essiembre.  This closes #176,19348811a9ff9e89cb309334cfba010a62b72600
-org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 13:14:55-07:00,,Add multi-class/categorical sentiment config test file.,c5da6bbbddf877585a2869e4f3d963b3f7d62795
-org.apache.tika.parser.microsoft.ooxml,True,Pascal Essiembre,2017-05-03 15:54:03-04:00,TIKA-2352,Fix for TIKA-2352 contributed by pascal.essiembre,e7b0cadfeaf76bf6bd96ad35b3510633368a1a07
-org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 11:50:22-07:00,,Updating Tika Bundle POM for sentiment analysis - still getting errors.,2217a8f4107cc0b6b4d238a641a3e9c4c7abf384
-org.apache.tika.parser.microsoft.ooxml,True,Thamme Gowda,2017-04-20 13:35:58-07:00,TIKA-2307,Merge branch 'KranthiGV-TIKA-2307',dd515914e5b2986247834307eb7c922c3c2c50a9
-org.apache.tika.parser.microsoft.ooxml,False,Thamme Gowda,2017-04-20 13:31:12-07:00,,Updated URL to point to ASF repo,834920e769e674b0af8024fdb6067ee12651d196
-org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-04-19 10:11:29-04:00,TIKA-1195,TIKA-1195 and TIKA-2329,67612b8f805ad5d1085db14922d3b3b6ddce19bf
-org.apache.tika.parser.microsoft.ooxml,False,tballison,2017-03-23 09:34:48-04:00,,undo super bone-headed commit that was intended for personal fork.  Wait until poi-3.16-beta3.,fbd2a4ea272ad90812d50b6c9fec3cd50b3d632b
-org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-03-23 09:23:55-04:00,,add initial support for xlsb,315a0d6be3714024dd5259444f739a026f0de574
-org.apache.tika.parser.txt,True,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms",a43784b19f6b0955478dded71521b0491d21c90b
-org.apache.tika.parser.txt,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,TIKA-3241 -- clarify parser module structure,8dbb5736fa92b323e270e2075b42dce458a3abd6
-org.apache.tika.parser.txt,True,Jukka Zitting,2009-05-22 18:21:59+00:00,TIKA-233,TIKA-233: Inline the ICU4J charset detection logic,d9493ee520d41bfc8be8a3bd959dde6e136729e7
-org.apache.tika.sax,True,Jukka Zitting,2011-09-25 09:42:05+00:00,TIKA-651,TIKA-651: Unescaped attribute value generated,fcde81cfbf6f7d4a7ba4e148471f1ce622d59f92
-org.apache.tika.server,True,TALLISON,2018-09-07 19:16:32-04:00,TIKA-2725,"TIKA-2725 -- checkpoint commit ... basic child process is started...need to integrate actual statuswatcher, etc.",bf1b2418d47e9fa47e0634825341921d7edd1ee8
-org.apache.tika.server,False,Tyler Palsulich,2015-03-13 22:09:52+00:00,TIKA-1564,TIKA-1564. Move tika-server resources and writers to their own packages.,411248466302763e19608733dcbfb95cdc36363d
-org.apache.tika.server,True,Nick Burch,2014-05-07 12:27:11+00:00,TIKA-1270,"TIKA-1270 Complete parser details endpoint, and tests",14991add8ca94238b07b98b341febf67b6e5fbb7
-org.apache.tika.utils,True,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms",a43784b19f6b0955478dded71521b0491d21c90b
-org.apache.tika.utils,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,TIKA-3241 -- clarify parser module structure,8dbb5736fa92b323e270e2075b42dce458a3abd6
-org.apache.tika.utils,True,Ken Krugler,2020-11-05 14:45:03-08:00,,Merge pull request #375 from PeterAlfredLee/addCompareUtils,793eb4a72916ed3c21413c5faf7662c921f58b49
-org.apache.tika.utils,False,PeterAlfredLee,2020-11-03 15:57:22+08:00,,Simplify some sort statement use List.sort and lambda,53fef890942bdf69d455abbbecc17cd22d6621d6
-org.apache.tika.utils,True,PeterAlfredLee,2020-10-31 12:13:55+08:00,,Add CompareUtils and simplify some sort,71486d765318062f8cb04cd3335bd9049a2ff5fc
+package,is gc,author,datetime,jira,id,message
+org.apache.tika.batch,True,Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e,TIKA-1663 add a DigestingParser
+org.apache.tika.detect,True,Tim Allison,2017-05-18 06:12:50-04:00,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,Merge pull request #181 from icirellik/close-fonts
+org.apache.tika.detect,False,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,TrueTypeParser Close Open Fonts
+org.apache.tika.detect,True,tballison,2017-02-23 15:54:42-05:00,TIKA-2273,6d022be03b5423f6c036e1aa45e4ce02a9678462,TIKA-2273 -- two tests turned off temporarily in bundle.  First draft of adding configurability to EncodingDetectors
+org.apache.tika.example,True,Chris Mattmann,2015-05-04 21:52:53+00:00,TIKA-1562,f54cb9e354b71e720602acfa0b4da8f100b400c2,TIKA-1562: Add examples from the Tika in Action book
+org.apache.tika.fork,True,tballison,2018-05-31 15:25:08-04:00,TIKA-2653,cb1bbc052188bf5e45e5dc17570180df1fe27df9,Merge remote-tracking branch 'origin/master' into TIKA-2653
+org.apache.tika.metadata,True,tballison,2016-09-26 12:24:14-04:00,TIKA-2057,ce07d8a10499fae015f07ca4fd4daf3473ca5193,TIKA-2057 - maintain DocInfo metadata in PDFs
+org.apache.tika.mime,True,Chris Mattmann,2015-05-02 04:58:35+00:00,TIKA-1571,281fedfc86acbb5e01015f1462a27a86a65403f0,Fix for TIKA-1571 add probabilistic mime selection contributed by LukeLiush <hanson311biz@gmail.com> this closes #41.
+org.apache.tika.parser,True,Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e,TIKA-1663 add a DigestingParser
+org.apache.tika.parser,False,Tyler Palsulich,2015-03-31 21:37:31+00:00,TIKA-1558,5f506c1627d442f9366a1eafef1a0195fa24bf79,TIKA-1558. Refactor Parser blacklisting.
+org.apache.tika.parser,True,Tyler Palsulich,2015-02-21 05:17:58+00:00,TIKA-1558,99b53cec502b9266b1e47aa98170e976aa1ebe3d,TIKA-1558. Enable blacklisting of Parsers and other services with a servicename.blacklist META-INF file.
+org.apache.tika.parser.microsoft,True,Nick Burch,2014-12-22 05:15:54+00:00,TIKA-1490,46b321f798bdafeb390bdf1a23ae665c3fad3fec,TIKA-1490 Parser for old Excel 2-4 files
+org.apache.tika.parser.microsoft,False,Tim Allison,2014-04-11 01:48:48+00:00,TIKA-1271,398f50f51fb363b9aac60ec50f54d977089ef957,TIKA-1271: trivial refactoring of classes useful for testing embedded document handling
+org.apache.tika.parser.microsoft,True,Hong-Thai Nguyen,2014-02-27 15:34:13+00:00,,7b2c4e87c822c98e334acc06a7fef8b7f89d6ccd,Add more test of OfficeParser
+org.apache.tika.parser.microsoft,False,Michael McCandless,2012-11-18 16:10:23+00:00,TIKA-1025,963100eb1806048809b1fb2cb5076afdd640cdfa,TIKA-1025: leave placeholder where embedded docs appear in .ppt extraction
+org.apache.tika.parser.microsoft,True,Nick Burch,2011-11-25 15:26:02+00:00,TIKA-789,f05edfe4120445fc93dd781e9daa85a5c371a26d,"TIKA-789 Add (metadata only) Project support to OfficeParser, and add a unit test that checks we correctly get Project metadata back from our sample files"
+org.apache.tika.parser.microsoft.chm,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,12198666bf0cf6811613c9ae27c4a384e42875b1,TIKA-3241 -- fix more git add problems
+org.apache.tika.parser.microsoft.chm,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser.microsoft.chm,True,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft.chm,False,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft.chm,True,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.parser.microsoft.onenote,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,12198666bf0cf6811613c9ae27c4a384e42875b1,TIKA-3241 -- fix more git add problems
+org.apache.tika.parser.microsoft.onenote,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser.microsoft.onenote,True,Nicholas DiPiazza,2019-12-16 15:56:48-06:00,,c85f5cc4729f1d6bd81c24bab375e89fd1037237,squash commits of one note tika parser (#303)
+org.apache.tika.parser.microsoft.ooxml,True,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,12198666bf0cf6811613c9ae27c4a384e42875b1,TIKA-3241 -- fix more git add problems
+org.apache.tika.parser.microsoft.ooxml,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser.microsoft.ooxml,True,Tim Allison,2017-05-18 06:12:50-04:00,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,Merge pull request #181 from icirellik/close-fonts
+org.apache.tika.parser.microsoft.ooxml,False,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,TrueTypeParser Close Open Fonts
+org.apache.tika.parser.microsoft.ooxml,True,Chris Mattmann,2017-05-08 22:54:47-07:00,,3207f12c13491005b16104cbeeea8d3da2f6966d,Merge pull request #165 from thammegowda/tika-dl
+org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-08 22:22:44-07:00,,704a0393334d2b9911bc19ae458801e7fed7f796,Pin to DL4J model 0.8.0-2.
+org.apache.tika.parser.microsoft.ooxml,True,David Meikle,2017-05-08 14:32:19+01:00,TIKA-2357,0aaa1215fd11632c349e9bdebac9829578276cb1,TIKA-2357: Increased support for Tesseract PSM up to 13 from Rafael Ferreira
+org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-07 11:33:04-07:00,,1e436f50ec97862b41805b678415d65a8fecd2b3,ignore inception tmp model.
+org.apache.tika.parser.microsoft.ooxml,True,Madhav Sharan,2017-05-04 15:58:18-07:00,TIKA-2355,414a4297a2000d8f9276e0ed5d657643f8e94d3a,fix for TIKA-2355 contributed by msharan@usc.edu
+org.apache.tika.parser.microsoft.ooxml,False,Thamme Gowda,2017-05-03 21:47:07-07:00,,01ae9876663cb522f886322be8c2d395ab279854,"[TIKA-DL] Updated model path, fixed issue with HTTP URL from XML"
+org.apache.tika.parser.microsoft.ooxml,True,Chris Mattmann,2017-05-03 13:32:42-07:00,TIKA-2016,70d2455c4ff7c54afe6762d5b50653b8de06f2b2,Merge branch 'master' into TIKA-2016
+org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 13:17:16-07:00,,b46f20d41157a1d4b8d4cd2ced67fdf1f6772e47,Add categorical test.
+org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-05-03 16:16:56-04:00,TIKA-2352,19348811a9ff9e89cb309334cfba010a62b72600,TIKA-2352 -- via Pascal Essiembre.  This closes #176
+org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 13:14:55-07:00,,c5da6bbbddf877585a2869e4f3d963b3f7d62795,Add multi-class/categorical sentiment config test file.
+org.apache.tika.parser.microsoft.ooxml,True,Pascal Essiembre,2017-05-03 15:54:03-04:00,TIKA-2352,e7b0cadfeaf76bf6bd96ad35b3510633368a1a07,Fix for TIKA-2352 contributed by pascal.essiembre
+org.apache.tika.parser.microsoft.ooxml,False,Chris Mattmann,2017-05-03 11:50:22-07:00,,2217a8f4107cc0b6b4d238a641a3e9c4c7abf384,Updating Tika Bundle POM for sentiment analysis - still getting errors.
+org.apache.tika.parser.microsoft.ooxml,True,Thamme Gowda,2017-04-20 13:35:58-07:00,TIKA-2307,dd515914e5b2986247834307eb7c922c3c2c50a9,Merge branch 'KranthiGV-TIKA-2307'
+org.apache.tika.parser.microsoft.ooxml,False,Thamme Gowda,2017-04-20 13:31:12-07:00,,834920e769e674b0af8024fdb6067ee12651d196,Updated URL to point to ASF repo
+org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-04-19 10:11:29-04:00,TIKA-1195,67612b8f805ad5d1085db14922d3b3b6ddce19bf,TIKA-1195 and TIKA-2329
+org.apache.tika.parser.microsoft.ooxml,False,tballison,2017-03-23 09:34:48-04:00,,fbd2a4ea272ad90812d50b6c9fec3cd50b3d632b,undo super bone-headed commit that was intended for personal fork.  Wait until poi-3.16-beta3.
+org.apache.tika.parser.microsoft.ooxml,True,tballison,2017-03-23 09:23:55-04:00,,315a0d6be3714024dd5259444f739a026f0de574,add initial support for xlsb
+org.apache.tika.parser.txt,True,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.parser.txt,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser.txt,True,Jukka Zitting,2009-05-22 18:21:59+00:00,TIKA-233,d9493ee520d41bfc8be8a3bd959dde6e136729e7,TIKA-233: Inline the ICU4J charset detection logic
+org.apache.tika.sax,True,Jukka Zitting,2011-09-25 09:42:05+00:00,TIKA-651,fcde81cfbf6f7d4a7ba4e148471f1ce622d59f92,TIKA-651: Unescaped attribute value generated
+org.apache.tika.server,True,TALLISON,2018-09-07 19:16:32-04:00,TIKA-2725,bf1b2418d47e9fa47e0634825341921d7edd1ee8,"TIKA-2725 -- checkpoint commit ... basic child process is started...need to integrate actual statuswatcher, etc."
+org.apache.tika.server,False,Tyler Palsulich,2015-03-13 22:09:52+00:00,TIKA-1564,411248466302763e19608733dcbfb95cdc36363d,TIKA-1564. Move tika-server resources and writers to their own packages.
+org.apache.tika.server,True,Nick Burch,2014-05-07 12:27:11+00:00,TIKA-1270,14991add8ca94238b07b98b341febf67b6e5fbb7,"TIKA-1270 Complete parser details endpoint, and tests"
+org.apache.tika.utils,True,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.utils,False,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.utils,True,Ken Krugler,2020-11-05 14:45:03-08:00,,793eb4a72916ed3c21413c5faf7662c921f58b49,Merge pull request #375 from PeterAlfredLee/addCompareUtils
+org.apache.tika.utils,False,PeterAlfredLee,2020-11-03 15:57:22+08:00,,53fef890942bdf69d455abbbecc17cd22d6621d6,Simplify some sort statement use List.sort and lambda
+org.apache.tika.utils,True,PeterAlfredLee,2020-10-31 12:13:55+08:00,,71486d765318062f8cb04cd3335bd9049a2ff5fc,Add CompareUtils and simplify some sort
