@@ -405,7 +405,7 @@ The relevant files for our Designite data-collection code are \texttt{find\_gcs.
     \label{tab:designite-output}
     \end{table}
     
-    For memory purposes, we remove the other, irrelevant Designite reports. The relevant code for this step is found in \texttt{find\_gcs.py}.
+    For the MANY\_CLASSES cause the classes need to be $> 30$ for Designite to classify the component as a God Component. For memory purposes, we remove the other, irrelevant Designite reports that are concerned with other bad architectural smells. The relevant code for this step is found in \texttt{find\_gcs.py}.
 \end{enumerate}
 
 We are now able to run Designite for all commits in the Tika project! That's great. But, because the Tika repository has nearly 5,000 commits, we would have to run Designite around 5,000 times. With an average runtime of about 40 seconds, it is easy to see that the computational complexity got quite large and the problem would take quite a while to run on one CPU, around 55 hours of running Designite non-stop. This might be a bit infeasible to do on just simple Laptops. Therefore, we utilized the University's High-Performance Computing cluster \textit{Peregrine} to solve the problem.
@@ -461,6 +461,17 @@ Now that we have a huge data file, we need to analyze it. This is done in the Ju
 
 Interesting insight. It can be seen that there were in total 15 God Components detected throughout the existence of the Tika codebase. Some of which have stopped being a GC in between, having a break of sometimes up to a couple years before becoming a GC again (tika.server). However, we should note that some GC's have shorter breaks, sometimes so short that the line in the plot is still continuous - the re-emergence of the GC in that case can be seen by the caret indicator ($\blacktriangleright$).
 
+This gave us an insight as to what God Components exist in the Tika code-base throughout its entire history, and when they ceased being one in between. It does not yet show us, however, how 'big' the God Components are compared to each other. This is our next analysis goal. The main reason Designite classified components as GC's, is the MANY\_CLASSES cause (see Table~\ref{tab:designite-output}). In fact, throughout all commits, this was the only reason that Designite classified components as a GC. This fact can simplify the analysis process - we can now assume the reason to always be MANY\_CLASSES, allowing us to utilize the metric that is output alongside the report: the \textit{\# classes} having caused the respective component to have become a GC. Using this new assumption, we can visualize the God Components in terms of '\# classes' versus the time, see Figure~\ref{fig:class_growth}.
+
+\begin{figure}[ht]
+    \centering
+    \includesvg[width=\textwidth]{report/images/god_components/gcs-package-classes-growth.svg}
+    \label{fig:class_growth}
+    \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the number of classes.}
+\end{figure}
+
+Some observations can be made according to the chart. The \texttt{tika.parser} component first starts out as a GC and remains to do so until now, with a high number of classes, around 60, but fluctuating. 
+
 What would also be interesting, however, is to discover what commits added/removed code to some God Component. For this, we have our final part of the code: the \textsc{compute\_locs} function in \texttt{git\_utils.py}. \textsc{compute\_locs} uses \texttt{git diff} to discover what files changed for some certain commit. The output is then formatted and loaded up into a Pandas data frame for further analysis. For every file changed in some commit, we found out whether it affected some God Component; we do this by checking whether the package name exists in the path. An example match would be \texttt{tika/tika-core/src/main/java/org/apache/tika} $\Leftrightarrow$ \texttt{org.apache.tika}. More specifically, packages that have higher levels of nesting are tested on a match first, i.e. \texttt{org.apache.tika.parser} will be tested before \texttt{org.apache.tika} because its nesting level is higher. Only the first match is taken into consideration - preventing multiple packages matching just one file. For an example of how this processed data looks like, see Table~\ref{tab:locs}:
 
 \begin{table}[ht]
@@ -488,8 +499,7 @@ Note that the y-axis is in logarithmic scale: the differences in LOC buildup bet
 \section{God Component Analysis}
 This section focuses on performing an analysis towards the identified God components. The analysis is built based on answering the following questions: \textit{What types of issues contributed to the creation of God components? How many developers contribute to God components? What types of issues contributed to the re-factoring of God components? How long do God components stay inside a system?} All these questions provide us with insight regarding the evolution of God Components in Tika.
 
-As mentioned in the previous section, Designite was used as a tool for identifying the God components within Tika. This tool is capable of recognizing the God components based on lines of code and number of classes. If a package has more than 30 classes, then it is classified as a God component.\\
-After analyzing the code, Designite identified 15 God components through all the versions of Tika. These God components are listed below and visualized in the plots which demonstrate the growth of these components in terms of number of classes and lines of code. See Table~\ref{tab:gc-summary} for a summary of all found GC's and some general statistics about them.
+To line up some general statistical information on all found God Component, an overview was constructed, see Table~\ref{tab:gc-summary}.
 
 \begin{table}[ht]
 \begin{tabular}{lllll}
@@ -514,25 +524,17 @@ org.apache.tika.utils                    & 2020-10-31   & 86            & 44    
 \label{tab:gc-summary}
 \end{table}
 
+By combining Table~\ref{tab:gc-summary} with some chart previously shown - like the GC starting- and ending dates (Figure~\ref{fig:gc_lineplot}) and Lines Of Code growth (Figure~\ref{fig:loc_growth}) - we are able to identify some interesting God Components to use for more in-depth analysis. The first one being \texttt{org.apache.tika.parser}, which is interesting to analyze since it is the biggest component in terms of Lines Of Code (LOC). Next, the \texttt{org.apache.tika.server} component is interesting because it stopped being a God Component for some several years only to later continue being a GC again. Lastly, \texttt{org.apache.tika.parser.txt} is the God Component that has been in the codebase first and has remained being one, almost uninterrupted, for the longest amount of time.
 
-\begin{figure}[ht]
-    \centering
-    \includesvg[width=\textwidth]{report/images/god_components/gcs-package-classes-growth.svg}
-    \label{fig:class_growth}
-    \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the number of classes.}
-\end{figure}
+%\subsection{org.apache.tika.parser}
+%\begin{itemize}
+    %\item What types of issues contributed to the creation of God %%components? \\
+    %According to the Jira issue tracker, the developers of Tika contributed towards the system mainly in 4 aspects: improving the package, adding new features and functionalities, fixing existing bugs or issues and completing multiple tasks. More precisely, there are approximately 1200 commits regarding bug fixes, nearly 600 commits related to improving the package, almost 150 commits for adding features and 170 commits for task completion. The rest of commits have been created for testing, wish list purposes or sub-task completion. It is quite clear that the highest proportion of these commits are associated to bug fixes. These bug fixes have made the developers to create more code, to produce more lines of code and more packages as a result. This has lead to the creation of parser as a God component. 
+    %\item How many developers contribute to God components?\\ In total, there are 2429 commits regarding the parser God component and there is a total amount of 116 developers that contributed towards its evolution. Though out the commits, the developers improved different parts of the God component, added new features, fixed multiple bugs and worked on tasks and sub tasks.  
+     %\item What types of issues contributed to the re-factoring of God components?\\
+   % \item How long does this God component stay inside a system?\\ This package became a God component in 2015 and it still continues to be one. This implies that this package has been a God component for approximately 6 years. The parsers are key functionalities in the system of Tika, as they are responsible for extracting the content of the files and their corresponding metadata. It makes sense why this package is a God component and why it keeps evolving.
 
-Next, we will discuss some individual God Components to do a more in-depth analysis. \texttt{org.apache.tika.parser}, \texttt{org.apache.tika.server} and \texttt{org.apache.tika.parser.txt} are chosen for this purpose.
-
-\subsection{org.apache.tika.parser}
-\begin{itemize}
-    \item What types of issues contributed to the creation of God components? \\
-    According to the Jira issue tracker, the developers of Tika contributed towards the system mainly in 4 aspects: improving the package, adding new features and functionalities, fixing existing bugs or issues and completing multiple tasks. More precisely, there are approximately 1200 commits regarding bug fixes, nearly 600 commits related to improving the package, almost 150 commits for adding features and 170 commits for task completion. The rest of commits have been created for testing, wish list purposes or sub-task completion. It is quite clear that the highest proportion of these commits are associated to bug fixes. These bug fixes have made the developers to create more code, to produce more lines of code and more packages as a result. This has lead to the creation of parser as a God component. 
-    \item How many developers contribute to God components?\\ In total, there are 2429 commits regarding the parser God component and there is a total amount of 116 developers that contributed towards its evolution. Though out the commits, the developers improved different parts of the God component, added new features, fixed multiple bugs and worked on tasks and sub tasks.  
-     \item What types of issues contributed to the re-factoring of God components?\\
-    \item How long does this God component stay inside a system?\\ This package became a God component in 2015 and it still continues to be one. This implies that this package has been a God component for approximately 6 years. The parsers are key functionalities in the system of Tika, as they are responsible for extracting the content of the files and their corresponding metadata. It makes sense why this package is a God component and why it keeps evolving.
-
-\end{itemize}
+%\end{itemize}
 
 \subsection{org.apache.tika.server}
 \begin{itemize}
