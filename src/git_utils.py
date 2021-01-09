@@ -44,7 +44,7 @@ def get_commits():
     return commits
 
 # Get commit # additions and # deletions using `git diff`
-def get_locdata(commit_id):
+def get_commit_locdata(commit_id):
     try:
         return subprocess.check_output([
             'git', 'diff', '--numstat', '{}~'.format(commit_id), commit_id],
@@ -52,8 +52,8 @@ def get_locdata(commit_id):
     except:
         return ''
 
-def get_locs(commit_id):
-    output = get_locdata(commit_id)
+def get_commit_locs(commit_id):
+    output = get_commit_locdata(commit_id)
     stringio = StringIO(output)
     df = pd.read_csv(stringio, sep='\t', header=None,
         names=['additions', 'deletions', 'file'], dtype=str)
@@ -79,7 +79,7 @@ def compute_locs(godcomps, commit):
 
     # loop god components, only assign 1 file path to 1 GC at maximum.
     results = [] # result of what god components this commit affected
-    locdf = get_locs(commit.id)
+    locdf = get_commit_locs(commit.id)
     all_files = locdf['file'].copy()
     for _, godcomp in godcompsdf.iterrows():
         # find files that affected this GC
@@ -112,13 +112,13 @@ def get_locs():
     git_checkout(1, 'main') # make sure repo(1) is recently `git pull`'ed
     godcomps = all_reports['package'].unique()
     mapped_commits = []
-    for index, row in tqdm(commits.iterrows(), total=commits.shape[0]):
+    for _, row in tqdm(commits.iterrows(), total=commits.shape[0]):
         mapped_commits.append(compute_locs(godcomps, row))
     locdata = pd.concat(mapped_commits)
 
     # Compute LOC change for every godcomp
     godcomp_dfs = []
-    for godcomp, df in locdata.groupby('godcomp'):
+    for _, df in locdata.groupby('godcomp'):
         df = df.sort_values('datetime')
         df['change'] = df['additions'] - df['deletions']
         df['LOC'] = df['change'].cumsum()
