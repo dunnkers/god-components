@@ -1,0 +1,327 @@
+package,# classes,# classes diff,author,datetime,jira,id,message
+org.apache.tika.batch,31,,Tim Allison,2015-06-28 01:57:30+00:00,TIKA-1663,90a2202b5b4a75e7f673bfb42a912cb97ae6d26e,TIKA-1663 add a DigestingParser
+org.apache.tika.batch,32,1.0,TALLISON,2018-11-13 14:08:26-05:00,TIKA-2778,30c3d8104a51f015416382995435a4785059f07c,"TIKA-2778 -- the shutdown method for tika-batch mode should not be typing anything on stdin of the parent process.  Rather, require an interrupt and/or kill signal and then make sure the children are stopped as well."
+org.apache.tika.detect,31,,Konstantin Gribov,2017-01-19 20:27:39+03:00,,51e8320ba50509f7a7fbf2adac144b3730eeafa2,Update mailing list archive links
+org.apache.tika.detect,32,1.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.detect,31,-1.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.detect,32,1.0,tballison,2017-08-30 16:09:53-04:00,TIKA-2454,83f1afae3db65af966b13e6cc6dae3872aef630f,"TIKA-2454: add OverrideDetector and allow PSTParser to specify body content type as text or html -- to avoid incorrect auto-detection of rfc/mbox, etc."
+org.apache.tika.detect,31,-1.0,Chris Mattmann,2017-09-01 13:35:34-07:00,,79f4b4e3883e53f54c9116aedd44cab1a13c8b3c,fix conflicts in CHANGES.txt during merge
+org.apache.tika.detect,32,1.0,Chris Mattmann,2017-09-01 13:36:06-07:00,,5b57ae4d5218ec7af6388c6d5d51984566fc2511,Merge branch 'gsoc17'
+org.apache.tika.detect,31,-1.0,Giuseppe Totaro,2017-09-06 17:13:36-07:00,TIKA-2449,7b869c0c1b132feb691dca645fe9bc689bf320e2,Added a regular expression to match standard word within a pattern for TIKA-2449 contributed by Giuseppe Totaro
+org.apache.tika.detect,32,1.0,Nick Burch,2017-09-07 22:36:54+01:00,,21c0f373e0a9bcf82e3e53c886c45f448b50df76,"PicturesSource has been copied to Apache POI, mark the class to remove once we have upgraded to a version with it in"
+org.apache.tika.detect,31,-1.0,Giuseppe Totaro,2017-09-07 15:31:08-07:00,TIKA-2449,31625a2ad6b9a4de73aa322845fb1e38ba96177d,Used the alphabetical order for the list of the standard organizations by relying on TreeMap. Thanks to Lewis McGibbney for this insightful suggestion (TIKA-2449 contributed by Giuseppe Totaro).
+org.apache.tika.detect,32,1.0,lfcnassif,2017-09-08 12:36:48-03:00,TIKA-2460,70ca280f11fe4127df290b8027c6bc1d5180271f,TIKA-2460: load custom mimetypes XML from sys prop
+org.apache.tika.detect,36,4.0,tallison,2020-10-29 10:57:03-04:00,TIKA-3215,ee8caf69456bd52d278283792dc1b9c56477c243,TIKA-3215 -- add a wrapper for the commandline linux file command as a detector
+org.apache.tika.detect,37,1.0,PeterAlfredLee,2020-11-23 14:49:58+08:00,,aec354eaf6f98402508f34c1e7a1d1b9b9fc9582,"Simplify method Tika#parseToString(InputStream, Metadata)"
+org.apache.tika.detect,36,-1.0,tallison,2020-11-23 07:54:58-05:00,,bd96ad0e0169f9497a57f4d2e2a36344bd5acac8,Merge branch_1x into main for README.txt
+org.apache.tika.detect,37,1.0,PeterAlfredLee,2020-11-28 11:17:17+08:00,,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,Simplify some bool statement
+org.apache.tika.detect,36,-1.0,tallison,2020-11-30 11:51:45-05:00,,1581976aa4453664026de3966a623c9f98a4b2e3,Update README for 1.25 release
+org.apache.tika.detect,37,1.0,PeterAlfredLee,2020-12-01 10:40:33+08:00,,3571725a948a4676f1904799209271eeaf18b102,Simplify init code of some Set and List
+org.apache.tika.detect,36,-1.0,tallison,2020-12-01 10:13:47-05:00,TIKA-3178,2892ad5454f7cd006d879a2883a5f55926d884c5,TIKA-3178 -- WIP -- does not build. do not merge
+org.apache.tika.detect,35,-1.0,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.detect,36,1.0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.detect,37,1.0,tallison,2020-12-04 13:16:28-05:00,TIKA-3218,8b82b4c942c82f9cc2eb393e669227606b5f15fc,"TIKA-3218 -- fix service loading sort order, add unit and integration tests."
+org.apache.tika.example,43,,Chris Mattmann,2015-05-04 21:52:53+00:00,TIKA-1562,f54cb9e354b71e720602acfa0b4da8f100b400c2,TIKA-1562: Add examples from the Tika in Action book
+org.apache.tika.example,46,3.0,Tim Allison,2015-07-07 14:21:50+00:00,TIKA-1674,165eebcb5bcc2f6b5768bcdec5ce6496c3ca5093,TIKA-1674: initial commit to add example of how to extract embedded files
+org.apache.tika.example,49,3.0,Konstantin Gribov,2015-09-21 17:20:36+00:00,,b3665cde6c397ce3968374607bc07a54bacf4b51,Add interruptable parsing example
+org.apache.tika.example,47,-2.0,TALLISON,2018-08-09 14:40:57-04:00,TIKA-2695,40028f3c4934b86ddf48a536da2e8191d20a4695,TIKA-2695 -- upgrade Lucene to something more modern
+org.apache.tika.example,49,2.0,TALLISON,2019-08-13 14:37:48-04:00,TIKA-2906,8bc50ecf2f06e65eb86637b813e199b6ba59fcc4,TIKA-2906 -- add examples for textstats
+org.apache.tika.example,52,3.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.example,49,-3.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.example,52,3.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.example,49,-3.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.example,52,3.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.example,49,-3.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.example,52,3.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.example,49,-3.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.example,52,3.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.fork,31,,tballison,2018-05-31 15:25:08-04:00,TIKA-2653,cb1bbc052188bf5e45e5dc17570180df1fe27df9,Merge remote-tracking branch 'origin/master' into TIKA-2653
+org.apache.tika.fork,32,1.0,tballison,2018-06-01 08:50:47-04:00,TIKA-2656,929dcd75b8480a2a2d19a1801a88973b5e9358ac,TIKA-2656 -- allow absolute timeout for ForkParser
+org.apache.tika.metadata,31,,tballison,2016-09-26 12:24:14-04:00,TIKA-2057,ce07d8a10499fae015f07ca4fd4daf3473ca5193,TIKA-2057 - maintain DocInfo metadata in PDFs
+org.apache.tika.metadata,33,2.0,tballison,2016-12-21 12:10:08-05:00,TIKA-1946,d011d708c21669759af86e855b61d98dae19492e,TIKA-1946 -- initial commit of QuattroPro and WordPerfect parsers.  Many thanks to Pascal Essiembre for contributing these!!!
+org.apache.tika.metadata,31,-2.0,Nick Burch,2016-12-22 01:11:06+00:00,TIKA-2224,df14f78e46feeae16cb6cbd2cb40c44ce497d53e,TIKA-2224 Mime magic for OneNote
+org.apache.tika.metadata,33,2.0,Nick Burch,2016-12-22 01:31:25+00:00,,aa448a3b7e61f9a46efd1bf3f2ac72e6a3852d8f,Merge
+org.apache.tika.metadata,34,1.0,tballison,2017-01-10 14:46:42-05:00,TIKA-2234,66f6310eec8e8aade078f0ca32a07399008ef1b1,TIKA-2234 -- get rid of ThreadLocal
+org.apache.tika.metadata,31,-3.0,Lewis John McGibbney,2017-01-26 07:05:40-08:00,TIKA-2253,c09422a1032ba40392ccb955c7f39829f0cadb8e,TIKA-2253 Obtain new Miredot license key and upgrade plugin version in tika-server
+org.apache.tika.metadata,34,3.0,Lewis John McGibbney,2017-01-27 15:53:30-08:00,TIKA-2253,8213e5323be9b1d590171ea969fd862bda6e3bb8,Merge branch 'TIKA-2253'
+org.apache.tika.metadata,35,1.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.metadata,34,-1.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.metadata,31,-3.0,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,TrueTypeParser Close Open Fonts
+org.apache.tika.metadata,34,3.0,Tim Allison,2017-05-18 06:12:50-04:00,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,Merge pull request #181 from icirellik/close-fonts
+org.apache.tika.metadata,35,1.0,tballison,2017-06-16 14:13:52-04:00,TIKA-2391,132d3e7ff0387234c65cfc2983dd2b6ba59ff38b,TIKA-2391 -- extract <script> elements as embedded documents
+org.apache.tika.metadata,34,-1.0,smadha,2017-06-16 22:17:59-07:00,,c9031bfc3bc7fcf94f9dcf525204ba79b3880a21,Reverting committed work dir
+org.apache.tika.metadata,35,1.0,tballison,2017-06-21 17:12:00-04:00,TIKA-1804,1760249f26536047e54e3932f47910217a6c81f5,TIKA-1804 -- remove dependency on org.json
+org.apache.tika.metadata,34,-1.0,ThejanW,2017-06-26 11:22:56+05:30,,2bdf7832ae4812eb03b402632b11ca1836c7ce4b,Add all image format support to the captioning server
+org.apache.tika.metadata,35,1.0,Tom Barber,2017-06-26 11:29:54+01:00,,ebb4bc6d7bf82fe618b7a4b5f4e9b4278b96c0d2,Merge remote-tracking branch 'upstream/master'
+org.apache.tika.metadata,34,-1.0,ThejanW,2017-06-26 23:25:58+05:30,,2369149b6e1ea32b7f6dd5fb6a55740686b0b602,TIKA 2262 : # cleanup imports in ObjectRecognitionParser # reformat im2txtapi.py # add pillow python package install to Im2txtRestDockerfile # add gif image & gif image test
+org.apache.tika.metadata,35,1.0,avtar singh,2017-06-27 01:27:14+05:30,,1aacfa0b1eb4a60b3ec9556da38123a4a4ecac70,Normalized the confidence range b/w 0 and 1 and fixed topN return issue
+org.apache.tika.metadata,34,-1.0,ThejanW,2017-06-27 20:24:12+05:30,,8ef1eb96e8ab5bad86c2e5d241658ac251a4f7f6,TIKA 2262 : Remove unused imports + spaces
+org.apache.tika.metadata,35,1.0,tballison,2017-06-28 14:53:19-04:00,TIKA-2336,b9825c608b0553ba780e1f3a92d6f67bb57aadae,TIKA-2336: Upgrade to POI 3.17-beta1
+org.apache.tika.metadata,33,-2.0,tballison,2018-01-26 13:26:27-05:00,TIKA-1974,10a8eec119c7a77be76000b30aaffb96a552cc44,TIKA-1974 -- remove deprecated metadata properties/keys for Tika 2.0
+org.apache.tika.metadata,34,1.0,tballison,2019-11-22 14:35:51-05:00,TIKA-2998,90b63b5f13509a8653c0efc9a69fab4b8cd7295f,TIKA-2998-- allow users to extract font names
+org.apache.tika.metadata,36,2.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.metadata,34,-2.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.metadata,36,2.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.metadata,34,-2.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.metadata,36,2.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,b0ae63a1c59ef60ac6b134cadf2053f2e73152d4,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.metadata,34,-2.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,c6b30c578e98373496f895cd7caa8317f4212d51,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.metadata,36,2.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.metadata,34,-2.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.metadata,36,2.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.mime,31,,Chris Mattmann,2015-05-02 04:58:35+00:00,TIKA-1571,281fedfc86acbb5e01015f1462a27a86a65403f0,Fix for TIKA-1571 add probabilistic mime selection contributed by LukeLiush <hanson311biz@gmail.com> this closes #41.
+org.apache.tika.mime,32,1.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.mime,31,-1.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.mime,32,1.0,lfcnassif,2017-09-08 12:36:48-03:00,TIKA-2460,70ca280f11fe4127df290b8027c6bc1d5180271f,TIKA-2460: load custom mimetypes XML from sys prop
+org.apache.tika.mime,31,-1.0,tballison,2017-09-08 12:26:17-04:00,,26d6e0d4e6822974d3e1f1cba90e0070ab6dfe30,further refinement on PR-201
+org.apache.tika.mime,32,1.0,tballison,2017-09-08 12:26:31-04:00,,582083e003efe45bd9e2e7a624a4177c9f1ddc50,Merge remote-tracking branch 'origin/master'
+org.apache.tika.mime,31,-1.0,Matthew Caruana Galizia,2017-09-27 12:42:14+02:00,TIKA-2455,33da38ebb209250680aee3ab8565c89846f3a865,TIKA-2455: test for feature; only store multipart subtype in metadata
+org.apache.tika.mime,32,1.0,Sergey Beryozkin,2017-10-02 12:29:22+01:00,TIKA-2472,766cdac5735565ba898932c4f8696dc8a678e74b,[TIKA-2472] Implementing Metadata#hashCode
+org.apache.tika.mime,34,2.0,tballison,2020-08-12 05:58:08-04:00,TIKA-3153,4e057270f075a36e535f55f1542972d6fa566dbf,TIKA-3153 -- add MinShouldMatchClause to allow more flexibility in defining rfc822 detection
+org.apache.tika.mime,35,1.0,Tim Allison,2020-09-01 11:25:06-04:00,TIKA-3179,852b974d215f7550ab667171af44086bb0d34437,TIKA-3179 (#349)
+org.apache.tika.mime,32,-3.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.mime,35,3.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.mime,32,-3.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.mime,35,3.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.mime,32,-3.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.mime,35,3.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.mime,32,-3.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.mime,35,3.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.mime,34,-1.0,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.mime,35,1.0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.parser,32,,Tyler Palsulich,2015-02-21 05:17:58+00:00,TIKA-1558,99b53cec502b9266b1e47aa98170e976aa1ebe3d,TIKA-1558. Enable blacklisting of Parsers and other services with a servicename.blacklist META-INF file.
+org.apache.tika.parser,35,3.0,Thamme Gowda,2016-03-08 18:23:19-08:00,,b2cf23178ede925b0ef23f88ebf1aff95c8c157c,Add uniformity to parser parameter configuration.
+org.apache.tika.parser,32,-3.0,nandan-pc,2016-03-09 11:11:28-08:00,,db1c0e6ab1652ec376613b88916b430c215f892b,"Rerranged the order of mime-type x-erdas-hfa in tika-mimetypes.xml , changed the test file name and reduced sized of test file"
+org.apache.tika.parser,35,3.0,Thamme Gowda,2016-03-12 06:43:44-08:00,,64db9614cfaa3e873a9dc9efc6d201d887f6a4c5,"Added a TikaConfigException, params getter"
+org.apache.tika.parser,32,-3.0,Bob Paulin,2016-03-12 19:10:00-06:00,TIKA-1900,a1243c7abcb7068c944d3f8699d8eb08c75228a9,TIKA-1900 - Max Pool size must be set before core pool size in java 9.
+org.apache.tika.parser,35,3.0,Thamme Gowda,2016-05-23 11:30:13-07:00,,e780d56652d48dd0f50b4e62a58153e95f055022,merged upstream changes and resolved conflicts
+org.apache.tika.parser,32,-3.0,Lewis John McGibbney,2016-05-24 15:24:23-07:00,TIKA-1978,fc4f13ddebf2b9519d75a3079adb307313e79259,"TIKA-1978 Invocation of java.net.URL.equals(Object), which blocks to do domain name resolution, in org.apache.tika.parser.geo.topic.GeoParser.initialize(URL)"
+org.apache.tika.parser,35,3.0,Thamme Gowda,2016-05-25 17:18:25-07:00,,01869923533b330ec7728995e3ee5feceee1b90e,Added support for type for runtime parameters
+org.apache.tika.parser,32,-3.0,tballison,2016-05-26 10:00:30-04:00,TIKA-1513,dcaeccbab69519811e0cdf349873ce2b51e6ca10,"TIKA-1513 -- update mime type according to Nick Burch's recommendation, other small import clean up"
+org.apache.tika.parser,35,3.0,Thamme Gowda,2016-05-27 10:33:25-07:00,,c6eefbde650dd3be88103416b45ca5e92a336f92,FIX: return value typo
+org.apache.tika.parser,32,-3.0,tballison,2016-05-31 09:57:50-04:00,TIKA-1990,6ad18f44cdfef5e80b343d9c06787b850fcfc9fd,TIKA-1990 -- make sure to include JPEG filters when exporting jpegs embedded in PDFs
+org.apache.tika.parser,37,5.0,Thamme Gowda,2016-06-01 16:28:23-07:00,,aad23d9e848b8d8e9a5a7a1f4359ef4a2dbdba24,Added @Field Annotation to support auto initilaize params from config
+org.apache.tika.parser,32,-5.0,tballison,2016-06-01 20:43:23-04:00,TIKA-1992,40f8ec95b1c1c2e1713d26e0780b3bd2f97c9bb1,TIKA-1992 -- check for duplicat images via COSStream not object name.
+org.apache.tika.parser,37,5.0,Thamme Gowda,2016-06-01 20:14:08-07:00,TIKA-1508,ea47b716e5a7a1a1637b1cef0dc439b140590711,Merge branch 'TIKA-1508' of https://git-wip-us.apache.org/repos/asf/tika into TIKA-1508
+org.apache.tika.parser,32,-5.0,tballison,2016-06-02 12:04:30-04:00,TIKA-1994,7aeb95d6c7a6ac3611f2dd975baa73f566631061,TIKA-1994 -- integrate OCR with PDFParser
+org.apache.tika.parser,37,5.0,Thamme Gowda,2016-06-02 11:22:09-07:00,,27d92909cb73356ec5231ad7002f30d3bcd917a5,Remove duplicate code
+org.apache.tika.parser,32,-5.0,tballison,2016-06-03 11:48:42-04:00,TIKA-1994,1af1078adcb746fced8c71e4afe5b4d008a3f6b8,"TIKA-1994 -- integrate OCR with PDFParser, update CHANGES.txt"
+org.apache.tika.parser,37,5.0,tballison,2016-06-03 15:09:33-04:00,TIKA-1508,49ddf6e39615e8284a7c9e45e76a659725c0ad7a,Merge remote-tracking branch 'origin/TIKA-1508' into TIKA-1508
+org.apache.tika.parser,32,-5.0,tballison,2016-06-08 11:45:30-04:00,TIKA-1999,3e14505381eefa603adabe61171c0c19fc685b2f,TIKA-1999 add limit to number of events extracted from the XMPMM section by the JempboxExtractor
+org.apache.tika.parser,37,5.0,Thamme Gowda,2016-06-10 21:18:50-07:00,,71726bc1faafcfd955a99c38e20784dd5de61f89,Fix configure issue with decorated parsers
+org.apache.tika.parser,32,-5.0,tballison,2016-06-13 09:21:27-04:00,TIKA-1996,06633cc18df73c1cf4d19092a641a5355e19ac4c,TIKA-1996 -- upgrade to PDFBox 2.0.2
+org.apache.tika.parser,37,5.0,tballison,2016-06-13 09:25:24-04:00,TIKA-1508,ecdc403578d2a2b8fb70f66b7df1ece96b5efa9c,Merge remote-tracking branch 'origin/master' into TIKA-1508
+org.apache.tika.parser,36,-1.0,tballison,2016-06-13 14:38:33-04:00,,03d38248f37cca988866484ea759224f865c7765,Remove Configurable entirely; update PDFParser example for one field.
+org.apache.tika.parser,32,-4.0,tballison,2016-06-15 07:13:15-04:00,TIKA-2006,4d308fd7015391c9cdfd13ba6990dcd6e8496138,TIKA-2006 -- add mime definitions for iCal and vCalendar
+org.apache.tika.parser,36,4.0,tballison,2016-06-15 12:42:28-04:00,TIKA-1508,d9dcd59ae01c6ae2c8bded94bc9b04d795face9e,Merge remote-tracking branch 'origin/master' into TIKA-1508
+org.apache.tika.parser,38,2.0,tballison,2016-06-15 13:32:58-04:00,TIKA-1986,01320372fdbfc5e4ff0cfe0fe85fab91b5b369e7,"TIKA-1986 -- add Initializable, strip out handling of params passed via ParseContext in PDFParser"
+org.apache.tika.parser,36,-2.0,tballison,2016-06-15 17:00:53-04:00,TIKA-1986,f8fe50a2239cc8875fe3df7de6215e40da48b587,"TIKA-1986 -- allow params to be passed into initializable, delete configurableparser"
+org.apache.tika.parser,32,-4.0,Nick Burch,2016-06-22 09:33:41+01:00,,5101023503c892d4af49d33c85a13b99f85bc0b9,Tesseract may see the t in haystack as a ! some times...
+org.apache.tika.parser,36,4.0,Thamme Gowda,2016-07-25 17:18:33-04:00,TIKA-1993,9e0a87e68a0a6b45a2f740a58b0db99d9eeecb4a,TIKA-1993 -- High throughput Tensorflow  Inception based image classifier via: (1) GRPC and (2) REST API
+org.apache.tika.parser,32,-4.0,Nick Burch,2016-07-26 11:36:29+01:00,TIKA-2042,72d2d88b381ba75942ae791042ef54af33ee1f38,TIKA-2042 MBOX magic and detection unit test
+org.apache.tika.parser,36,4.0,Thamme Gowda,2016-08-12 19:25:32-07:00,,f77eb2b5ab4e09208b77d3d860e6520151d20653,Removed GRPC implementation as it is redundant over REST
+org.apache.tika.parser,32,-4.0,amensiko,2016-08-16 19:59:36+03:00,,5e4678ef6940f63e21b23aec2fd98bcb1b56d395,remove dependency on edu.usc.sentiment
+org.apache.tika.parser,36,4.0,tballison,2016-08-24 12:22:01-04:00,TIKA-2007,c71e0b21267a128ca74e53df04304b818ac5fa7e,"TIKA-2007 -- upgrade jackson, clean up unused dependency in tika-parsers"
+org.apache.tika.parser,32,-4.0,Lewis John McGibbney,2016-09-21 08:05:35-07:00,,a1250ff33c68065e4a812285dfa6a6bd2a6a22de,Improve logging and trivial code conventions
+org.apache.tika.parser,36,4.0,Lewis John McGibbney,2016-09-21 08:06:47-07:00,TIKA-1343,d50a69361bd0196fb2595313cb47222f61701ba4,Merge branch 'master' into TIKA-1343
+org.apache.tika.parser,37,1.0,Konstantin Gribov,2017-01-19 20:27:39+03:00,,51e8320ba50509f7a7fbf2adac144b3730eeafa2,Update mailing list archive links
+org.apache.tika.parser,36,-1.0,Nick Burch,2017-01-23 18:20:44+00:00,TIKA-2250,847156ac0f5fa7d4cc06964198359cf594b66d50,"TIKA-2250 As of RFC7903, the official mime type for BMP is now the one without the x- prefix"
+org.apache.tika.parser,37,1.0,tballison,2017-02-23 15:54:42-05:00,TIKA-2273,6d022be03b5423f6c036e1aa45e4ce02a9678462,TIKA-2273 -- two tests turned off temporarily in bundle.  First draft of adding configurability to EncodingDetectors
+org.apache.tika.parser,39,2.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.parser,37,-2.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.parser,36,-1.0,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,TrueTypeParser Close Open Fonts
+org.apache.tika.parser,37,1.0,Tim Allison,2017-05-18 06:12:50-04:00,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,Merge pull request #181 from icirellik/close-fonts
+org.apache.tika.parser,39,2.0,tballison,2017-06-05 14:16:16-04:00,TIKA-2386,5410928d740baf6cdcf6ce225f105482f3a2fc11,TIKA-2386 -- enable more options for DigestingParser
+org.apache.tika.parser,37,-2.0,Tom Barber,2017-06-05 21:01:48+01:00,,630d1fe2bd555cb0b54b4a57397f157611eeea3c,add files
+org.apache.tika.parser,39,2.0,tballison,2017-06-07 15:17:30-04:00,TIKA-2387,7acf48d4c0b1ffcde5659a26e279f63ffb5ec0fc,TIKA-2387 -- parameterize scale for image rendering of pages in PDFs for OCR
+org.apache.tika.parser,37,-2.0,ThejanW,2017-06-18 14:15:21+05:30,,8410067c3d518e43d3f24d53832f5a3601157bba,TIKA 2262 : Add apiBaseURI + reformat ObjectRecognitionParser
+org.apache.tika.parser,39,2.0,tballison,2017-06-21 17:12:00-04:00,TIKA-1804,1760249f26536047e54e3932f47910217a6c81f5,TIKA-1804 -- remove dependency on org.json
+org.apache.tika.parser,37,-2.0,ThejanW,2017-06-26 11:22:56+05:30,,2bdf7832ae4812eb03b402632b11ca1836c7ce4b,Add all image format support to the captioning server
+org.apache.tika.parser,39,2.0,Tom Barber,2017-06-26 11:29:54+01:00,,ebb4bc6d7bf82fe618b7a4b5f4e9b4278b96c0d2,Merge remote-tracking branch 'upstream/master'
+org.apache.tika.parser,37,-2.0,ThejanW,2017-06-26 23:25:58+05:30,,2369149b6e1ea32b7f6dd5fb6a55740686b0b602,TIKA 2262 : # cleanup imports in ObjectRecognitionParser # reformat im2txtapi.py # add pillow python package install to Im2txtRestDockerfile # add gif image & gif image test
+org.apache.tika.parser,39,2.0,avtar singh,2017-06-27 01:27:14+05:30,,1aacfa0b1eb4a60b3ec9556da38123a4a4ecac70,Normalized the confidence range b/w 0 and 1 and fixed topN return issue
+org.apache.tika.parser,37,-2.0,ThejanW,2017-06-27 20:24:12+05:30,,8ef1eb96e8ab5bad86c2e5d241658ac251a4f7f6,TIKA 2262 : Remove unused imports + spaces
+org.apache.tika.parser,39,2.0,tballison,2017-06-28 14:53:19-04:00,TIKA-2336,b9825c608b0553ba780e1f3a92d6f67bb57aadae,TIKA-2336: Upgrade to POI 3.17-beta1
+org.apache.tika.parser,40,1.0,Nick Burch,2018-05-03 21:56:07+01:00,TIKA-2641,d4719f63ffb381dbbfc53e667379389cb26593c1,Stub a unit test for TIKA-2641
+org.apache.tika.parser,41,1.0,tballison,2018-05-17 14:09:36-04:00,TIKA-2644,5f05b511d7d1184f6f25a2b644b615c4f21b8e68,TIKA-2644 - refactor recursiveparserwrapper api
+org.apache.tika.parser,43,2.0,tballison,2018-05-25 16:18:10-04:00,TIKA-2653,bcf09e04d7b232a3d5ac56bd858045e63e41205d,"TIKA-2653 first, rough draft"
+org.apache.tika.parser,41,-2.0,Chris Mattmann,2018-05-25 18:31:11-07:00,TIKA-2468,43b84c24fa26520ab0a4edcef1accbf49f23b101,Merge branch 'TIKA-2468' of https://github.com/bitsgalore/tika
+org.apache.tika.parser,43,2.0,tballison,2018-05-29 14:10:06-04:00,,e2156ce44ebf1eb49efc608e12dbec905112f39f,Add parserfactoryfactory + classloader as options; include more unit tests; add AutoDetectParserFactory
+org.apache.tika.parser,41,-2.0,Tim Allison,2018-05-29 14:24:36-04:00,TIKA-2100,18f4e24451b1d835ab1897f49389788f78063a52,Merge pull request #238 from GerardBouchar/TIKA-2100
+org.apache.tika.parser,43,2.0,tballison,2018-05-31 15:25:08-04:00,TIKA-2653,cb1bbc052188bf5e45e5dc17570180df1fe27df9,Merge remote-tracking branch 'origin/master' into TIKA-2653
+org.apache.tika.parser,44,1.0,TALLISON,2019-06-11 08:47:10-04:00,TIKA-2790,86888d9cdf39455bf8bb8dda05e77e790749476b,TIKA-2790 -- migrate lang id to an OpenNLP-based lang id in tika-eval; add common tokens and an updated language model.
+org.apache.tika.parser,43,-1.0,U-BASIS\dsmyda,2019-06-17 16:39:31-04:00,,0ae7a6f7649b7080adf72a42888dd1a9d12dc2a6,Added null check before trying to release parser
+org.apache.tika.parser,44,1.0,TALLISON,2019-06-25 10:46:15-04:00,,426be73b9e7500fa3d441231fa4e473de34743f6,trivial improvements to RPW
+org.apache.tika.parser,46,2.0,TALLISON,2019-07-11 13:51:19-04:00,TIKA-1568,7175b9027fb4c8566822c57b428363bc35893d74,TIKA-1568 -- statically cache encoding detector in AutoDetectReader when default initializer is used.
+org.apache.tika.parser,47,1.0,tallison,2019-10-24 12:38:50-04:00,TIKA-2974,5cb880d6cbee6fd49580d11d8b472c05b04ff5f1,TIKA-2974 -- RecursiveParserWrapper shouldn't close inputstream
+org.apache.tika.parser,53,6.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.parser,47,-6.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.parser,53,6.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.parser,47,-6.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.parser,53,6.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.parser,47,-6.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.parser,53,6.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.parser,47,-6.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.parser,53,6.0,Nick Burch,2020-09-30 16:54:44+01:00,,0844dce7d19b90de288c456e78018ca8729895a7,"Move new test files to 2.x folder, doh!"
+org.apache.tika.parser,47,-6.0,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser,53,6.0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.parser.microsoft,31,,Nick Burch,2011-11-25 15:26:02+00:00,TIKA-789,f05edfe4120445fc93dd781e9daa85a5c371a26d,"TIKA-789 Add (metadata only) Project support to OfficeParser, and add a unit test that checks we correctly get Project metadata back from our sample files"
+org.apache.tika.parser.microsoft,32,1.0,Nick Burch,2014-12-22 05:29:43+00:00,TIKA-1490,d398c71910f797b073e57e1b04e3856a52b15c24,TIKA-1490 Unit tests for Excel 2-4 parser
+org.apache.tika.parser.microsoft,36,4.0,Tim Allison,2015-05-28 17:28:40+00:00,TIKA-1315,a7b50cac3293308f5a79d77664d0ec48d466163c,TIKA-1315 -- basic list support for WordExtractor; still need to add in override behavior once we add a class to ooxml via POI
+org.apache.tika.parser.microsoft,40,4.0,Tim Allison,2015-06-30 00:48:03+00:00,TIKA-1601,2a47d9aa340d529f027c94f3c233645fb2f8bf7e,TIKA-1601: integrate Jackcess to parse MSAccess files
+org.apache.tika.parser.microsoft,45,5.0,Joseph Naegele,2016-05-20 21:02:56+00:00,TIKA-1980,9024f12e0fbef206330b6317a537354fafbe9cd7,fix for TIKA-1980 contributed by naegelejd
+org.apache.tika.parser.microsoft,40,-5.0,tballison,2016-05-23 08:47:43-04:00,TIKA-1979,bb46c0e0c2f572e58b847ef59d7e8809326c3da4,TIKA-1979 -- add message on stdout when tika-app's server.  Add deprecation message on stderr for tika-app's server
+org.apache.tika.parser.microsoft,42,2.0,tballison,2016-06-15 09:20:29-04:00,TIKA-2008,01a9b6db5ac20a63f2b9de9c15de1b12ee2bde06,Add mime detection and parser for Microsoft Owner File (TIKA-2008).
+org.apache.tika.parser.microsoft,45,3.0,tballison,2016-07-22 08:48:11-04:00,TIKA-2025,a383567c2c947603c4c7aa12d3578d771bb58413,TIKA-2025 -- override general format in excel to extract 15 digit integers
+org.apache.tika.parser.microsoft,42,-3.0,Thamme Gowda,2016-07-25 17:18:33-04:00,TIKA-1993,9e0a87e68a0a6b45a2f740a58b0db99d9eeecb4a,TIKA-1993 -- High throughput Tensorflow  Inception based image classifier via: (1) GRPC and (2) REST API
+org.apache.tika.parser.microsoft,45,3.0,Nick Burch,2016-07-26 11:36:29+01:00,TIKA-2042,72d2d88b381ba75942ae791042ef54af33ee1f38,TIKA-2042 MBOX magic and detection unit test
+org.apache.tika.parser.microsoft,42,-3.0,Thamme Gowda,2016-08-12 19:25:32-07:00,,f77eb2b5ab4e09208b77d3d860e6520151d20653,Removed GRPC implementation as it is redundant over REST
+org.apache.tika.parser.microsoft,45,3.0,Chris Mattmann,2016-08-14 11:46:30-07:00,TIKA-1508,afb7e3643a61e9dc6c4921b12bc145b1be4e1402,Merge branch 'TIKA-1508'
+org.apache.tika.parser.microsoft,42,-3.0,amensiko,2016-08-16 19:59:36+03:00,,5e4678ef6940f63e21b23aec2fd98bcb1b56d395,remove dependency on edu.usc.sentiment
+org.apache.tika.parser.microsoft,45,3.0,tballison,2016-08-24 12:22:01-04:00,TIKA-2007,c71e0b21267a128ca74e53df04304b818ac5fa7e,"TIKA-2007 -- upgrade jackson, clean up unused dependency in tika-parsers"
+org.apache.tika.parser.microsoft,42,-3.0,Lewis John McGibbney,2016-09-21 08:05:35-07:00,,a1250ff33c68065e4a812285dfa6a6bd2a6a22de,Improve logging and trivial code conventions
+org.apache.tika.parser.microsoft,45,3.0,Lewis John McGibbney,2016-09-21 08:06:47-07:00,TIKA-1343,d50a69361bd0196fb2595313cb47222f61701ba4,Merge branch 'master' into TIKA-1343
+org.apache.tika.parser.microsoft,46,1.0,tballison,2016-11-23 14:04:50-05:00,TIKA-2179,81fad8c97e60a3de7d926dc4ce10cbd235549583,TIKA-2179 -- add detection and parsing for word2006ml files
+org.apache.tika.parser.microsoft,47,1.0,tballison,2016-11-30 15:24:57-05:00,TIKA-1321,d19e4725ff0549597f9156bb0c1e7759f6ce08d9,TIKA-1321 -- add SAX based docx parser and integrate it with the recent 2006ml parser work -- initial commit
+org.apache.tika.parser.microsoft,52,5.0,Konstantin Gribov,2017-01-19 20:27:39+03:00,,51e8320ba50509f7a7fbf2adac144b3730eeafa2,Update mailing list archive links
+org.apache.tika.parser.microsoft,47,-5.0,Nick Burch,2017-01-23 18:20:44+00:00,TIKA-2250,847156ac0f5fa7d4cc06964198359cf594b66d50,"TIKA-2250 As of RFC7903, the official mime type for BMP is now the one without the x- prefix"
+org.apache.tika.parser.microsoft,45,-2.0,Lewis John McGibbney,2017-01-26 07:05:40-08:00,TIKA-2253,c09422a1032ba40392ccb955c7f39829f0cadb8e,TIKA-2253 Obtain new Miredot license key and upgrade plugin version in tika-server
+org.apache.tika.parser.microsoft,47,2.0,Lewis John McGibbney,2017-01-27 15:53:30-08:00,TIKA-2253,8213e5323be9b1d590171ea969fd862bda6e3bb8,Merge branch 'TIKA-2253'
+org.apache.tika.parser.microsoft,51,4.0,tballison,2017-02-06 14:31:09-05:00,TIKA-2247,b9befb4272cf8b2bda3b3ea25b0511bbabfdeded,TIKA-2247 and TIKA-2246 -- add parsers for EMF/WMF
+org.apache.tika.parser.microsoft,52,1.0,tballison,2017-03-07 20:42:07-05:00,TIKA-1879,b2f3eafc49221cd099f0ad9126cf90ad5535bdaf,"TIKA-1879 -- improve recipient email address extraction; revert the X400/500/Exchange processing for the ""from"" field from TIKA-1865"
+org.apache.tika.parser.microsoft,45,-7.0,Cameron Rollheiser,2017-05-17 09:44:34-04:00,,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,TrueTypeParser Close Open Fonts
+org.apache.tika.parser.microsoft,52,7.0,Tim Allison,2017-05-18 06:12:50-04:00,,9d34cbb92a43bc52b4886954e0771ca6eea96bad,Merge pull request #181 from icirellik/close-fonts
+org.apache.tika.parser.microsoft,65,13.0,TALLISON,2018-09-06 11:11:02-04:00,TIKA-2552,01c53eaa6d709972b03735574aa58dc0abcdc51c,TIKA-2552 -- upgrade to POI 4.0.0
+org.apache.tika.parser.microsoft,52,-13.0,TALLISON,2019-02-11 12:35:32-05:00,TIKA-2756,888f51fe5ba7d735fecfa7d2aa4acb6fe8d69508,TIKA-2756 -- upgrade Jackcess and remove dependencies on commons-lang
+org.apache.tika.parser.microsoft,53,1.0,Konstantin Gribov,2019-04-22 19:02:33+03:00,TIKA-2555,919768a649ebb4585ce45cf0f0a37ee0bb371355,TIKA-2555 -- fixed overlapping tags in XWPFWordExtractorDecorator (docx parser)
+org.apache.tika.parser.microsoft,52,-1.0,TALLISON,2019-04-22 12:11:38-04:00,TIKA-2849,20848961fae9853aa2afa7957f6421c57fe09272,TIKA-2849 -- improve documentation in POIFSContainerDetector
+org.apache.tika.parser.microsoft,53,1.0,TALLISON,2019-04-22 13:12:43-04:00,,e1ed5ccd813de86fedb12d77da41d58970b9f52c,Merge remote-tracking branch 'origin/master'
+org.apache.tika.parser.microsoft,58,5.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.parser.microsoft,53,-5.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft,58,5.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft,53,-5.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.parser.microsoft,58,5.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.parser.microsoft,53,-5.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.parser.microsoft,58,5.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,b0ae63a1c59ef60ac6b134cadf2053f2e73152d4,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.parser.microsoft,53,-5.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,c6b30c578e98373496f895cd7caa8317f4212d51,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.parser.microsoft,58,5.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.parser.microsoft,35,-23.0,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.parser.microsoft,42,7.0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.parser.microsoft,58,16.0,tallison,2020-12-02 12:04:33-05:00,TIKA-3241,12198666bf0cf6811613c9ae27c4a384e42875b1,TIKA-3241 -- fix more git add problems
+org.apache.tika.parser.microsoft.chm,32,,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.parser.microsoft.onenote,48,,Nicholas DiPiazza,2019-12-16 15:56:48-06:00,,c85f5cc4729f1d6bd81c24bab375e89fd1037237,squash commits of one note tika parser (#303)
+org.apache.tika.parser.microsoft.onenote,49,1.0,Nicholas DiPiazza,2020-01-29 07:08:52-08:00,,db87546dcb4072996f349731ca877509c989c8c7,Addendum to Tika 2224 - Add support for OneNote 2007 and earlier (#307)
+org.apache.tika.parser.microsoft.ooxml,31,,tballison,2017-03-23 09:23:55-04:00,,315a0d6be3714024dd5259444f739a026f0de574,add initial support for xlsb
+org.apache.tika.parser.microsoft.ooxml,32,1.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.parser.microsoft.ooxml,31,-1.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.parser.microsoft.ooxml,32,1.0,tballison,2017-07-03 12:47:24-04:00,TIKA-2335,7fd5bd743ab5a242e9c3225f5af6b48235a18455,TIKA-2335 -- extract x15ac:absPath metadata from xlsx and xlsb when available
+org.apache.tika.parser.microsoft.ooxml,31,-1.0,Nick Burch,2017-07-05 12:53:17+01:00,TIKA-2418,0815b2144cf013e1a0803cee72d8076e8c544716,"TIKA-2418 Make the QuickTime start-of-file Atom matches a bit more specific where possible, to reduce false positives"
+org.apache.tika.parser.microsoft.ooxml,32,1.0,Nick Burch,2017-07-05 12:53:25+01:00,,8eef0562f82088db3bb66d17d8eb28188468112e,Merge branch 'master' of https://github.com/apache/tika
+org.apache.tika.parser.microsoft.ooxml,33,1.0,TALLISON,2019-01-03 15:29:11-05:00,TIKA-2765,93a2c2740edd803cba0273dec92e69c1f2a60dbe,TIKA-2765
+org.apache.tika.parser.microsoft.ooxml,32,-1.0,Konstantin Gribov,2019-04-22 19:02:33+03:00,TIKA-2555,919768a649ebb4585ce45cf0f0a37ee0bb371355,TIKA-2555 -- fixed overlapping tags in XWPFWordExtractorDecorator (docx parser)
+org.apache.tika.parser.microsoft.ooxml,33,1.0,TALLISON,2019-04-22 12:11:38-04:00,TIKA-2849,20848961fae9853aa2afa7957f6421c57fe09272,TIKA-2849 -- improve documentation in POIFSContainerDetector
+org.apache.tika.parser.microsoft.ooxml,32,-1.0,TALLISON,2019-04-22 13:12:43-04:00,,e1ed5ccd813de86fedb12d77da41d58970b9f52c,Merge remote-tracking branch 'origin/master'
+org.apache.tika.parser.microsoft.ooxml,34,2.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.parser.microsoft.ooxml,32,-2.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft.ooxml,34,2.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,ad0d98b9a155e483b815eb01e36ebd02a101695a,Add test certificate and key for TIKA-3205
+org.apache.tika.parser.microsoft.ooxml,32,-2.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.parser.microsoft.ooxml,34,2.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,b0ae63a1c59ef60ac6b134cadf2053f2e73152d4,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.parser.microsoft.ooxml,32,-2.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,c6b30c578e98373496f895cd7caa8317f4212d51,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.parser.microsoft.ooxml,34,2.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.parser.microsoft.ooxml,32,-2.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.parser.microsoft.ooxml,34,2.0,Nick Burch,2020-09-30 16:54:44+01:00,,0844dce7d19b90de288c456e78018ca8729895a7,"Move new test files to 2.x folder, doh!"
+org.apache.tika.parser.txt,62,,Jukka Zitting,2009-05-22 18:21:59+00:00,TIKA-233,d9493ee520d41bfc8be8a3bd959dde6e136729e7,TIKA-233: Inline the ICU4J charset detection logic
+org.apache.tika.parser.txt,63,1.0,Maxim Valyanskiy,2010-12-17 11:11:38+00:00,TIKA-574,9f5593e6990fddc3471e1b87fb1df2f00c5ed600,"TIKA-574: Support for IBM866 (CP866) encoding in TXTParser Submitted by: Kostya Gribov, grossws at gmail.com"
+org.apache.tika.parser.txt,70,7.0,Nick Burch,2011-09-23 11:54:11+00:00,TIKA-720,eb73a4be05f53e33679146810c28e74224f8b359,TIKA-720 Add Charset Detector for the IBM500 (EBCDIC) charset
+org.apache.tika.parser.txt,71,1.0,Maxim Valyanskiy,2011-11-23 13:39:43+00:00,TIKA-787,f8e3364bfd7fa5d4d80c7b249894ebbe6a146b85,TIKA-787: Improve charset detection for UTF-8 HTML fragment
+org.apache.tika.parser.txt,75,4.0,Jukka Zitting,2012-07-07 19:22:01+00:00,TIKA-322,6bc0537b260d826bbfc6cf04d06963b86e230d72,TIKA-322: Improve encoding detection speed and accuracy
+org.apache.tika.parser.txt,76,1.0,Jukka Zitting,2012-07-07 20:13:46+00:00,TIKA-322,8756776cd711c78f7cbe9d2fd7688bbc97ae290c,TIKA-322: Improve encoding detection speed and accuracy
+org.apache.tika.parser.txt,75,-1.0,Jukka Zitting,2012-07-07 21:30:54+00:00,TIKA-471,929c8972a112ac75e5bec8120f0df5d7e5d5ec60,TIKA-471: Avoid Charset name bottleneck when multiple threads are using HtmlParser
+org.apache.tika.parser.txt,74,-1.0,Jukka Zitting,2012-07-08 00:34:16+00:00,TIKA-471,6621297537770ca9149e06ee2977483009f8860f,TIKA-471: Avoid Charset name bottleneck when multiple threads are using HtmlParser
+org.apache.tika.parser.txt,63,-11.0,Joseph Naegele,2016-05-20 21:02:56+00:00,TIKA-1980,9024f12e0fbef206330b6317a537354fafbe9cd7,fix for TIKA-1980 contributed by naegelejd
+org.apache.tika.parser.txt,74,11.0,tballison,2016-05-23 08:47:43-04:00,TIKA-1979,bb46c0e0c2f572e58b847ef59d7e8809326c3da4,TIKA-1979 -- add message on stdout when tika-app's server.  Add deprecation message on stderr for tika-app's server
+org.apache.tika.parser.txt,62,-12.0,tballison,2016-07-26 15:26:40-04:00,TIKA-2041,d698d49793bb96aee6a8bfcc4a174c922cb83cb8,"TIKA-2041, step 1, upgrade icu4j components; add back ebcdic and bump bytesRead back to 12000 from the ""modern"" 8000"
+org.apache.tika.parser.txt,63,1.0,tballison,2016-08-11 16:03:43-04:00,TIKA-2041,bd9a9b911b4e0205c9dfd4527063e6e1c0fd0c44,TIKA-2041 - add important diffs between new copy/paste from ICU4J and legacy code which may have included Tika-specific mods.
+org.apache.tika.parser.txt,74,11.0,Thamme Gowda,2016-08-12 19:25:32-07:00,,f77eb2b5ab4e09208b77d3d860e6520151d20653,Removed GRPC implementation as it is redundant over REST
+org.apache.tika.parser.txt,63,-11.0,Chris Mattmann,2016-08-14 11:46:30-07:00,TIKA-1508,afb7e3643a61e9dc6c4921b12bc145b1be4e1402,Merge branch 'TIKA-1508'
+org.apache.tika.parser.txt,74,11.0,amensiko,2016-08-16 19:59:36+03:00,,5e4678ef6940f63e21b23aec2fd98bcb1b56d395,remove dependency on edu.usc.sentiment
+org.apache.tika.parser.txt,63,-11.0,tballison,2016-08-24 12:22:01-04:00,TIKA-2007,c71e0b21267a128ca74e53df04304b818ac5fa7e,"TIKA-2007 -- upgrade jackson, clean up unused dependency in tika-parsers"
+org.apache.tika.parser.txt,74,11.0,Lewis John McGibbney,2016-09-21 08:05:35-07:00,,a1250ff33c68065e4a812285dfa6a6bd2a6a22de,Improve logging and trivial code conventions
+org.apache.tika.parser.txt,63,-11.0,Lewis John McGibbney,2016-09-21 08:06:47-07:00,TIKA-1343,d50a69361bd0196fb2595313cb47222f61701ba4,Merge branch 'master' into TIKA-1343
+org.apache.tika.sax,31,,Jukka Zitting,2011-09-25 09:42:05+00:00,TIKA-651,fcde81cfbf6f7d4a7ba4e148471f1ce622d59f92,TIKA-651: Unescaped attribute value generated
+org.apache.tika.sax,32,1.0,Jukka Zitting,2011-09-25 10:31:13+00:00,TIKA-651,77ebfcd04dfb16f9f856dbcf6fe9098217c779c3,TIKA-651: Unescaped attribute value generated
+org.apache.tika.sax,33,1.0,Jukka Zitting,2011-10-18 19:11:47+00:00,TIKA-756,5cc8b40243eee50c5364c8f350d1a873cfab8180,TIKA-756: XMP output from Tika CLI
+org.apache.tika.sax,34,1.0,Kenneth William Krugler,2012-08-22 18:51:05+00:00,TIKA-975,df5371364f9dc5f502e0b455dd1ab3771579754b,TIKA-975: LinkBuilder to optionally collapse anchor whitespace
+org.apache.tika.sax,35,1.0,Ray Gauss II,2012-12-18 17:20:45+00:00,TIKA-725,39a63cad3ad912f412f75a2dcdca400ab8e37ab6,TIKA-725: Empty title element makes Tika-generated HTML documents not open in Chromium    - Added an assert to TikaCLITest which verifies the issue    - Added ExpandedTitleContentHandler    - Changed TikaCLI to use ExpandedTitleContentHandler for html output
+org.apache.tika.sax,37,2.0,Tim Allison,2014-09-19 19:18:08+00:00,TIKA-1329,853df89a08ee8dbc96b2620aa907c66f699233ee,TIKA-1329 add RecursiveParserWrapper
+org.apache.tika.sax,40,3.0,Tyler Palsulich,2014-09-30 00:17:58+00:00,TIKA-1420,b871795c3d28d713290138a8c565fc203d0881f2,"TIKA-1420, move the PhoneExtractingContentHandler to tika-core. Tests in tika-parsers."
+org.apache.tika.sax,42,2.0,Tim Allison,2014-10-27 17:00:03+00:00,TIKA-1459,e2293d302bc5f447563c5c6c93907b55bba6e91b,TIKA-1459 fix write limit bug in BasicContentHandlerFactory when creating a BodyContentHandler
+org.apache.tika.sax,44,2.0,Chris Mattmann,2015-04-30 06:32:23+00:00,TIKA-1532,7ca5ec0aecea4092b6a8399638444ae4a335137c,Fix for TIKA-1532 DIF Parser contributed by HyperDunk <aakarsh.mhm@gmail.com>. This closes #46.
+org.apache.tika.sax,43,-1.0,Chris Mattmann,2015-05-04 08:57:20+00:00,,ca0676ffaf6fb7986adf839a0ca97b34f0b449ca,- DIFParser has been moved to o.a.tika.parser.dif
+org.apache.tika.sax,45,2.0,Ken Krugler,2016-02-06 15:21:04-08:00,,b9d5c22526cc92a08df76520b782de4ca9b5ca86,Add missing dependency on tika-test-resources
+org.apache.tika.sax,43,-2.0,manali,2016-02-06 17:00:38-08:00,,14ca32045361918f5dd28c63c9692accbcfa31d5,Used Apache CXF WebClient
+org.apache.tika.sax,45,2.0,Ken Krugler,2016-02-10 15:46:16-08:00,,e9f5f429a4c31301d8dcac9c67bf50b7d26698e9,Add project.build.sourceEncoding to properties
+org.apache.tika.sax,43,-2.0,Chris Mattmann,2016-02-15 11:37:53-08:00,TIKA-1835,542bebc69711f6cf25ad338affe87f163a1eda61,Record change for TIKA-1835.
+org.apache.tika.sax,44,1.0,John Patrick,2016-02-24 14:50:38+00:00,TIKA-1870,0bd05cec54c581c971d90380304aaa23c9543296,TIKA-1870 refactor RichTextContentHandler into tika-core from tika-server so users if needing it don't need to depend upon tika-server
+org.apache.tika.sax,43,-1.0,Nick Burch,2016-02-24 14:53:55+00:00,TIKA-1869,08e38bb646eca79f30fde7285e8c977076c04ca4,Update changelog for Jackson upgrade from John Patrick from TIKA-1869. This closes #75 from github
+org.apache.tika.sax,45,2.0,John Patrick,2016-02-24 15:47:53+00:00,TIKA-1870,3b7922db1a2e72181e1a00168d2aee33bfe1d4a3,TIKA-1870 JavaDoc and Test coverage for RichTextContentHandler that lived in tika-server
+org.apache.tika.sax,43,-2.0,manali,2016-02-24 22:23:26-08:00,,ac4c0b2c9321bba395b92214a3504d8346c3e936,created NLTK host server properties
+org.apache.tika.sax,45,2.0,Nick Burch,2016-02-25 18:10:30+00:00,TIKA-1870,1882defb38ed244d667114399ea31e6b938c31b3,Merge branch 'bugfix/TIKA-1870' of https://github.com/nhojpatrick/tika
+org.apache.tika.sax,43,-2.0,manali,2016-02-26 18:21:15-08:00,TIKA-1876,a13369b098bea09421e35023c131adc092dcb6e4,fix for TIKA-1876 contributed by manalishah
+org.apache.tika.sax,44,1.0,manali,2016-02-26 18:36:02-08:00,TIKA-1876,7ebe007ec03088449f67619ef1e6cb564178b14b,fix for TIKA-1876 contributed by manalishah
+org.apache.tika.sax,45,1.0,manali,2016-02-26 19:58:06-08:00,TIKA-1876,c809690ec87ffa600018dbc5eee6d6756645adb0,fix for TIKA-1876 contributed by manalishah
+org.apache.tika.sax,52,7.0,’Stuart Hendren’,2017-04-28 16:29:19+01:00,TIKA-2347,d64a32c63f376b9e003a4512adfec05414d4dfe6,Fix for TIKA-2347 Adds underline extraction from word documents
+org.apache.tika.sax,45,-7.0,Chris Mattmann,2017-04-30 14:15:06-07:00,,e141640891cd7adcfc1848b351c0db7eab00a2d2,Update Dockerfile for InceptionVideoRest to depend on ubuntu 16.04 (get ffmpeg via apt-get); build OpenCV+Python from scratch and bind to apt-get ffmpeg. Contributed by ThejanW.
+org.apache.tika.sax,52,7.0,Giuseppe Totaro,2017-08-29 18:39:45-07:00,TIKA-2449,e76302196ebcafb7b51fce37fbe8256e6c0fbc51,Improvement for TIKA-2449 contributed by Giuseppe Totaro
+org.apache.tika.sax,45,-7.0,tballison,2017-08-30 12:37:44-04:00,TIKA-2448,5638ebc0db0b88341ba663d5ba12eebbe2925240,TIKA-2448: Extract phonetic runs in docx with experimental SAX parser
+org.apache.tika.sax,52,7.0,Giuseppe Totaro,2017-09-06 17:13:36-07:00,TIKA-2449,7b869c0c1b132feb691dca645fe9bc689bf320e2,Added a regular expression to match standard word within a pattern for TIKA-2449 contributed by Giuseppe Totaro
+org.apache.tika.sax,45,-7.0,Nick Burch,2017-09-07 22:36:54+01:00,,21c0f373e0a9bcf82e3e53c886c45f448b50df76,"PicturesSource has been copied to Apache POI, mark the class to remove once we have upgraded to a version with it in"
+org.apache.tika.sax,52,7.0,Giuseppe Totaro,2017-09-07 15:31:08-07:00,TIKA-2449,31625a2ad6b9a4de73aa322845fb1e38ba96177d,Used the alphabetical order for the list of the standard organizations by relying on TreeMap. Thanks to Lewis McGibbney for this insightful suggestion (TIKA-2449 contributed by Giuseppe Totaro).
+org.apache.tika.sax,45,-7.0,lfcnassif,2017-09-08 12:36:48-03:00,TIKA-2460,70ca280f11fe4127df290b8027c6bc1d5180271f,TIKA-2460: load custom mimetypes XML from sys prop
+org.apache.tika.sax,52,7.0,Giuseppe Totaro,2017-09-13 17:33:22-07:00,,7dd38d5500c539328e2b0a083e1998a28e680539,Merge branch 'master' of https://github.com/apache/tika
+org.apache.tika.sax,45,-7.0,Matthew Caruana Galizia,2017-09-27 12:42:14+02:00,TIKA-2455,33da38ebb209250680aee3ab8565c89846f3a865,TIKA-2455: test for feature; only store multipart subtype in metadata
+org.apache.tika.sax,52,7.0,Sergey Beryozkin,2017-10-02 12:29:22+01:00,TIKA-2472,766cdac5735565ba898932c4f8696dc8a678e74b,[TIKA-2472] Implementing Metadata#hashCode
+org.apache.tika.sax,54,2.0,tballison,2018-05-17 14:09:36-04:00,TIKA-2644,5f05b511d7d1184f6f25a2b644b615c4f21b8e68,TIKA-2644 - refactor recursiveparserwrapper api
+org.apache.tika.sax,55,1.0,Tim Allison,2020-08-21 11:32:26-04:00,,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,Branch 2x (#341)
+org.apache.tika.sax,54,-1.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.sax,55,1.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.sax,54,-1.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.sax,55,1.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,b0ae63a1c59ef60ac6b134cadf2053f2e73152d4,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.sax,54,-1.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,c6b30c578e98373496f895cd7caa8317f4212d51,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.sax,55,1.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.sax,54,-1.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.sax,55,1.0,Nick Burch,2020-09-30 16:54:44+01:00,,0844dce7d19b90de288c456e78018ca8729895a7,"Move new test files to 2.x folder, doh!"
+org.apache.tika.sax,56,1.0,Lee,2020-11-19 21:37:14+08:00,TIKA-2001,82cf5c0bf0874ccd4c4d66d9eb54912438a09290,TIKA-2001 -- Add TextAndAttributeContentHandler and TextAndAttributeXMLParser (#339)
+org.apache.tika.sax,55,-1.0,tallison,2020-12-02 09:41:07-05:00,TIKA-3241,8dbb5736fa92b323e270e2075b42dce458a3abd6,TIKA-3241 -- clarify parser module structure
+org.apache.tika.sax,56,1.0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241,a43784b19f6b0955478dded71521b0491d21c90b,"TIKA-3241 -- fix git add problems, replace some test documents that were  modified in the move, update poms"
+org.apache.tika.server,31,,Nick Burch,2014-05-07 12:27:11+00:00,TIKA-1270,14991add8ca94238b07b98b341febf67b6e5fbb7,"TIKA-1270 Complete parser details endpoint, and tests"
+org.apache.tika.server,33,2.0,Chris Mattmann,2014-06-14 18:52:44+00:00,TIKA-1336,583af266a28f6494c29fcd62fa78fcc32199cc2e,- fix for TIKA-1336 This closes #10
+org.apache.tika.server,34,1.0,Sergey Beryozkin,2014-08-06 08:06:52+00:00,TIKA-1371,95051f2a352f3e7ee83acf203d75b803a26c3f4f,[TIKA-1371] Optional registration of new TikaLoggingFilter
+org.apache.tika.server,38,4.0,Tim Allison,2014-12-18 19:50:52+00:00,TIKA-1498,57db5ef21c95f49aa19b9da69a69d27a2a1da5ad,TIKA-1498 add recursive parser wrapper output to tika-server
+org.apache.tika.server,39,1.0,Tim Allison,2014-12-19 03:12:38+00:00,TIKA-1497,f776fc07aecdf4e97343cba7ee7d35d1cd9743df,TIKA-1497: add JSON and XMP output to tika-server's /meta
+org.apache.tika.server,38,-1.0,Tim Allison,2014-12-19 15:46:57+00:00,TIKA-1499,e3fbbfbe54b2aece1d282b57d2ae08863549f20d,TIKA-1499: fold MetadataEP in tika-server into MetadataResource
+org.apache.tika.server,41,3.0,Tim Allison,2015-02-20 19:11:44+00:00,TIKA-1323,dadd8696415f5f77436fbf8d4a0b11e7149205eb,TIKA-1323: allow tika-server to return stack traces from parse exceptions for easier analysis of parser exceptions via tika-server.
+org.apache.tika.server,31,-10.0,TALLISON,2018-09-07 19:16:32-04:00,TIKA-2725,bf1b2418d47e9fa47e0634825341921d7edd1ee8,"TIKA-2725 -- checkpoint commit ... basic child process is started...need to integrate actual statuswatcher, etc."
+org.apache.tika.server,34,3.0,TALLISON,2018-09-11 16:16:34-04:00,TIKA-2725,f10c8fe884987920c5332885f414ecd8c06ddc05,TIKA-2725 -- further cleanups and merge conflicts
+org.apache.tika.server,35,1.0,TALLISON,2018-09-24 10:16:23-04:00,,5ac3502257ce6ca1729db51176c24fb59870bc41,update test corrupted files
+org.apache.tika.server,34,-1.0,TALLISON,2018-09-24 12:49:10-04:00,TIKA-2732,82934135598f1ed9ea6f51f21036093fd0463610,TIKA-2732 -- allow configuration of XMLReaderUtils via TikaConfig
+org.apache.tika.server,35,1.0,TALLISON,2018-09-24 14:13:19-04:00,TIKA-2733,af1929e55a4df2026d1305479788c6791d6da9c1,TIKA-2733 -- improve oom unit test and error/logging when the child process can't start in tika-server
+org.apache.tika.server,36,1.0,TALLISON,2018-11-20 15:08:47-05:00,TIKA-2785,4aae9251b26180377bfa44c3720aa4bfac29b81b,TIKA-2785 -- clean up logging in tika-server; redirect child stdout to parent stderr to avoid maven complaining about corrupting stdout in forked process; convert oom to fake oom
+org.apache.tika.server,38,2.0,TALLISON,2018-12-10 16:14:00-05:00,TIKA-2795,e921e69c1a484de3036ed4e5a8654b046f54ceea,"TIKA-2795 -- swapped memorymapped buffer for traditional open, write close"
+org.apache.tika.server,39,1.0,tallison,2020-07-16 15:58:00-04:00,TIKA-3137,3bdcd9714b8259c7c8c2ae1d5837148016d5bdaf,"TIKA-3137 -- first pass, need to add unit tests for tika-batch"
+org.apache.tika.server,40,1.0,tallison,2020-07-17 13:02:26-04:00,TIKA-3140,bf224dc2f09c029df3f93ae0b136eb294e2c233f,Merge remote-tracking branch 'origin/TIKA-3140' into main
+org.apache.tika.server,38,-2.0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205,5fdb70ae4770301d6b101e9007a1058e15abac94,Add test certificate and key for TIKA-3205
+org.apache.tika.server,40,2.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,ecd1d62ad9e4d2ddd53abf204539e5d765e6c624,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.server,38,-2.0,Nick Burch,2020-09-29 15:49:14+01:00,TIKA-3205,c3fff83c7e955ff5de0e4cb9098b06a15ee2cf7e,"TIKA-3205 Add magic for X509 PEM certificate, and tweak default type"
+org.apache.tika.server,40,2.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,b0ae63a1c59ef60ac6b134cadf2053f2e73152d4,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.server,38,-2.0,Nick Burch,2020-09-29 16:23:08+01:00,TIKA-3205,eaa712f89d5de9ad06647fa29d10ac1baa47a4c0,"Add some more DER magic for certificates, and add tests TIKA-3205"
+org.apache.tika.server,40,2.0,Nick Burch,2020-09-29 16:48:40+01:00,TIKA-3205,fa1b2ef87157f51797d0dcaed36ebc990e538910,"Split the Certificate and Key mimetypes into DER and PEM subtypes, add test EC files. TIKA-3205"
+org.apache.tika.server,38,-2.0,Nick Burch,2020-09-29 16:51:19+01:00,,618345263ee41108e1a225dbcdbb8db16b2aae28,Make the DER private key mostly-match a bit more specific
+org.apache.tika.server,40,2.0,Nick Burch,2020-09-29 16:51:19+01:00,,75c2ff5686a70c0fb15c4b52534c1be09669af1b,Make the DER private key mostly-match a bit more specific
+org.apache.tika.utils,31,,PeterAlfredLee,2020-10-31 12:13:55+08:00,,71486d765318062f8cb04cd3335bd9049a2ff5fc,Add CompareUtils and simplify some sort
+org.apache.tika.utils,32,1.0,PeterAlfredLee,2020-11-23 14:49:58+08:00,,aec354eaf6f98402508f34c1e7a1d1b9b9fc9582,"Simplify method Tika#parseToString(InputStream, Metadata)"
+org.apache.tika.utils,31,-1.0,tallison,2020-11-23 07:54:58-05:00,,bd96ad0e0169f9497a57f4d2e2a36344bd5acac8,Merge branch_1x into main for README.txt
+org.apache.tika.utils,32,1.0,PeterAlfredLee,2020-11-28 11:17:17+08:00,,f23d3777120dd86e1a5e8c1cd43f6f178f1ec956,Simplify some bool statement
+org.apache.tika.utils,31,-1.0,tallison,2020-11-30 11:51:45-05:00,,1581976aa4453664026de3966a623c9f98a4b2e3,Update README for 1.25 release
+org.apache.tika.utils,32,1.0,PeterAlfredLee,2020-12-01 10:40:33+08:00,,3571725a948a4676f1904799209271eeaf18b102,Simplify init code of some Set and List
+org.apache.tika.utils,31,-1.0,tallison,2020-12-01 10:13:47-05:00,TIKA-3178,2892ad5454f7cd006d879a2883a5f55926d884c5,TIKA-3178 -- WIP -- does not build. do not merge
+org.apache.tika.utils,32,1.0,tallison,2020-12-04 13:16:28-05:00,TIKA-3218,8b82b4c942c82f9cc2eb393e669227606b5f15fc,"TIKA-3218 -- fix service loading sort order, add unit and integration tests."
