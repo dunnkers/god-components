@@ -21,7 +21,7 @@ def map_issue(issue):
     return {
         'id':               issue['id'],
         'self':             issue['self'],
-        'key':              issue['key'],
+        'jira':             issue['key'],
         'resolution':       get_name('resolution'),
         'priority':         get_name('priority'),
         'assignee':         get_name('assignee'),

@@ -1,4 +1,4 @@
-additions,deletions,godcomp,id,author,datetime,message,jira,change,LOC
+additions,deletions,package,commit,author,datetime,message,jira,change,LOC
 6638,0,org.apache.tika.batch,fe4cd58cced0e15f1848afbc2518ab4a66e6867f,Tim Allison,2015-03-23 16:09:10+00:00,initial commit of TIKA-1330,TIKA-1330,6638,6638
 251,227,org.apache.tika.batch,dbc5eb76b7a21587eba83724e36bff1cb29e72c6,Tim Allison,2015-03-25 17:55:58+00:00,TIKA-1330 clean up logging and some dependencies. Still some log4j dependencies for now,TIKA-1330,24,6662
 13,14,org.apache.tika.batch,8054dddc156444a0e67a66fcd2dbc9b4bb5db4b7,Tim Allison,2015-03-30 19:43:38+00:00,"TIKA-1330, trivial fixes to avoid NPE with consumersManagerMaxMillis parameter",TIKA-1330,-1,6661

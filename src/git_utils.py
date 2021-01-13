@@ -37,7 +37,7 @@ def get_commits():
         encoding='utf-8', cwd=repo(1))
     stringio = StringIO(commit_ids)
     commits = pd.read_csv(stringio, sep='\t', header=None, names=[
-        'id', 'author', 'email', 'datetime', 'message'
+        'commit', 'author', 'email', 'datetime', 'message'
     ], parse_dates=['datetime'])
     commits['jira'] = commits['message'].str.extract('(TIKA-[0-9]{1,})')
     commits.to_csv(file, index=False)
@@ -93,7 +93,7 @@ def compute_locs(godcomps, commit):
         # compute total Lines Of Code changed in all files affecting this GC
         total = locdf[files].sum() # total LOC added/deleted
         total = total.drop(labels='file')
-        total['godcomp'] = godcomp['package']
+        total['package'] = godcomp['package']
         result = pd.concat([total, commit])
         results.append(result)
     new_df = pd.DataFrame(results)
@@ -102,7 +102,8 @@ def compute_locs(godcomps, commit):
 def get_locs():
     file = 'output/all_locs.csv'
     if (os.path.exists(file)):
-        return pd.read_csv(file, parse_dates=['datetime'])
+        return pd.read_csv(file, \
+            usecols=['commit', 'additions', 'deletions', 'change', 'LOC'])
     # read data
     commits = get_commits()
     assert(os.path.exists('output/all_reports.csv'))

@@ -1,4 +1,4 @@
-id,self,key,resolution,priority,assignee,status,creator,reporter,issuetype,resolutiondate,created,updated,components
+id,self,jira,resolution,priority,assignee,status,creator,reporter,issuetype,resolutiondate,created,updated,components
 13348013,https://issues.apache.org/jira/rest/api/latest/issue/13348013,TIKA-3256,Fixed,Minor,tilman,Resolved,tilman,tilman,Task,2020-12-27T13:08:45.000+0000,2020-12-27T13:07:15.000+0000,2020-12-27T14:37:10.000+0000,general
 13347393,https://issues.apache.org/jira/rest/api/latest/issue/13347393,TIKA-3255,,Major,,Open,peterkronenberg,peterkronenberg,Bug,,2020-12-22T17:04:55.000+0000,2020-12-22T21:04:53.000+0000,
 13347361,https://issues.apache.org/jira/rest/api/latest/issue/13347361,TIKA-3254,,Major,,Open,sathia,sathia,Bug,,2020-12-22T13:49:17.000+0000,2020-12-22T13:54:05.000+0000,

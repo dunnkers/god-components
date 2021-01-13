@@ -1,4 +1,4 @@
-id,author,email,datetime,message,jira
+commit,author,email,datetime,message,jira
 5ad435d39e39558b98af3af5aca291eef22651f0,tallison,tallison@apache.org,2021-01-12 15:10:23-05:00,TIKA-3267 change boolean getXYZ to boolean isXYZ,TIKA-3267
 e8b4305ce80df59e45352e73ceb972f4534c984c,tallison,tallison@apache.org,2021-01-11 17:05:01-05:00,TIKA-3269 update artifacts for 2.0.0,TIKA-3269
 b0fb00ef6a11db121c56436b9542a4cf248fef8b,Tim Allison,tallison@apache.org,2021-01-11 15:48:10-05:00,TIKA-3266 (#396),TIKA-3266
