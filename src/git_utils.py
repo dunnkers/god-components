@@ -33,11 +33,11 @@ def get_commits():
     git_checkout(1, 'main')
     subprocess.run(['git', 'pull'], cwd=repo(1))
     commit_ids = subprocess.check_output(['git', 'log', 
-        '--pretty=format:%H%x09%an%x09%aD%x09%s'],
+        '--format=%H %aN %aE %aD %s'.replace(' ', '%x09')],
         encoding='utf-8', cwd=repo(1))
     stringio = StringIO(commit_ids)
     commits = pd.read_csv(stringio, sep='\t', header=None, names=[
-        'id', 'author', 'datetime', 'message'
+        'id', 'author', 'email', 'datetime', 'message'
     ], parse_dates=['datetime'])
     commits['jira'] = commits['message'].str.extract('(TIKA-[0-9]{1,})')
     commits.to_csv(file, index=False)
