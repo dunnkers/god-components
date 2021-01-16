@@ -1,59 +1,59 @@
 package,commit,# classes,# classes diff,# classes added,# classes removed,author,datetime,jira
-org.apache.tika.detect,ee8caf69456bd52d278283792dc1b9c56477c243,36,4,4,0,tallison,2020-10-29 10:57:03-04:00,TIKA-3215
+org.apache.tika.detect,ee8caf69456bd52d278283792dc1b9c56477c243,36,4,4,0,Tim Allison,2020-10-29 10:57:03-04:00,TIKA-3215
 org.apache.tika.parser,aad23d9e848b8d8e9a5a7a1f4359ef4a2dbdba24,37,5,5,0,Thamme Gowda,2016-06-01 16:28:23-07:00,
-org.apache.tika.parser,40f8ec95b1c1c2e1713d26e0780b3bd2f97c9bb1,32,-5,0,-5,tballison,2016-06-01 20:43:23-04:00,TIKA-1992
+org.apache.tika.parser,40f8ec95b1c1c2e1713d26e0780b3bd2f97c9bb1,32,-5,0,-5,Tim Allison,2016-06-01 20:43:23-04:00,TIKA-1992
 org.apache.tika.parser,ea47b716e5a7a1a1637b1cef0dc439b140590711,37,5,5,0,Thamme Gowda,2016-06-01 20:14:08-07:00,TIKA-1508
-org.apache.tika.parser,7aeb95d6c7a6ac3611f2dd975baa73f566631061,32,-5,0,-5,tballison,2016-06-02 12:04:30-04:00,TIKA-1994
+org.apache.tika.parser,7aeb95d6c7a6ac3611f2dd975baa73f566631061,32,-5,0,-5,Tim Allison,2016-06-02 12:04:30-04:00,TIKA-1994
 org.apache.tika.parser,27d92909cb73356ec5231ad7002f30d3bcd917a5,37,5,5,0,Thamme Gowda,2016-06-02 11:22:09-07:00,
-org.apache.tika.parser,1af1078adcb746fced8c71e4afe5b4d008a3f6b8,32,-5,0,-5,tballison,2016-06-03 11:48:42-04:00,TIKA-1994
-org.apache.tika.parser,49ddf6e39615e8284a7c9e45e76a659725c0ad7a,37,5,5,0,tballison,2016-06-03 15:09:33-04:00,TIKA-1508
-org.apache.tika.parser,3e14505381eefa603adabe61171c0c19fc685b2f,32,-5,0,-5,tballison,2016-06-08 11:45:30-04:00,TIKA-1999
+org.apache.tika.parser,1af1078adcb746fced8c71e4afe5b4d008a3f6b8,32,-5,0,-5,Tim Allison,2016-06-03 11:48:42-04:00,TIKA-1994
+org.apache.tika.parser,49ddf6e39615e8284a7c9e45e76a659725c0ad7a,37,5,5,0,Tim Allison,2016-06-03 15:09:33-04:00,TIKA-1508
+org.apache.tika.parser,3e14505381eefa603adabe61171c0c19fc685b2f,32,-5,0,-5,Tim Allison,2016-06-08 11:45:30-04:00,TIKA-1999
 org.apache.tika.parser,71726bc1faafcfd955a99c38e20784dd5de61f89,37,5,5,0,Thamme Gowda,2016-06-10 21:18:50-07:00,
-org.apache.tika.parser,06633cc18df73c1cf4d19092a641a5355e19ac4c,32,-5,0,-5,tballison,2016-06-13 09:21:27-04:00,TIKA-1996
-org.apache.tika.parser,ecdc403578d2a2b8fb70f66b7df1ece96b5efa9c,37,5,5,0,tballison,2016-06-13 09:25:24-04:00,TIKA-1508
-org.apache.tika.parser,4d308fd7015391c9cdfd13ba6990dcd6e8496138,32,-4,0,-4,tballison,2016-06-15 07:13:15-04:00,TIKA-2006
-org.apache.tika.parser,d9dcd59ae01c6ae2c8bded94bc9b04d795face9e,36,4,4,0,tballison,2016-06-15 12:42:28-04:00,TIKA-1508
+org.apache.tika.parser,06633cc18df73c1cf4d19092a641a5355e19ac4c,32,-5,0,-5,Tim Allison,2016-06-13 09:21:27-04:00,TIKA-1996
+org.apache.tika.parser,ecdc403578d2a2b8fb70f66b7df1ece96b5efa9c,37,5,5,0,Tim Allison,2016-06-13 09:25:24-04:00,TIKA-1508
+org.apache.tika.parser,4d308fd7015391c9cdfd13ba6990dcd6e8496138,32,-4,0,-4,Tim Allison,2016-06-15 07:13:15-04:00,TIKA-2006
+org.apache.tika.parser,d9dcd59ae01c6ae2c8bded94bc9b04d795face9e,36,4,4,0,Tim Allison,2016-06-15 12:42:28-04:00,TIKA-1508
 org.apache.tika.parser,5101023503c892d4af49d33c85a13b99f85bc0b9,32,-4,0,-4,Nick Burch,2016-06-22 09:33:41+01:00,
 org.apache.tika.parser,9e0a87e68a0a6b45a2f740a58b0db99d9eeecb4a,36,4,4,0,Thamme Gowda,2016-07-25 17:18:33-04:00,TIKA-1993
 org.apache.tika.parser,72d2d88b381ba75942ae791042ef54af33ee1f38,32,-4,0,-4,Nick Burch,2016-07-26 11:36:29+01:00,TIKA-2042
 org.apache.tika.parser,f77eb2b5ab4e09208b77d3d860e6520151d20653,36,4,4,0,Thamme Gowda,2016-08-12 19:25:32-07:00,
 org.apache.tika.parser,5e4678ef6940f63e21b23aec2fd98bcb1b56d395,32,-4,0,-4,amensiko,2016-08-16 19:59:36+03:00,
-org.apache.tika.parser,c71e0b21267a128ca74e53df04304b818ac5fa7e,36,4,4,0,tballison,2016-08-24 12:22:01-04:00,TIKA-2007
+org.apache.tika.parser,c71e0b21267a128ca74e53df04304b818ac5fa7e,36,4,4,0,Tim Allison,2016-08-24 12:22:01-04:00,TIKA-2007
 org.apache.tika.parser,a1250ff33c68065e4a812285dfa6a6bd2a6a22de,32,-4,0,-4,Lewis John McGibbney,2016-09-21 08:05:35-07:00,
 org.apache.tika.parser,d50a69361bd0196fb2595313cb47222f61701ba4,36,4,4,0,Lewis John McGibbney,2016-09-21 08:06:47-07:00,TIKA-1343
 org.apache.tika.parser,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,53,6,6,0,Tim Allison,2020-08-21 11:32:26-04:00,
 org.apache.tika.parser,ad0d98b9a155e483b815eb01e36ebd02a101695a,53,6,6,0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205
 org.apache.tika.parser,5fdb70ae4770301d6b101e9007a1058e15abac94,47,-6,0,-6,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205
-org.apache.tika.parser,8dbb5736fa92b323e270e2075b42dce458a3abd6,47,-6,0,-6,tallison,2020-12-02 09:41:07-05:00,TIKA-3241
-org.apache.tika.parser,a43784b19f6b0955478dded71521b0491d21c90b,53,6,6,0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241
+org.apache.tika.parser,8dbb5736fa92b323e270e2075b42dce458a3abd6,47,-6,0,-6,Tim Allison,2020-12-02 09:41:07-05:00,TIKA-3241
+org.apache.tika.parser,a43784b19f6b0955478dded71521b0491d21c90b,53,6,6,0,Tim Allison,2020-12-02 11:58:44-05:00,TIKA-3241
 org.apache.tika.parser.microsoft,a7b50cac3293308f5a79d77664d0ec48d466163c,36,4,4,0,Tim Allison,2015-05-28 17:28:40+00:00,TIKA-1315
 org.apache.tika.parser.microsoft,2a47d9aa340d529f027c94f3c233645fb2f8bf7e,40,4,4,0,Tim Allison,2015-06-30 00:48:03+00:00,TIKA-1601
-org.apache.tika.parser.microsoft,b9befb4272cf8b2bda3b3ea25b0511bbabfdeded,51,4,4,0,tballison,2017-02-06 14:31:09-05:00,TIKA-2247
+org.apache.tika.parser.microsoft,b9befb4272cf8b2bda3b3ea25b0511bbabfdeded,51,4,4,0,Tim Allison,2017-02-06 14:31:09-05:00,TIKA-2247
 org.apache.tika.parser.microsoft,b5b4eb6fde6c34c12d534e9412c0c73326b9886c,45,-7,0,-7,Cameron Rollheiser,2017-05-17 09:44:34-04:00,
 org.apache.tika.parser.microsoft,9d34cbb92a43bc52b4886954e0771ca6eea96bad,52,7,7,0,Tim Allison,2017-05-18 06:12:50-04:00,
-org.apache.tika.parser.microsoft,01c53eaa6d709972b03735574aa58dc0abcdc51c,65,13,13,0,TALLISON,2018-09-06 11:11:02-04:00,TIKA-2552
-org.apache.tika.parser.microsoft,888f51fe5ba7d735fecfa7d2aa4acb6fe8d69508,52,-13,0,-13,TALLISON,2019-02-11 12:35:32-05:00,TIKA-2756
+org.apache.tika.parser.microsoft,01c53eaa6d709972b03735574aa58dc0abcdc51c,65,13,13,0,Tim Allison,2018-09-06 11:11:02-04:00,TIKA-2552
+org.apache.tika.parser.microsoft,888f51fe5ba7d735fecfa7d2aa4acb6fe8d69508,52,-13,0,-13,Tim Allison,2019-02-11 12:35:32-05:00,TIKA-2756
 org.apache.tika.parser.microsoft,f9104d17ad0b92b243501fdf0863b4ccdaa5e791,58,5,5,0,Tim Allison,2020-08-21 11:32:26-04:00,
 org.apache.tika.parser.microsoft,ad0d98b9a155e483b815eb01e36ebd02a101695a,58,5,5,0,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205
 org.apache.tika.parser.microsoft,5fdb70ae4770301d6b101e9007a1058e15abac94,53,-5,0,-5,Nick Burch,2020-09-29 15:26:48+01:00,TIKA-3205
-org.apache.tika.parser.microsoft,8dbb5736fa92b323e270e2075b42dce458a3abd6,35,-23,0,-23,tallison,2020-12-02 09:41:07-05:00,TIKA-3241
-org.apache.tika.parser.microsoft,a43784b19f6b0955478dded71521b0491d21c90b,42,7,7,0,tallison,2020-12-02 11:58:44-05:00,TIKA-3241
-org.apache.tika.parser.microsoft,12198666bf0cf6811613c9ae27c4a384e42875b1,58,16,16,0,tallison,2020-12-02 12:04:33-05:00,TIKA-3241
+org.apache.tika.parser.microsoft,8dbb5736fa92b323e270e2075b42dce458a3abd6,35,-23,0,-23,Tim Allison,2020-12-02 09:41:07-05:00,TIKA-3241
+org.apache.tika.parser.microsoft,a43784b19f6b0955478dded71521b0491d21c90b,42,7,7,0,Tim Allison,2020-12-02 11:58:44-05:00,TIKA-3241
+org.apache.tika.parser.microsoft,12198666bf0cf6811613c9ae27c4a384e42875b1,58,16,16,0,Tim Allison,2020-12-02 12:04:33-05:00,TIKA-3241
 org.apache.tika.parser.txt,eb73a4be05f53e33679146810c28e74224f8b359,70,7,7,0,Nick Burch,2011-09-23 11:54:11+00:00,TIKA-720
 org.apache.tika.parser.txt,6bc0537b260d826bbfc6cf04d06963b86e230d72,75,4,4,0,Jukka Zitting,2012-07-07 19:22:01+00:00,TIKA-322
-org.apache.tika.parser.txt,d698d49793bb96aee6a8bfcc4a174c922cb83cb8,62,-12,0,-12,tballison,2016-07-26 15:26:40-04:00,TIKA-2041
+org.apache.tika.parser.txt,d698d49793bb96aee6a8bfcc4a174c922cb83cb8,62,-12,0,-12,Tim Allison,2016-07-26 15:26:40-04:00,TIKA-2041
 org.apache.tika.parser.txt,f77eb2b5ab4e09208b77d3d860e6520151d20653,74,11,11,0,Thamme Gowda,2016-08-12 19:25:32-07:00,
 org.apache.tika.parser.txt,afb7e3643a61e9dc6c4921b12bc145b1be4e1402,63,-11,0,-11,Chris Mattmann,2016-08-14 11:46:30-07:00,TIKA-1508
 org.apache.tika.parser.txt,5e4678ef6940f63e21b23aec2fd98bcb1b56d395,74,11,11,0,amensiko,2016-08-16 19:59:36+03:00,
-org.apache.tika.parser.txt,c71e0b21267a128ca74e53df04304b818ac5fa7e,63,-11,0,-11,tballison,2016-08-24 12:22:01-04:00,TIKA-2007
+org.apache.tika.parser.txt,c71e0b21267a128ca74e53df04304b818ac5fa7e,63,-11,0,-11,Tim Allison,2016-08-24 12:22:01-04:00,TIKA-2007
 org.apache.tika.parser.txt,a1250ff33c68065e4a812285dfa6a6bd2a6a22de,74,11,11,0,Lewis John McGibbney,2016-09-21 08:05:35-07:00,
 org.apache.tika.parser.txt,d50a69361bd0196fb2595313cb47222f61701ba4,63,-11,0,-11,Lewis John McGibbney,2016-09-21 08:06:47-07:00,TIKA-1343
 org.apache.tika.sax,e76302196ebcafb7b51fce37fbe8256e6c0fbc51,52,7,7,0,Giuseppe Totaro,2017-08-29 18:39:45-07:00,TIKA-2449
-org.apache.tika.sax,5638ebc0db0b88341ba663d5ba12eebbe2925240,45,-7,0,-7,tballison,2017-08-30 12:37:44-04:00,TIKA-2448
+org.apache.tika.sax,5638ebc0db0b88341ba663d5ba12eebbe2925240,45,-7,0,-7,Tim Allison,2017-08-30 12:37:44-04:00,TIKA-2448
 org.apache.tika.sax,7b869c0c1b132feb691dca645fe9bc689bf320e2,52,7,7,0,Giuseppe Totaro,2017-09-06 17:13:36-07:00,TIKA-2449
 org.apache.tika.sax,21c0f373e0a9bcf82e3e53c886c45f448b50df76,45,-7,0,-7,Nick Burch,2017-09-07 22:36:54+01:00,
 org.apache.tika.sax,31625a2ad6b9a4de73aa322845fb1e38ba96177d,52,7,7,0,Giuseppe Totaro,2017-09-07 15:31:08-07:00,TIKA-2449
-org.apache.tika.sax,70ca280f11fe4127df290b8027c6bc1d5180271f,45,-7,0,-7,lfcnassif,2017-09-08 12:36:48-03:00,TIKA-2460
+org.apache.tika.sax,70ca280f11fe4127df290b8027c6bc1d5180271f,45,-7,0,-7,Nassif,2017-09-08 12:36:48-03:00,TIKA-2460
 org.apache.tika.sax,7dd38d5500c539328e2b0a083e1998a28e680539,52,7,7,0,Giuseppe Totaro,2017-09-13 17:33:22-07:00,
 org.apache.tika.sax,33da38ebb209250680aee3ab8565c89846f3a865,45,-7,0,-7,Matthew Caruana Galizia,2017-09-27 12:42:14+02:00,TIKA-2455
 org.apache.tika.sax,766cdac5735565ba898932c4f8696dc8a678e74b,52,7,7,0,Sergey Beryozkin,2017-10-02 12:29:22+01:00,TIKA-2472
