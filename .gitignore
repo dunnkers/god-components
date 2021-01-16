@@ -1,8 +1,0 @@
-venv
-.vscode
-src/DesigniteLog*
-src/runtime/.config
-output/logs/*.out
-storage/
-.DS_Store
-__pycache__
