@@ -45,13 +45,16 @@ sbatch src/peregrine.sh
 The program will automatically utilise all Peregrine cores available on the given node ✨
 
 ### (2) Grabbing Jira issues
-We require two more data sources to start our analysis: data from Tika's Jira issue tracker and data on how much Lines Of Code each commit adds or removes to each God Component. Let's fetch the Jira issues first:
+We another data source for our analysis: data from Tika's Jira issue tracker. We can fetch the Jira issues as follows:
 
 ```shell
 python3 src/jira_issues.py
 ```
 
-... which fetches information on *all* Jira issues using its API. It then stores the results to `/output/all_issues.csv`. Lastly, let's compute the Lines Of Code added/removed per GC.
+... which fetches information on *all* Jira issues using its API. It then stores the results to `/output/all_issues.csv`.
+
+### (3) Computing Lines Of Code data
+Lastly, let's compute the Lines Of Code added/removed per GC.
 
 ```shell
 python3 git_utils_test.py
@@ -59,7 +62,7 @@ python3 git_utils_test.py
 
 ... which runs the testing script for `git_utils`, executing simple tests on the functions as well as saving the data to `/output`. Data on commits is stored under `/output/all_commits.csv` and data on Lines Of Code is stored under `/output/all_locs.csv`.
 
-### (3) Analyzing the data
+### (4) Analyzing the data
 Once we have all the data, let's analyse it! For this, we use a Jupyter Notebook, `statistics.ipynb`. It contains written text notes, images and code; it should be self-explanatory 🙂.
 
 → For ease of access, we also hosted the Notebook on a webpage: [dunnkers.com/god-components](https://dunnkers.com/god-components).
