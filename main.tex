@@ -7,6 +7,8 @@
 \usepackage{rotating}
 \usepackage{svg}
 \usepackage{mathabx}
+\usepackage{float}
+\usepackage{placeins} % FloatBarrier
 
 \usepackage{xcolor}
 \usepackage{listings}
@@ -45,9 +47,9 @@ This section focuses on describing and explaining the high-level architecture of
 \subsubsection{Tika's Architecture}
 The high-level architecture of Tika consists of four key components: the parser framework, the language detection, the MIME detection mechanism and the facade element. All these components play an important role in Tika’s overall architecture and they have their own corresponding responsibilities and functionalities. Firstly, the parser framework is the most crucial concept and its main functionality is parsing and extracting all the content and the relevant metadata of any type of document. The language detection component is responsible for carrying out language analysis and this helps in obtaining the metadata of the files. In addition, the MIME detection mechanism is used for detecting and identifying all the available file formats. All these three components contain their own individual repositories, which help in extending Tika by adding or removing new parsers, file formats or language mechanisms. Moreover, Tika’s architecture contains a facade, which connects all the main components and it provides a user-friendly frontend for the users that want to benefit from Tika’s services. The architecture also consists of some external interfaces like the CLI and the GUI, which allow integrability between users and their applications.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{report/images/tika_architecture.png}
+    \includegraphics[width=0.6\textwidth]{report/images/tika_architecture.png}
     \caption{High-Level Architecture. Image composed by ourselves.}
     \label{fig:architectur}
 \end{figure}
@@ -84,7 +86,7 @@ This section contains the identified architectural significant requirements and 
 
 \begin{enumerate}
     
-    \item Flexibility. Flexibility is a significant requirement and it is quite emphasized on Tika's documentation. In general, flexibility represents the capability of a given system to adapt to different environments, settings or to adjust when changes occur. 
+    \item Flexibility. Flexibility is a significant requirement and it is quite emphasized on Tika's documentation. In general, flexibility represents the capability of a given system to adapt to different environments, settings or to adjust when changes occur. Tika consists of an enormous amount of parsers and detection mechanisms, which can be applied for all the potential user scenarios. This characteristic defines Tika as a quite flexible tool, which can be adjusted to any setting.
     
     \begin{quote}
         ``First and foremost, we wanted Tika to support a flexible mechanism to define media types..."
@@ -105,7 +107,8 @@ This section contains the identified architectural significant requirements and 
     \begin{quote}
         ''Throughout its architecture, Tika leverages the notion of repositories: areas of extensibility in the architecture. New parsers can be easily added and removed from the framework, as can new MIME types and language detection mechanisms...''
     \end{quote}
-    \item Performance. Performance is also another significant requirement in Tika. It demonstrates how the systems reacts while performing given tasks at a certain time. The creators of Tika developed Tika in a way that it could respond fast to requests. Although at the time of its making not similar products might have existed, Tika would have been quickly superseded if it was not performing well enough. So in order to be able to process large datasets the program has to be of sufficient speed.
+    \item Performance. Performance is also another significant requirement in Tika. It demonstrates how the systems reacts while performing given tasks at a certain time. The creators of Tika developed Tika in a way that it could respond fast to requests. Although at the time of its making not similar products might have existed, Tika would have been quickly superseded if it was not performing well enough. 
+    %So in order to be able to process large datasets the program has to be of sufficient speed.
     
     \begin{quote}
         ``The necessity of detecting file formats and understanding them is pervasive within software, and thus we expect Tika to be called all the time, so it should respond quickly when called upon.."
@@ -114,7 +117,7 @@ This section contains the identified architectural significant requirements and 
     \begin{quote}
         ``SAX, on the other hand, parses tags incrementally, causing a low memory footprint, allowing for rapid processing times..."     \end{quote}
     
-    \item Integrability. In general terms, integrability shows the capability of a system to integrate with other components or systems. 
+    \item Integrability. In general terms, integrability shows the capability of a component/system to integrate with other components/systems in a way that all these operate properly together. The developers of Tika emphasize the integrability of the tool into the user's applications and the parser integration within their system. 
     
     \begin{quote}
         ``External interfaces, including the command line and a graphical user interface allow users to integrate Tika into their scripts and applications and to interact with Tika visually."
@@ -168,24 +171,51 @@ This section contains the identified architectural significant requirements and 
 % \end{itemize}
 
 \end{itemize}
-\section{Analysis}
+\section{System Architecture Analysis}
 An analysis will be performed using common Software Engineering tooling programs, like \textit{Structure101}. Analysis was done in several steps: (1) compiling the software, (2) create a high-level overview and finally (3) analyze separate packages.
 
-\subsection{Compilation}
+\subsection{Compiling Tika}
 To compile the software, we ran 
 
 \begin{lstlisting}[language=bash]
 mvn clean install -DskipTests
 \end{lstlisting}
 
-in order to install from source. The program took a little over 13 minutes to compile (Figure~\ref{fig:compilation}).
+in order to install from source. The program took a little over 13 minutes to compile. An excerpt of the terminal output can be see in Listing~\ref{code:compilation-output}.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.85\textwidth]{report/images/compiling-tika.png}
-    \caption{Apache Tika compilation.}
-    \label{fig:compilation}
-\end{figure}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\lstdefinelanguage{CompilationStep}{
+  keywords={SUCCESS,BUILD,SUCCESS},
+  keywordstyle=\color{applegreen}\bfseries,
+  ndkeywords={INFO},
+  ndkeywordstyle=\color{orange}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\begin{lstlisting}[caption={Terminal output after successfully compiling Apache Tika.}, label={code:compilation-output},language={CompilationStep}]
+[INFO] Apache Tika eval .............................. SUCCESS [ 20.264 s]
+[INFO] Apache Tika examples .......................... SUCCESS [  5.644 s]
+[INFO] Apache Tika Java-7 Components ................. SUCCESS [  1.609 s]
+[INFO] tika-parsers-advanced ......................... SUCCESS [  0.079 s]
+[INFO] tika-parser-nlp-module ........................ SUCCESS [ 58.152 s]
+[INFO] Apache Tika Natural Language Processing ....... SUCCESS [03:35 min]
+[INFO] tika-parser-advancedmedia-module .............. SUCCESS [  2.265 s]
+[INFO] Apache Tika Deep Learning (powered by DL4J) ... SUCCESS [06:25 min]
+[INFO] Apache Tika ................................... SUCCESS [  0.053 s]
+[INFO] -------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] -------------------------------------------------------------------
+[INFO] Total time: 13:43 min
+[INFO] Finished at: 2020-11-29T12:09:58+01:00
+[INFO] -------------------------------------------------------------------
+\end{lstlisting}
 
 \subsection{High-level overview}
 We first ran the program byte-code through \textit{Structure101} \citep{chedgeystructure101}. See the composition graph, Figure~\ref{fig:composition}.
@@ -382,7 +412,7 @@ The relevant files for our Designite data-collection code are \texttt{find\_gcs.
     \begin{table}[ht]
     \begin{tabular}{lllll}
     id                                       & author    & datetime                  & message                                       & jira      \\
-    7f65d61 & THausherr & 2020-12-14 & TIKA-3248: revert accidental commit (2nd try) & TIKA-3248 \\
+    7f65d61 & THausherr & 2020-12-14 & TIKA-3248: revert accidental commit .. & TIKA-3248 \\
     326b7d7 & THausherr & 2020-12-14 & Revert "Merge origin/main into main"          & NaN       \\
     dd85c73 & THausherr & 2020-12-14 & Merge origin/main into main                   & NaN      
     \end{tabular}
@@ -450,31 +480,31 @@ Max Disk Read       : 7.65M (pg-memory05)
 It can be observed that our job ran with high efficiency (98.25\%), indicating we put all nodes at work nicely. The maximally used amount of memory comes in at 124 GB, indicating we only barely topped out the 128 GB memory available to us on regular Peregrine nodes. Apparently, no memory can be allocated already before the job report says to have used 128 GB memory. In all, it took the job more than 5 hours to complete, giving us a nice speedup on the sequential operation. That said, once this massive operation is complete, we simply take all the separate .csv files and concatenate them into one huge result file. This file is stored in \texttt{output/all\_reports.csv}.
 
 \subsection{Data analysis}
-Now that we have a huge data file, we need to analyze it. This is done in the Jupyter Notebook \texttt{statistics.ipynb}. We are able to iterate every commit and decide figure out what God Components exist in that version of the code. It is important, we do not make assumptions about the starting- and ending dates of the God Components; a component might become a GC and stop being one multiple times. Having aggregated all this data into a suitable data frame, we obtain the Figure~\ref{fig:gc_lineplot}.
+Now that we have a huge data file, we need to analyze it. This is done in the Jupyter Notebook \texttt{statistics.ipynb}. We are able to iterate every commit and decide figure out what God Components exist in that version of the code. It is important, we do not make assumptions about the starting- and ending dates of the God Components; a component might become a GC and stop being one multiple times. Having aggregated all this data into a suitable data frame, we obtain Figure~\ref{fig:gc_lineplot}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{report/images/gc_lineplot.png}
-    \label{fig:gc_lineplot}
     \caption{All God Components shown such that all their GC 'starting'- and 'ending' dates are visible; when they became a GC and when they stopped being one.}
+    \label{fig:gc_lineplot}
 \end{figure}
 
 Interesting insight. It can be seen that there were in total 15 God Components detected throughout the existence of the Tika codebase. Some of which have stopped being a GC in between, having a break of sometimes up to a couple years before becoming a GC again (tika.server). However, we should note that some GC's have shorter breaks, sometimes so short that the line in the plot is still continuous - the re-emergence of the GC in that case can be seen by the caret indicator ($\blacktriangleright$).
 
 This gave us an insight as to what God Components exist in the Tika code-base throughout its entire history, and when they ceased being one in between. It does not yet show us, however, how 'big' the God Components are compared to each other. This is our next analysis goal. The main reason Designite classified components as GC's, is the MANY\_CLASSES cause (see Table~\ref{tab:designite-output}). In fact, throughout all commits, this was the only reason that Designite classified components as a GC. This fact can simplify the analysis process - we can now assume the reason to always be MANY\_CLASSES, allowing us to utilize the metric that is output alongside the report: the \textit{\# classes} having caused the respective component to have become a GC. Using this new assumption, we can visualize the God Components in terms of '\# classes' versus the time, see Figure~\ref{fig:class_growth}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includesvg[width=\textwidth]{report/images/god_components/gcs-package-classes-growth.svg}
-    \label{fig:class_growth}
     \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the number of classes.}
+    \label{fig:class_growth}
 \end{figure}
 
 Some observations can be made according to the chart. The \texttt{org.apache.tika.parser} component first starts out as a GC and remains to do so until now, with a high number of classes, around 60, but fluctuating. A general trend that can be spotted is the components to mostly increase in amount of classes over the time; this seems to apply for almost all GC's. Lastly, we should note that, albeit all GC's have continuous lines over the plot, there might be sections when the line just 'bridges' the gap of the component \textbf{not} being a GC (e.g. \texttt{tika.server}); the '\# classes' data is only available when the component is actually a GC. 
 
 What would also be interesting, however, is to discover what commits added/removed code to some God Component. For this, we have our final part of the code: the \textsc{compute\_locs} function in \texttt{git\_utils.py}. \textsc{compute\_locs} uses \texttt{git diff} to discover what files changed for some certain commit. The output is then formatted and loaded up into a Pandas data frame for further analysis. For every file changed in some commit, we found out whether it affected some God Component; we do this by checking whether the package name exists in the path. An example match would be \texttt{tika/tika-core/src/main/java/org/apache/tika} $\Leftrightarrow$ \texttt{org.apache.tika}. More specifically, packages that have higher levels of nesting are tested on a match first, i.e. \texttt{org.apache.tika.parser} will be tested before \texttt{org.apache.tika} because its nesting level is higher. Only the first match is taken into consideration - preventing multiple packages matching just one file. For an example of how this processed data looks like, see Table~\ref{tab:locs}:
 
-\begin{table}[ht]
+\begin{table}[H]
 \begin{tabular}{llllllll}
 additions & deletions & godcomp                          & id                                       & author    & ...\\
 1         & 3         & org.apache.tika.batch            & 7f65d61 & THausherr & ... \\
@@ -487,16 +517,16 @@ additions & deletions & godcomp                          & id                   
 
 With all per-commit info from git diff mapped to a God Components, we can map the total Lines Of Code (LOC) that each commit builds up to each God Component. This mapping operation of computing the cumulative LOC's over time space is done in the \texttt{statistics.ipynb} file. See Figure~\ref{fig:loc_growth} for the result.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includesvg[width=\textwidth]{report/images/god_components/gcs-package-loc-growth.svg}
-    \label{fig:loc_growth}
     \caption{God components growth in Apache Tika. X-axis represents the time and Y-axis represents the lines of code, in \textbf{logarithmic scale}.}
+    \label{fig:loc_growth}
 \end{figure}
 
 Note that the y-axis is in logarithmic scale: the differences in LOC buildup between the various GC's was too large to make a nice chart otherwise. It is important to take this fact into account when interpreting the chart - in terms of Lines Of Code, by far the biggest component is \texttt{org.apache.tika.parser}. When carefully inspecting the chart, it can be seen that that component is really an order of magnitude larger than the other ones, i.e. others compare at around 10,000 LOC at the time of writing, compared to the parser's around 100,000 lines. That's a big difference. Let us now explore some specific God Components in more depth.
 
-\section{God Component Analysis}
+\section{God Components in Tika}
 This section focuses on performing an analysis towards the identified God components. The analysis is built based on answering the following questions: \textit{What types of issues contributed to the creation of God components? How many developers contribute to God components? What types of issues contributed to the re-factoring of God components? How long do God components stay inside a system?} All these questions provide us with insight regarding the evolution of God Components in Tika.
 
 To line up some general statistical information on all found God Component, an overview was constructed, see Table~\ref{tab:gc-summary}.
@@ -526,27 +556,40 @@ org.apache.tika.utils                    & 2020-10-31   & 86            & 44    
 
 By combining Table~\ref{tab:gc-summary} with some chart previously shown - like the GC starting- and ending dates (Figure~\ref{fig:gc_lineplot}) and Lines Of Code growth (Figure~\ref{fig:loc_growth}) - we are able to identify some interesting God Components to use for more in-depth analysis. The first one being \texttt{org.apache.tika.parser}, which is interesting to analyze since it is the biggest component in terms of Lines Of Code (LOC). Next, the \texttt{org.apache.tika.server} component is interesting because it stopped being a God Component for some several years only to later continue being a GC again. Lastly, \texttt{org.apache.tika.parser.txt} is the God Component that has been in the codebase first and has remained being one, almost uninterrupted, for the longest amount of time.
 
-%\subsection{org.apache.tika.parser}
-%\begin{itemize}
-    %\item What types of issues contributed to the creation of God %%components? \\
-    %According to the Jira issue tracker, the developers of Tika contributed towards the system mainly in 4 aspects: improving the package, adding new features and functionalities, fixing existing bugs or issues and completing multiple tasks. More precisely, there are approximately 1200 commits regarding bug fixes, nearly 600 commits related to improving the package, almost 150 commits for adding features and 170 commits for task completion. The rest of commits have been created for testing, wish list purposes or sub-task completion. It is quite clear that the highest proportion of these commits are associated to bug fixes. These bug fixes have made the developers to create more code, to produce more lines of code and more packages as a result. This has lead to the creation of parser as a God component. 
-    %\item How many developers contribute to God components?\\ In total, there are 2429 commits regarding the parser God component and there is a total amount of 116 developers that contributed towards its evolution. Though out the commits, the developers improved different parts of the God component, added new features, fixed multiple bugs and worked on tasks and sub tasks.  
-     %\item What types of issues contributed to the re-factoring of God components?\\
-   % \item How long does this God component stay inside a system?\\ This package became a God component in 2015 and it still continues to be one. This implies that this package has been a God component for approximately 6 years. The parsers are key functionalities in the system of Tika, as they are responsible for extracting the content of the files and their corresponding metadata. It makes sense why this package is a God component and why it keeps evolving.
-
-%\end{itemize}
 
 
 \subsection{What types of issues contributed to the creation of God components?}
  The Jira tracker issue classifies the issues of Apache Tika into 7 main categories: the bugs, the improvements, the new feaures, the tasks, the sub-tasks, the wishlist and the testing, as visualized in the image below. Based on our analysis, we have identified that there are three main types of issues that mainly contributed towards the creation of the God components: the bugs, the improvements and the tasks. However, the type of issue that had the most impact in the creation of the God components is the \textbf{improvement} type of issue. The image shows that the improvements have added the highest amount of classes, approximately 150 classes, but at the same time they have removed nearly 100 classes. The second type of issue that has had significant impact on the creation of the God components are the bugs, which added around 50 classes, but also removed roughly 50 classes. The type of issues with the least impact on the God components are the wishes and the tests, which have neither added nor removed any classes in the code. 
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{report/images/god_components/top-issues.png}
+    \caption{Stacked bar plot of what issues contributed most to the God Component buildup, i.e. issues that led to adding or removing classes to God Components.}
+    \label{fig:top-issues-plot}
+\end{figure}
 
 \subsection{How many developers contribute to God components?}
-In general terms, the God components in Tika have a high developer contribution. Some components with the highest amount of developers involved are tika.batch, tika.example, tika.parser, tika.mime, parser.microsoft, parser.txt and tika.sax, which have on average 120 developers included in the evolution of these God components. There are some other packages that have a significantly smaller amount of developers involved like tika.fork and tika.server, with 52 developers and 47 developers involved, respectively. The God components with the lowest number of developers are tika.utils, .parser.microsoft.onenote, .microsoft.chm, with 8 developers, 26 developers and 14 developers, respectively.\\
-While analyzing these God components, it has been noticed that a lot of developers are using different accounts while contributing to the git repository. For instance, Tim Allison is one of the authors with the highest contribution towards Tika and he is using at least three accounts with the following names: tallison, tballison and TALLISON. The results regarding the amount of developers per each God component might be slightly skewed due to the fact that the developers might have more than one account each. 
 
-%Some components like tika.batch, tika.example, tika.parser, tika.mime, parser.microsoft, parser.txt and tika.sax have the highest amount of developers that contributed, approximately 120 developers for each package. Other components like tika.fork and tika.server have a significantly smaller amount of developers involved, 52 developers and 47 developers, respectively. Some of the God components that had the least amount of developers are tika.utils, .parser.microsoft.onenote, .microsoft.chm, with 8 developers, 26 developers and 14 developers, respectively.
+%In general terms, the God components in Tika have a high developer contribution. Some components with the highest amount of developers involved are tika.batch, tika.example, tika.parser, tika.mime, parser.microsoft, parser.txt and tika.sax, which have on average 120 developers included in the evolution of these God components. There are some other packages that have a significantly smaller amount of developers involved like tika.fork and tika.server, with 52 developers and 47 developers involved, respectively. The God components with the lowest number of developers are tika.utils, .parser.microsoft.onenote, .microsoft.chm, with 8 developers, 26 developers and 14 developers, respectively.\\
+
+It has been a difficult task to determine precisely the number of the developers that contributed towards each God component. While analyzing the God components, it has been noticed that a lot of developers are using different accounts while contributing to the git repository. For instance, Tim Allison is one of the authors with the highest contribution towards Tika and he is using at least three accounts with the following names: tallison, tballison and TALLISON. Due to this fact, the results regarding the amount of developers per each God component would be quite skewed and we would not be able to provide the correct developer contribution. In order to solve this issue, we focused only on finding the authors with the highest contributions. Based on the chart below, the results show that Tim Allison is the developer with the highest contribution towards Tika, covering almost half of the total contributions. Other developers that have had a significant contribution in Tika are Nick Burch, Thamme Gowda and Lewis John McGibbney, with approximately 30 percent of the total contribution. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{report/images/god_components/top-developers.png}
+    \caption{Pie chart showing what developers contributed what percentage of the total classes changed in God Component. Only the top 8 contributors are shown; the others are easily summed because they are a negligible fraction of the total.}
+    \label{fig:top-developers-pie}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{report/images/god_components/top-developers-barchart.png}
+    \caption{A bar chart showing what 'top' developers added- or removed the most classes.}
+    \label{fig:top-developers-bar}
+\end{figure}
+
 \subsection{What types of issues contributed to the re-factoring of God components?}
-Based on the analysis conducted upon a set of issues/commits, it has been noticed that the main type of issue that has contributed towards the re-factoring of the God component is the improvement type of issue. In some of these improvements, the developers focus on re-factoring the God components by restructuring modules and packages in a more efficient way, by removing unnecessary dependencies and upgrading components to newer versions. The re-factoring process leads to adding more classes or to removal of classes based on the issue itself. These cases have been analyzed more in depth in Section 6. 
+Based on the analysis conducted upon a set of issues/commits, it has been noticed that the main type of issue that has contributed towards the re-factoring of the God component is the improvement type of issue. In some of these improvements, the developers focus on re-factoring the God components by restructuring modules and packages in a more efficient way, by removing unnecessary dependencies and upgrading components to newer versions. The re-factoring process leads to adding more classes or to removal of classes based on the issue itself. One example of a refactoring issue is TIKA-3179. The issue is an improvement type of issue and is of critical importance. It mainly affected the parsers and the issue was concerned with cleaning the parser’s hierarchy and restructuring the entire components. According to Jira comments, a lot of parsers were moved to new packages and the parser.extended package was also created for this issue. These cases have been analyzed more in depth in Section 6. 
 \subsection{How long do God components stay inside a system?}
 Based on the results visualized in the images above, it is noticed that the majority of the God components has been as such since the moment they are created. There are 8 packages in total that have evolved as God components and continued as such without interruptions. Some of these God components are parser.txt, tika.detect, tika.batch and tika.metadata. Most of these God components were created in nearly 2015 and some others in nearly 2017, implying that they have been in system for approximately 5 years and around 3 years, respectively. However, the system contains some God components that stopped being as such for a while and that eventually ended up again into God components. Some of these God components are tika.parser and tika.server. Tika.parser was defined as a God component in 2012, stopped being one in 2013. This package rebecame a God component in in 2014 and remained as such only for a very short time (a few months). Then eventually, it became a God component again in 2015 and continues to be one up to now. These phases imply that the God component has been present in the system for nearly 6 years. In addition, tika.server was created halfway 2014 and remained as such till 2015. The package was redefined as a God component halfway 2018 and it continues to be one up to now, meaning that it exists in the system for nearly 4 years.\\
 
@@ -562,10 +605,8 @@ In order to have a better overview, we are answering the above questions for two
     In 2015, the package was not a God component any more. The issue that removed this package from the God components was created by Tyler Palsulich. Another developer that contributed to its removal is Tim Allison. In 2018, the package became a God component again. The issue that remade the package a God component was created by Tim Allison. %Other developers that contributed towards its creation are: Badger, Daniel La, NW Brad, Nick Burch.
 
 
-    \item What types of issues contributed to the re-factoring of the God components?\\
-    Most of the issues mentioned in the first question had a re-factoring effect in the tika.server package. One important issue that had a big influence in the package was TIKA-1564. The issue was mainly concerned with organizing and re-structuring the entire package.
-    \item  How long does this God component stay inside the system?\\
-    According to the graph, tika.server is one of the components that has had an interesting evolution. Initially, this package became a God component in May of 2014 and it continued being one till March of 2015. The package was removed from the God components until August of 2018. That is when tika.server started again being a God component and it continues to be one up to now. This package has been a God component within the system for approximately 3.5 years.
+  %  \item What types of issues contributed to the re-factoring of the God components?\\
+  %  Most of the issues mentioned in the first question had a re-factoring effect in the tika.server package. One important issue that had a big influence in the package was TIKA-1564. The issue was mainly concerned with organizing and re-structuring the entire package.
 \end{itemize}
 
 
@@ -575,27 +616,18 @@ In order to have a better overview, we are answering the above questions for two
     \item	What types of issues contributed to the creation of the God component?\\
     
     Similarly to the previously discussed package, there are 2 identified issues that caused significant changes to the parser.txt component. The first issue (under TIKA-233) was mainly concerned with using a smaller component of ICU4J library. It was considered as an improvement type of issue with a minor priority and it transformed this package into a God component. According to Jira, this occurred as a result of a large number of copies of relevant classes from ICU4J library. The second issue is quite unique, because it initially managed to remove this package from the God components, but within the timespan of a few hours it managed to remake the package a God component. The issue is defined as a task of major importance and it is mainly focused on clarifying the structure of parser module. The issue is still unsolved.\\
-    Even though these issues had a quite significant impact on the evolution of this God component, there have been other issues that contributed in the creation or the removal of this God Component. Before the TIKA-233 issue, most of these issues were related to bug fixes and adding new features into the parsers. Some of them were mainly concerned with adding parser readers (TIKA-143), adding parsers for zip files (TIKA-149), adding parsers for XHTML content or fixing bugs like Missing body in HtmlParser. All these examples of issues show that this was the stage where all the parsers started being implemented in order to provide extra functionalities to Apache Tika. In addition, there are some other issues timely close to TIKA-3241 that contributed to removing and re-adding this package as a God component. Some of these issues were mostly bug of major importance like checking causes of tika exceptions when using  Tika library AutoDetectParser (TIKA-3243, RTFParser fails to generate full content of an RTF file (TIKA-3238), ForkParser displays incorrect message when parse timeout is reached (TIKA-3220). All these bugs still remain unresolved.
-    \item How many developers contribute to the God component?\\
-    In total, there are 4539 commits regarding the parser.txt God component and there is a total amount of 123 developers that contributed towards its evolution. The issue that initially made the package a God component in 2009 was created by Jukka Zitting, while the issue that removed the package from the God components and instantly remade it a God component was created by Tim Allison. \\
-    \item	What types of issues contributed to the re-factoring of God components?\\
-    The re-factoring issues that mainly influenced the God component were  the issues that were mainly concerned with improving the quality of the code of the component (improvements). One issue like this was TIKA-3179, which was of critical importance. The issue was mainly concerned with cleaning the parser’s hierarchy and restructuring the entire component. According to Jira comments, a lot of parsers were moved to new packages and the parser.extended package was also created for this issue.\\
-    \item How long do God components stay inside a system?\\
-    According to the graph, parser.txt is another component that has had an interesting evolution. It started being a God component in May of 2009 and it continued being one till December of 2020. However, the package had a strong comeback and it was reconsidered as a God component only a few hours after it was removed from the God components. In total, the God component has been present in the system for approximately 11 years.
-    
+    Even though these issues had a quite significant impact on the evolution of this God component, there have been other issues that contributed in the creation or the removal of this God Component. Before the TIKA-233 issue, most of these issues were related to bug fixes and adding new features into the parsers. Some of them were mainly concerned with adding parser readers (TIKA-143), adding parsers for zip files (TIKA-149), adding parsers for XHTML content or fixing bugs like Missing body in HtmlParser. All these examples of issues show that this was the stage where all the parsers started being implemented in order to provide extra functionalities to Apache Tika. In addition, there are some other issues timely close to TIKA-3241 that contributed to removing and re-adding this package as a God component. Some of these issues were mostly bug of major importance like checking causes of tika exceptions when using  Tika library AutoDetectParser (TIKA-3243), RTFParser fails to generate full content of an RTF file (TIKA-3238), ForkParser displays incorrect message when parse timeout is reached (TIKA-3220). All these bugs still remain unresolved.
+
 \end{itemize}
 \pagebreak
 \section{Commits and issue analysis}
-This sections focuses on analyzing a sample of issues within Apache Tika. The goal of this analysis is to understand and guess the rationale of the developers regarding the God components. The analysis is performed based on the following questions: 
-\textit{Do developers discuss God components within issues? If yes, what do they discuss?}
-\textit{ How do developers re-factor God components?}
+
+This section focuses on analyzing the Tika’s issue tracker. The issue tracker contains approximately 3000 issues. The main goal of the analysis is an attempt to better understand the rationale of the developers regarding their consideration towards God components. In order to achieve this, we have selected a sample of issues that have the most significant impact in the evolution of the God components. In brief, these are the issues with the most classes added and removed.  The sample consists of 26 issues in total and have been analyzed while taking into account two main questions.
+\subsection{Do developers discuss God components within issues? If yes, what do they discuss?}
+\subsection{ How do developers re-factor God components?}
 
 
-%In order to obtain a better overview of the God components, we decided to perform an analysis mainly on the issues that had the most significant impact in evolution of the God components. Based on this criteria, we chose the issues that added or removed the highest amount of classes. 
 
-%This section focuses on analyzing a set of issues that added and removed the highest amount of classes within the respective God components. 
-
-%This section focuses on analysing a set of issues that had the most noticeable impact in adding and removing classes from the God components. After that, we analyze these issues in order to determine the possible rationale of the developers when it comes to adding or removing these God components. The analysis is performed based on the following questions:
 \subsection{Issues}
 For analyzing purposes, we have chosen different issues that are related to all the packages and classes that are defined as God components. \\
 \textbf{TIKA-1663}
