@@ -1,5 +1,9 @@
-# The evolution of God Components
-How did big, bulky software components come into being? In this project, we explore the evolution of so-called _God Components_; pieces of software with a large number of classes or lines of code that got very large over time.
+# God Components in Apache Tika
+How did big, bulky software components come into being? In this project, we explore the evolution of so-called _God Components_; pieces of software with a large number of classes or lines of code that got very large over time. Our analysis was run on the [Apache Tika](https://tika.apache.org/) codebase.
+
+[![god components lifetime image](report/images/gc_lineplot)](https://dunnkers.com/god-components)
+
+Check out the [Juypter Notebook](https://dunnkers.com/god-components).
 
 ## Running project code
 The analysis process consists out of two steps: (1) fetching the data using _Designite_ and (2) analyze the data using a Jupyter Notebook.
