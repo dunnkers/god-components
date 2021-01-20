@@ -5,8 +5,26 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#000000" />
+<meta name="author" content="Jeroen Overschie">
+<meta
+  name="description"
+  content="How do God Components evolve in Apache Tika? A qualitative and quantitative analysis."
+/>
 
-<title>statistics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40680192-2">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-40680192-2");
+</script>
+
+
+<title>God Components in Apache Tika</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14220,25 +14238,65 @@ a.anchor-link {
 <style type="text/css">
 /* Background color and such */
 html {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #282c34;
-  padding: 60px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen",
+    "Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
 }
 
-@media (min-width: 768px) { /* Phones, tablets */
-  /* Center the entire page */
-  html {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.jp-RenderedHTMLCommon p {
+  font-size: 15px;
+  text-align: justify;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    color: rgba(0,0,0,.85) !important;
+    font-weight: 500 !important; 
+}
+
+
+.jp-Notebook {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  padding-right: 5px;
+  margin: 0;
+  max-width: 1000px;
+}
+
+@media (min-width: 576px) { /* Phones */
+  .jp-Notebook {
+    padding-right: 15px;
   }
 }
 
-.jp-Notebook { /* body */
-  padding: 60px;
-  padding-right: 136px;
-  max-width: 1200px;
-}</style>
+@media (min-width: 768px) { /* Tablets */
+  .jp-Notebook {
+    padding-right: 25px;
+  }
+}
+
+@media (min-width: 992px) { /* (Large) Tablets, Small Desktops  */
+  .jp-Notebook {
+    padding-right: 35px;
+  }
+}
+
+@media (min-width: 1200px) { /* Desktops */
+  html {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .jp-Notebook {
+    padding-left: 50px;
+    padding-right: 136px;
+  }
+}
+</style>
 
 
 <!-- Load mathjax -->
@@ -14285,8 +14343,7 @@ html {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="God-Components-in-Apache-Tika">God Components in Apache Tika<a class="anchor-link" href="#God-Components-in-Apache-Tika">&#182;</a></h1><p>How did big, bulky software components come into being? In this project, we explore the evolution of so-called <em>God Components</em>; a software anti-pattern where pieces of software with a large number of classes or lines of code get so large over time they become hard to maintain and reason about.</p>
-<p>The codebase of choice is chosen to be <a href="https://tika.apache.org/">Apache Tika</a>, a content analysis toolkit built in Java. This Jupyter Notebook provides a structured analysis on data mined using Designite and using data from the Git repository.</p>
-<p>A report on the git contributers can be found <a href="https://dunnkers.com/god-components/git-report">here</a> (made using gitinspector).</p>
+<p>The codebase of choice is chosen to be <a href="https://tika.apache.org/">Apache Tika</a>, a content analysis toolkit built in Java. This Jupyter Notebook provides a structured analysis on data mined using Designite and using data from the Git repository. A report on the git contributers can be found <a href="https://dunnkers.com/god-components/git-report">here</a> (made using gitinspector).</p>
 <p>→ By <a href="https://dunnkers.com/">Jeroen Overschie</a> and Konstantina Gkikopouli.</p>
 <h2 id="Loading-datasets">Loading datasets<a class="anchor-link" href="#Loading-datasets">&#182;</a></h2><p>Import dependencies.</p>
 
