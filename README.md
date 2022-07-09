@@ -5,7 +5,7 @@ Check out the [Juypter Notebook](https://dunnkers.com/god-components):
 
 [![god components lifetime image](report/images/gc_lineplot.png)](https://dunnkers.com/god-components)
 
-Or see the Google Slides:
+Or see the [Google Slides](https://docs.google.com/presentation/d/e/2PACX-1vR7K3OXOYntmhZGBF5LnIPyOMtfLJlcgEjjMS9Kl0h3PLi6C_rnJKLjjXxd3nzIvR5PCgmt17wQ87kS/pub?start=false&loop=false&delayms=3000):
 
 [![Screenshot 2022-07-09 at 19 15 49](https://user-images.githubusercontent.com/744430/178116119-93899885-81d0-4254-8c9d-7963589b331a.png)](https://docs.google.com/presentation/d/e/2PACX-1vR7K3OXOYntmhZGBF5LnIPyOMtfLJlcgEjjMS9Kl0h3PLi6C_rnJKLjjXxd3nzIvR5PCgmt17wQ87kS/pub?start=false&loop=false&delayms=3000)
 
